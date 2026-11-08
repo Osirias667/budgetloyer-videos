@@ -47,7 +47,20 @@ Chaque vidéo part sur les deux réseaux, en deux posts séparés.
 - `autoPublish: true`, `draft: false`.
 - TikTok : `title` obligatoire, `commercialContentOwnBrand: true`, `isAigc: true`, `privacyOption: PUBLIC_TO_EVERYONE`.
 - YouTube : `type: short`, `privacy: public`, `madeForKids: false`, `title`, `tags`, `category: HOWTO_STYLE`. `isAiGeneratedContent: true` seulement si le contenu est réaliste (pas pour ces animations).
-- Légende TikTok : accroche, emojis, 2 à 4 bénéfices, « BudgetLoyer.com (lien en bio) », 6 à 10 hashtags.
+
+## Descriptions (obligatoire : même style que les posts existants du compte)
+Même texte sur TikTok et YouTube. Tout sur une seule ligne, sans retours à la ligne, en tutoiement. Dans cet ordre :
+1. Accroche avec un emoji au début et « … » : `🎿 Les vacances au ski approchent… mais ton budget, lui, est-il prêt à dévaler les pistes ? ❄️`
+2. Une phrase de contexte liée au thème de la vidéo, qui finit par « ! » et un emoji.
+3. `Avec BudgetLoyer, <verbe> :` puis 3 ou 4 bénéfices courts, chacun précédé d'un emoji, à l'impératif (🎯 📊 🚨 💰 📅 🏠).
+4. Une chute drôle qui file la métaphore de la vidéo : `Parce que les seules choses qui devraient déraper au ski, ce sont tes skis, pas tes finances ! ⛷️`
+5. `👉 Découvre BudgetLoyer.com (lien en bio).` Sur YouTube, retirer « (lien en bio) ».
+6. 10 à 13 hashtags : `#BudgetLoyer`, 2 ou 3 sur le thème, puis `#GestionBudget #FinancesPersonnelles #Budget #Argent #Epargne #FinDeMois`, et pour finir `#TikTokFrance` sur TikTok ou `#Shorts` sur YouTube.
+
+Exemple complet de référence :
+`🚨 Votre salaire est en garde à vue… et il a beaucoup de choses à expliquer ! 1 800 € sur le compte au départ… mais entre le loyer, les factures et les dépenses du quotidien, où passe tout cet argent ? 🧐 Avec BudgetLoyer, fini les disparitions inexpliquées : 💸 Suis tes dépenses 📊 Visualise ce qu'il te reste vraiment 🚨 Anticipe les dépassements de budget 🎯 Garde le contrôle de ton épargne Ton salaire mérite mieux que de disparaître sans laisser de traces ! 🔍 👉 Passe à l'action sur BudgetLoyer.com (lien en bio). #BudgetLoyer #Salaire #GestionBudget #FinancesPersonnelles #Budget #FinDeMois #argent #Depenses #Epargne #PouvoirDAchat #ConseilsBudget #Humour #TikTokFrance`
+
+Avant de programmer, relire aussi les 5 dernières descriptions du compte (métrique TKPO05) pour rester dans le ton.
 
 ## Apprentissage
 Avant de créer, lire les stats TikTok des 14 derniers jours (métriques TKPO02, 05, 06, 07, 08, 09, 10) et `journal.md`. Refaire les angles et formats qui dépassent la médiane, abandonner ceux qui sont en dessous. Ne jamais répéter un sujet des 14 derniers jours.
