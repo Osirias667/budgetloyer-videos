@@ -55,10 +55,14 @@ Même texte sur TikTok et YouTube. Tout sur une seule ligne, sans retours à la 
 3. `Avec BudgetLoyer, <verbe> :` puis 3 ou 4 bénéfices courts, chacun précédé d'un emoji, à l'impératif (🎯 📊 🚨 💰 📅 🏠).
 4. Une chute drôle qui file la métaphore de la vidéo : `Parce que les seules choses qui devraient déraper au ski, ce sont tes skis, pas tes finances ! ⛷️`
 5. `👉 Découvre BudgetLoyer.com (lien en bio).` Sur YouTube, retirer « (lien en bio) ».
-6. 10 à 13 hashtags : `#BudgetLoyer`, 2 ou 3 sur le thème, puis `#GestionBudget #FinancesPersonnelles #Budget #Argent #Epargne #FinDeMois`, et pour finir `#TikTokFrance` sur TikTok ou `#Shorts` sur YouTube.
+6. Exactement 5 hashtags, pas plus (TikTok est annoncé comme limité à 5 par publication depuis août 2025), minuscules sauf nom propre, sans accents, tous en rapport avec la vidéo, dans cet ordre :
+   - 1 ou 2 sur le sujet précis de la vidéo, parmi les termes les plus utilisés pour ce sujet (`#BlackFriday`, `#noel`, `#colocation`, `#loyer`…).
+   - 2 ou 3 très larges et en rapport : `#budget`, `#argent`, `#epargne`, `#humour` (sketch), `#finance`.
+   - Le dernier est `#fyp` sur TikTok, `#shorts` sur YouTube.
+   Ne jamais mettre un hashtag populaire sans lien avec la vidéo.
 
 Exemple complet de référence :
-`🚨 Votre salaire est en garde à vue… et il a beaucoup de choses à expliquer ! 1 800 € sur le compte au départ… mais entre le loyer, les factures et les dépenses du quotidien, où passe tout cet argent ? 🧐 Avec BudgetLoyer, fini les disparitions inexpliquées : 💸 Suis tes dépenses 📊 Visualise ce qu'il te reste vraiment 🚨 Anticipe les dépassements de budget 🎯 Garde le contrôle de ton épargne Ton salaire mérite mieux que de disparaître sans laisser de traces ! 🔍 👉 Passe à l'action sur BudgetLoyer.com (lien en bio). #BudgetLoyer #Salaire #GestionBudget #FinancesPersonnelles #Budget #FinDeMois #argent #Depenses #Epargne #PouvoirDAchat #ConseilsBudget #Humour #TikTokFrance`
+`🚨 Votre salaire est en garde à vue… et il a beaucoup de choses à expliquer ! 1 800 € sur le compte au départ… mais entre le loyer, les factures et les dépenses du quotidien, où passe tout cet argent ? 🧐 Avec BudgetLoyer, fini les disparitions inexpliquées : 💸 Suis tes dépenses 📊 Visualise ce qu'il te reste vraiment 🚨 Anticipe les dépassements de budget 🎯 Garde le contrôle de ton épargne Ton salaire mérite mieux que de disparaître sans laisser de traces ! 🔍 👉 Passe à l'action sur BudgetLoyer.com (lien en bio). #salaire #budget #argent #humour #fyp`
 
 Avant de programmer, relire aussi les 5 dernières descriptions du compte (métrique TKPO05) pour rester dans le ton.
 
