@@ -21,7 +21,12 @@ Objectif : 2 vidéos originales par jour, le plus de vues possible sur TikTok et
 
 ## Direction artistique
 Format 1080x1920, 30 fps, 20 à 40 s, h264 + aac. `bl.py` contient le moteur, `videos.py` deux exemples complets.
-Alterner chaque jour les deux familles :
+
+**Carte blanche créative (décision du propriétaire).** Les seuls repères sont le site et la DA des comptes. Innover est attendu : nouveaux formats, concepts, personnages, rythmes, séries récurrentes, faux formats télé ou jeux, quiz, classements, pastiches génériques, cliffhangers, etc. La seule contrainte visuelle est de rester en animation, avec la palette, le logo et le ton BudgetLoyer reconnaissables. Tester au moins un format jamais vu par semaine, le noter dans `journal.md`, puis garder ce qui dépasse la médiane des vues. Étendre `bl.py` avec de nouveaux décors et personnages quand c'est utile.
+
+Les règles de fiabilité ne bougent pas : fonctionnalités citables, faits sourcés, neutralité politique, pas de personnage protégé ni de personne réelle, descriptions, hashtags et réglages de publication.
+
+Les deux familles déjà installées servent de base, pas de limite :
 - **Sketch** : personnages plats (P1 à capuche et casque, boss monstres, colocs, etc.), décors colorés, étiquette de rôle + bandeau de dialogue néon avec texte tapé, scènes courtes, puis tableau de bord BudgetLoyer et carte de fin (logo vert, BudgetLoyer.com en jaune, confettis). Thèmes déjà utilisés : jeu vidéo, garde à vue, procès de coloc, vampire, zombie, boss de fin, ski, Gaston contre Rémi. En inventer de nouveaux.
 - **Tuto** : fond sombre, gros texte blanc avec mots en vert #20E388, téléphone avec écrans de l'app, « Étape 1/2/3 », écran vert « Spoiler », fin « Lien en bio ».
 
