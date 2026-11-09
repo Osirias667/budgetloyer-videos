@@ -290,6 +290,21 @@ def ground(im):
 
 
 @lru_cache(maxsize=None)
+def bg_grid():
+    """Fond rétro sans soleil, pour que le texte reste lisible en accroche."""
+    a = grad((12, 3, 44), (70, 16, 118), 0, 1150)
+    im = Image.fromarray(a)
+    d = ImageDraw.Draw(im, "RGBA")
+    d.rectangle((0, 1150, W, H), fill=(14, 3, 40, 255))
+    for i in range(14):
+        y = 1150 + (i / 14) ** 2 * 770
+        d.line((0, y, W, y), fill=(230, 40, 200, 170), width=3)
+    for i in range(-14, 15):
+        d.line((540 + i * 34, 1150, 540 + i * 190, H), fill=(230, 40, 200, 140), width=3)
+    return im
+
+
+@lru_cache(maxsize=None)
 def bg_day():
     im = Image.fromarray(grad((74, 26, 170), (250, 120, 170), 0, 1700))
     d = ImageDraw.Draw(im, "RGBA")
@@ -518,6 +533,104 @@ def bars(img, t, x, y, w, rows, start=0.2):
         d.text((x + w, yy), f"{cur} / {cap}{NB}€", font=inter(38), fill=vc, anchor="ra")
         d.rounded_rectangle((x, yy + 66, x + w, yy + 90), 12, fill=(36, 46, 58))
         d.rounded_rectangle((x, yy + 66, x + max(24, w * min(1, val / cap) * p), yy + 90), 12, fill=col)
+
+
+# Ajouts des épisodes -----------------------------------------------------
+@lru_cache(maxsize=None)
+def stamp(txt, col, size=120, angle=-9):
+    """Tampon incliné à bord épais, posé par-dessus une carte."""
+    f = inter(size, "Black")
+    tw = int(f.getlength(txt))
+    w, h = tw + 110, int(size * 1.75)
+    p = P(w, h)
+    p.r(6, 6, w - 6, h - 6, 26, col + (235,))
+    p.r(18, 18, w - 18, h - 18, 18, None, WHITE, 7)
+    p.t((w / 2, h / 2 + 4), txt, lambda k: inter(size * k, "Black"), WHITE)
+    return p.out().rotate(angle, resample=Image.BICUBIC, expand=True)
+
+
+SKY = {8: ((252, 170, 130), (150, 205, 250)), 11: ((88, 170, 245), (190, 228, 250)),
+       13: ((64, 150, 240), (170, 218, 250)), 16: ((246, 150, 80), (250, 208, 150)),
+       19: ((120, 70, 180), (246, 130, 150)), 22: ((14, 16, 60), (46, 40, 112)),
+       0: ((6, 6, 30), (22, 20, 70))}
+
+
+@lru_cache(maxsize=None)
+def bg_sky(hour):
+    """Ciel plat dont la couleur et l'astre suivent l'heure, skyline en bas."""
+    top, bot = SKY[hour]
+    im = Image.fromarray(grad(top, bot, 0, 1180))
+    d = ImageDraw.Draw(im, "RGBA")
+    night = hour in (22, 0)
+    a = math.pi * (hour - 6) / 14 if not night else math.pi * 0.72
+    cx, cy = 540 + 440 * math.cos(math.pi - a), 900 - 560 * math.sin(a)
+    if night:
+        d.ellipse((cx - 70, cy - 70, cx + 70, cy + 70), fill=(238, 238, 214, 255))
+        d.ellipse((cx - 36, cy - 86, cx + 90, cy + 42), fill=top + (255,))
+        rng = random.Random(hour + 5)
+        for _ in range(60):
+            x, y = rng.randint(0, W), rng.randint(0, 1050)
+            d.ellipse((x, y, x + 5, y + 5), fill=(235, 235, 255, 180))
+    else:
+        d.ellipse((cx - 90, cy - 90, cx + 90, cy + 90), fill=(255, 226, 120, 255))
+    rng = random.Random(21)
+    build = (30, 26, 76) if night else (72, 52, 120)
+    for x in range(-30, W, 150):
+        h = rng.randint(380, 620)
+        y0 = 1920 - h
+        d.rectangle((x, y0, x + 136, 1920), fill=build + (255,))
+        for wy in range(y0 + 24, 1900, 62):
+            for wx in range(x + 18, x + 118, 40):
+                lit = night and rng.random() > 0.35
+                c = (255, 222, 130, 255) if lit else (255, 230, 190, 60)
+                d.rectangle((wx, wy, wx + 22, wy + 34), fill=c)
+    return im
+
+
+def speech(img, txt, y, col=WHITE, size=52, fill=NAVY, border=CYAN):
+    """Bulle néon large, texte centré, sans frappe progressive."""
+    n = txt.count("\n") + 1
+    h = 44 + n * int(size * 1.25)
+    b, g = glow_box(940, h, 18, fill, border)
+    paste(img, b, 70 - g, y - g)
+    d = ImageDraw.Draw(img)
+    rich(d, 540, y + 22, txt, inter(size, "Bold"), col, YEL, None, int(size * 1.25))
+
+
+@lru_cache(maxsize=None)
+def blob_decouvert(mouth=0):
+    """Monsieur Découvert, petit monstre rouge récurrent."""
+    p = P(320, 280)
+    K = (24, 12, 30)
+    p.e(160, 150, 150, 124, K)
+    p.e(160, 150, 138, 112, (225, 54, 54))
+    p.p([(62, 60), (40, 6), (112, 44)], K)
+    p.p([(258, 60), (280, 6), (208, 44)], K)
+    p.e(112, 118, 28, 30, WHITE)
+    p.e(208, 118, 28, 30, WHITE)
+    p.e(118, 124, 12, 14, K)
+    p.e(202, 124, 12, 14, K)
+    if mouth:
+        p.e(160, 182, 34, 20, K)
+    else:
+        p.arc(160, 168, 34, 22, 20, 160, K, 7)
+    p.t((160, 232), "-50 €", lambda k: inter(46 * k, "Black"), YEL)
+    return p.out()
+
+
+def buzzer(img, x, y, w, h, label, col, active, dim, pulse=0):
+    """Gros buzzer de jeu, actif (éclaté) ou éteint après la réponse."""
+    f = inter(92, "Black")
+    if dim:
+        c = (70, 72, 92)
+    else:
+        c = col
+    grow = 16 if active else 0
+    b, g = glow_box(w + grow * 2, h + grow, 34, c, WHITE if active else c, 26 if active else 14)
+    paste(img, b, x - grow - g, y - grow + pulse - g)
+    d = ImageDraw.Draw(img)
+    d.text((x + w / 2, y + h / 2 - grow / 2 + pulse), label, font=f,
+           fill=WHITE if not dim else (140, 140, 160), anchor="mm")
 
 
 # Rendu ------------------------------------------------------------------
