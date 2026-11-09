@@ -73,8 +73,42 @@ Exemple complet de référence :
 
 Avant de programmer, relire aussi les 5 dernières descriptions du compte (métrique TKPO05) pour rester dans le ton.
 
-## Apprentissage
-Avant de créer, lire les stats TikTok des 14 derniers jours (métriques TKPO02, 05, 06, 07, 08, 09, 10) et `journal.md`. Refaire les angles et formats qui dépassent la médiane, abandonner ceux qui sont en dessous. Ne jamais répéter un sujet des 14 derniers jours.
+## Amélioration continue
+But : chaque semaine, faire mieux que la semaine précédente, en vues et en rétention. `apprentissage.md` est la mémoire du compte : le lire avant de créer, le mettre à jour après chaque analyse.
+
+### Ce que les algorithmes récompensent (synthèse de guides 2026, à revérifier chaque mois)
+Les plateformes ne publient pas leurs poids exacts : ce sont des repères, les stats du compte priment.
+- **Partout** : test sur un petit public, puis diffusion élargie si les gens restent. Les 2 à 3 premières secondes décident.
+- **TikTok** : durée de visionnage et taux de complétion d'abord, puis revisionnages, partages, enregistrements, commentaires.
+- **Instagram Reels** : durée de visionnage, envois en message privé (surtout pour toucher des non-abonnés), likes par personne atteinte, originalité.
+- **YouTube Shorts** : part de « regardé » contre « balayé », pourcentage regardé, boucles, satisfaction.
+
+### Règles de création qui en découlent
+1. **Image 1** : accroche complète et lisible dès la toute première image, jamais de texte encore vide. Pas d'intro, de logo ni de mise en place.
+2. **Boucle ouverte** : poser une question ou un enjeu dans les 2 premières secondes, ne donner la réponse qu'à la fin.
+3. **Rythme** : un changement visuel toutes les 1,5 à 3 secondes, aucun temps mort. Viser 20 à 35 s, plus long seulement si l'histoire le justifie.
+4. **Fin qui boucle** : la dernière image ou phrase renvoie à la première pour donner envie de revoir. Carte de fin courte (2 s maximum), avec la marque présente plus tôt dans la vidéo.
+5. **Envoyable** : chaque vidéo doit donner envie de l'envoyer à quelqu'un (« ton pote qui… », coloc, couple, salaire, fin de mois). C'est le critère principal pour choisir un sujet.
+6. **Conversation** : terminer sur une vraie question ou un choix de camp qui appelle un commentaire.
+7. **Texte animé** : texte à l'écran permanent et animé, car beaucoup regardent sans le son.
+8. **Original** : pas de filigrane ni de réutilisation d'un montage déjà publié.
+
+Interdits : faux engagement, achats de vues, commentaires inventés, accroche trompeuse que la vidéo ne tient pas, fausse urgence présentée comme réelle. Une accroche forte doit rester vraie.
+
+### Veille sur le viral
+À chaque session, lire une ou deux sources récentes sur les formats courts qui marchent en France ou dans la finance personnelle (tendances du mois, analyses). Noter le mécanisme qui fonctionne (structure, rythme, type d'accroche) et l'adapter en animation BudgetLoyer. S'inspirer de mécanismes, jamais copier une vidéo, un scénario, un personnage ou un son précis.
+
+### Boucle d'analyse à chaque session
+Stats des 14 derniers jours, sur chaque réseau :
+- TikTok, connecteur posts : TKPO02, 05, 06, 07, 08, 09, 10, 13, 15, 16.
+- Instagram, connecteur reels : IGRE02, 03, 11, 12, 21, 23, 24, 27, 28.
+- YouTube, connecteur « videos published in range » : YTVP02, 17, 06, 08, 09, 11, 12.
+
+Méthode :
+- Chaque vidéo teste **une hypothèse** notée dans le journal (type d'accroche, durée, format, thème, fin en boucle).
+- Ne juger une vidéo qu'après 48 h et un format qu'après au moins 3 vidéos. Comparer à la médiane du même réseau.
+- Dans `apprentissage.md`, garder la liste : ce qui marche, ce qui ne marche pas, à tester. Environ 70 % des vidéos appliquent ce qui marche, 30 % testent du nouveau.
+- Chaque lundi, écrire un bilan de la semaine dans `apprentissage.md` et réviser cette section si les faits ont changé.
 
 ## Journal
 Ajouter à `journal.md`, pour chaque vidéo : date, famille, sujet, accroche, sources, ids Metricool.
