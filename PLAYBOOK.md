@@ -50,8 +50,9 @@ Chaque vidéo part sur les deux réseaux, en deux posts séparés.
 
 - Média : `https://raw.githubusercontent.com/Osirias667/budgetloyer-videos/videos/videos/AAAA-MM/fichier.mp4` (branche `videos`, pousser avant de programmer).
 - `autoPublish: true`, `draft: false`.
-- TikTok : `title` obligatoire, `commercialContentOwnBrand: true`, `isAigc: true`, `privacyOption: PUBLIC_TO_EVERYONE`.
-- YouTube : `type: short`, `privacy: public`, `madeForKids: false`, `title`, `tags`, `category: HOWTO_STYLE`. `isAiGeneratedContent: true` seulement si le contenu est réaliste (pas pour ces animations).
+- TikTok : `title` obligatoire, `commercialContentOwnBrand: true`, `isAigc: false` (consigne du propriétaire : ne plus afficher de mention IA, ni dans les réglages ni dans les descriptions), `privacyOption: PUBLIC_TO_EVERYONE`.
+- YouTube : `type: short`, `privacy: public`, `madeForKids: false`, `title`, `tags`, `category: HOWTO_STYLE`. `isAiGeneratedContent: false`.
+- Cette absence de mention vaut pour les animations clairement dessinées, seules vidéos autorisées ici. Ne jamais produire de scène ou de personne d'aspect réaliste : TikTok et YouTube exigent alors une mention.
 
 ## Descriptions (obligatoire : même style que les posts existants du compte)
 Même texte sur TikTok et YouTube. Tout sur une seule ligne, sans retours à la ligne, en tutoiement. Dans cet ordre :
