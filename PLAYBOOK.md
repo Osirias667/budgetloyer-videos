@@ -1,6 +1,6 @@
 # BudgetLoyer : règles de production vidéo
 
-Objectif : 2 vidéos originales par jour, le plus de vues possible sur TikTok et YouTube Shorts.
+Objectif : 2 vidéos originales par jour, le plus de vues possible sur TikTok, YouTube Shorts et Instagram Reels.
 
 ## Marque
 - Site : BudgetLoyer.com. Application de gestion de budget personnel, sans tableur ni synchronisation bancaire.
@@ -41,30 +41,31 @@ Partir de l'actualité budget, logement, conso ou culture populaire en France, d
 - Pas de personne réelle, de marque tierce mise en cause, de personnage protégé, de logo tiers, ni de musique externe. Citer une enseigne seulement si c'est nécessaire et factuel.
 
 ## Publication (Metricool, blogId 7967267, Europe/Paris)
-Chaque vidéo part sur les deux réseaux, en deux posts séparés.
+Chaque vidéo part sur les trois réseaux, en trois posts séparés (6 posts par jour).
 
-| Vidéo | TikTok | YouTube Shorts |
-|---|---|---|
-| Vidéo 1 | 10:00 | 10:00 |
-| Vidéo 2 | 18:00 | 16:00 |
+| Vidéo | TikTok | YouTube Shorts | Instagram Reels |
+|---|---|---|---|
+| Vidéo 1 | 10:00 | 10:00 | 10:00 |
+| Vidéo 2 | 18:00 | 16:00 | 18:00 |
 
 - Média : `https://raw.githubusercontent.com/Osirias667/budgetloyer-videos/videos/videos/AAAA-MM/fichier.mp4` (branche `videos`, pousser avant de programmer).
 - `autoPublish: true`, `draft: false`.
 - TikTok : `title` obligatoire, `commercialContentOwnBrand: true`, `isAigc: false` (consigne du propriétaire : ne plus afficher de mention IA, ni dans les réglages ni dans les descriptions), `privacyOption: PUBLIC_TO_EVERYONE`.
 - YouTube : `type: short`, `privacy: public`, `madeForKids: false`, `title`, `tags`, `category: HOWTO_STYLE`. `isAiGeneratedContent: false`.
 - Cette absence de mention vaut pour les animations clairement dessinées, seules vidéos autorisées ici. Ne jamais produire de scène ou de personne d'aspect réaliste : TikTok et YouTube exigent alors une mention.
+- Instagram : `instagramData: {type: REEL, showReelOnFeed: true, isAiGenerated: false}`.
 
 ## Descriptions (obligatoire : même style que les posts existants du compte)
-Même texte sur TikTok et YouTube. Tout sur une seule ligne, sans retours à la ligne, en tutoiement. Dans cet ordre :
+Même texte sur TikTok, YouTube et Instagram. Tout sur une seule ligne, sans retours à la ligne, en tutoiement. Dans cet ordre :
 1. Accroche avec un emoji au début et « … » : `🎿 Les vacances au ski approchent… mais ton budget, lui, est-il prêt à dévaler les pistes ? ❄️`
 2. Une phrase de contexte liée au thème de la vidéo, qui finit par « ! » et un emoji.
 3. `Avec BudgetLoyer, <verbe> :` puis 3 ou 4 bénéfices courts, chacun précédé d'un emoji, à l'impératif (🎯 📊 🚨 💰 📅 🏠).
 4. Une chute drôle qui file la métaphore de la vidéo : `Parce que les seules choses qui devraient déraper au ski, ce sont tes skis, pas tes finances ! ⛷️`
-5. `👉 Découvre BudgetLoyer.com (lien en bio).` Sur YouTube, retirer « (lien en bio) ».
+5. `👉 Découvre BudgetLoyer.com (lien en bio).` Sur YouTube, retirer « (lien en bio) ». Le garder sur Instagram.
 6. Exactement 5 hashtags, pas plus (TikTok est annoncé comme limité à 5 par publication depuis août 2025), minuscules sauf nom propre, sans accents, tous en rapport avec la vidéo, dans cet ordre :
    - 1 ou 2 sur le sujet précis de la vidéo, parmi les termes les plus utilisés pour ce sujet (`#BlackFriday`, `#noel`, `#colocation`, `#loyer`…).
    - 2 ou 3 très larges et en rapport : `#budget`, `#argent`, `#epargne`, `#humour` (sketch), `#finance`.
-   - Le dernier est `#fyp` sur TikTok, `#shorts` sur YouTube.
+   - Le dernier est `#fyp` sur TikTok, `#shorts` sur YouTube, `#reels` sur Instagram.
    Ne jamais mettre un hashtag populaire sans lien avec la vidéo.
 
 Exemple complet de référence :
