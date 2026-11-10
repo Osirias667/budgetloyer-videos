@@ -31,8 +31,8 @@ _Rien de confirmé pour l'instant._
 4. Sujets à envoyer à quelqu'un : coloc, couple, pote, salaire.
 5. Format direct « 3 raisons… » en animation, contre sketch.
 6. Série récurrente avec un personnage et un épisode par semaine.
-7. Défi horloge « à quelle heure tu craques ? » (prêt, non publié au 9 nov.).
-8. Jeu télé Vrai ou Faux avec Monsieur Découvert (prêt, non publié au 9 nov.).
+7. Défi horloge « à quelle heure tu craques ? » (publié le 10 nov.).
+8. Jeu télé Vrai ou Faux avec Monsieur Découvert (publié le 10 nov.).
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
 ## Bilans hebdomadaires
@@ -41,4 +41,5 @@ _Rien de confirmé pour l'instant._
 - Instagram : un seul Reel a décollé (garde à vue, 121 vues).
 - YouTube : pas de données exploitables.
 - Changement décidé : un format inédit par vidéo cette semaine pour sortir du plateau des 260 vues, durée 25-28 s plutôt que 21 s.
-- Blocage du 9 nov. : `git push` refusé (403), donc aucune vidéo programmée pour le 10 nov.
+- Blocage du 9 nov. : `git push` refusé (403), car la session était connectée au compte GitHub `emmadelon007-gif` et non à `Osirias667`. Corrigé le 10 nov. à 09:24, puis les 6 posts ont été programmés.
+- Vérifier en début de session que le compte GitHub connecté est bien `Osirias667`.
