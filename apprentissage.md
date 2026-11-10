@@ -14,6 +14,12 @@
 - YouTube : Metricool ne renvoie aucune valeur pour les métriques demandées, seulement dates et titres.
 - Vidéo Noël du 9 nov. : 117 vues, moins de 48 h, à ne pas juger. Vidéo Black Friday absente des stats pour l'instant.
 
+## Analyse du 10 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : toujours le plateau, Black Friday 259 vues et Noël 255 vues (9 nov., plus de 24 h). Défi 0 € : 76 vues à 11 h de mise en ligne, à juger le 12. Vrai ou faux découvert : publié à 18:00, pas encore dans les stats. Complétion et durée vue toujours vides.
+- Instagram : défi 0 € à 12 vues mais 66,7 % de rétention (dernière colonne IGRE) et 13,8 s vues en moyenne sur 26 s, la meilleure rétention du compte. Black Friday 27,8 %, Noël 14,3 % (tuto). Un seul Reel, rien de confirmé, mais piste : le défi horloge retient mieux que le sketch et le tuto.
+- YouTube : Metricool ne renvoie toujours que dates et titres.
+- Son du catalogue Instagram : refusé par Metricool (HTTP 403, « compte non Business ou non relié à une page Facebook »). Ne plus réessayer tant que le propriétaire n'a pas relié le compte. Les exports `_ig` ne servent à rien d'ici là.
+
 ## Ce qui marche
 _Rien de confirmé pour l'instant (moins de 3 vidéos par format comparable)._
 - Piste : les formats directs de 34-35 s (« 3 raisons », « où est passé ton salaire ») restent les deux meilleurs TikTok (366 et 355 vues).
@@ -35,11 +41,14 @@ _Rien de confirmé pour l'instant._
 6. Série récurrente avec un personnage et un épisode par semaine.
 7. Défi horloge « à quelle heure tu craques ? » (publié le 10 nov.).
 8. Jeu télé Vrai ou Faux avec Monsieur Découvert (publié le 10 nov.).
+10. QCM « Devine le prix » à 3 choix (publié le 11 nov.) contre vrai ou faux à 2 choix (10 nov.).
+11. Série en POV d'objet « La guerre du thermostat » (Partie 1/2 le 11 nov., **Partie 2/2 à faire le 12 nov.** : la facture arrive, chacun se défend, puis mode Foyer pour partager les frais communs, question finale « qui avait raison ? »).
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
 ## Calendrier des temps forts (à revérifier avant usage)
 - 19 nov. 2026 : Beaujolais nouveau (icalendrier.fr).
 - 20 nov. 2026 : nouvelles règles du découvert et du paiement en plusieurs fois. Faire une vidéo « C'est aujourd'hui » qui renvoie au vrai ou faux du 10 nov. (sources dans le journal).
+- 1er déc. 2026 : premières cases des calendriers de l'Avent (vidéo « devine le prix » publiée le 11 nov.).
 - 27 nov. 2026 : Black Friday, offres souvent jusqu'au lundi 30 (connexionfrance.com).
 - Novembre-décembre : compte à rebours de Noël, tendance relevée début novembre (startups.co.uk, 2 nov. 2026).
 
@@ -52,6 +61,9 @@ _Rien de confirmé pour l'instant._
 - Voix : abandonnée par le propriétaire le 10 nov. Ne plus la proposer.
 - Carrousel photo TikTok avec musique ajoutée par TikTok : premier test le 11 nov. à 13:00 (« jour de paie, t'es lequel ? »). Pas de catalogue musical TikTok pour les vidéos via l'API.
 - En attente du propriétaire : relevé de rétention dans TikTok Studio.
+- En attente du propriétaire : relier le compte Instagram à une page Facebook (Business) pour le son du catalogue.
+- Encore à faire cette semaine : un Trial Reel (variante d'accroche) sur un créneau sans autre Reel.
+- Nouveaux éléments dans `bl.py` (11 nov.) : `thermostat`, `coloc_bust`, `advent_cal`, `brand_tag`.
 
 ## Bilans hebdomadaires
 ### Semaine du 2 au 8 novembre 2026 (bilan du lundi 9)
