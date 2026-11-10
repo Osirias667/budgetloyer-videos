@@ -633,6 +633,120 @@ def buzzer(img, x, y, w, h, label, col, active, dim, pulse=0):
            fill=WHITE if not dim else (140, 140, 160), anchor="mm")
 
 
+@lru_cache(maxsize=None)
+def thermostat(temp, expr="calm", mouth=0):
+    """Thermostat mural rond, personnage du POV (11 nov. 2026). expr : calm, panic, sleep."""
+    p = P(420, 460)
+    K = (24, 20, 40)
+    p.r(20, 20, 400, 440, 70, K)
+    p.r(32, 32, 388, 428, 60, (236, 238, 248))
+    hot = temp >= 23
+    ring = RED if hot else (GREEN if temp <= 19 else YEL)
+    p.e(210, 205, 150, 150, K)
+    p.e(210, 205, 138, 138, ring)
+    p.e(210, 205, 112, 112, (18, 22, 44))
+    p.t((210, 196), f"{temp}°", lambda k: inter(92 * k, "Black"), WHITE)
+    # visage sous l'écran
+    ey = 385
+    if expr == "sleep":
+        p.arc(150, ey, 22, 12, 20, 160, K, 7)
+        p.arc(270, ey, 22, 12, 20, 160, K, 7)
+    else:
+        r = 22 if expr == "panic" else 16
+        p.e(150, ey, r, r + 2, WHITE)
+        p.e(270, ey, r, r + 2, WHITE)
+        p.e(150, ey + 2, 8, 9, K)
+        p.e(270, ey + 2, 8, 9, K)
+        p.arc(150, ey, r + 1, r + 3, 0, 360, K, 4)
+        p.arc(270, ey, r + 1, r + 3, 0, 360, K, 4)
+    if mouth or expr == "panic":
+        p.e(210, 412, 20, 12, (130, 30, 50))
+    else:
+        p.arc(210, 404, 18, 10, 20, 160, K, 5)
+    return p.out()
+
+
+@lru_cache(maxsize=None)
+def coloc_bust(hair, top, expr="happy", mouth=0, skin=(243, 197, 156), acc=None):
+    """Coloc générique plat (buste). acc : 'plaid' ou 'bonnet'."""
+    p = P(420, 520)
+    K = (30, 24, 40)
+    p.r(50, 330, 370, 560, 110, top)
+    p.r(170, 280, 250, 350, 26, tuple(max(0, c - 22) for c in skin))
+    p.e(210, 190, 112, 124, skin)
+    p.e(210, 108, 118, 72, hair)
+    p.r(98, 100, 128, 210, 14, hair)
+    p.r(292, 100, 322, 210, 14, hair)
+    if acc == "bonnet":
+        p.e(210, 92, 124, 62, RED)
+        p.r(86, 92, 334, 128, 16, WHITE)
+        p.e(210, 26, 26, 26, WHITE)
+    if expr == "happy":
+        p.arc(168, 196, 20, 16, 200, 340, K, 6)
+        p.arc(252, 196, 20, 16, 200, 340, K, 6)
+    else:
+        p.e(168, 194, 15, 17, WHITE)
+        p.e(252, 194, 15, 17, WHITE)
+        p.e(168, 197, 7, 9, K)
+        p.e(252, 197, 7, 9, K)
+        if expr == "angry":
+            p.l([(146, 166), (190, 180)], K, 7)
+            p.l([(274, 166), (230, 180)], K, 7)
+        elif expr == "worry":
+            p.l([(146, 178), (190, 164)], K, 7)
+            p.l([(274, 178), (230, 164)], K, 7)
+    if mouth or expr == "angry":
+        p.e(210, 252, 26, 16, (130, 30, 50))
+    elif expr == "worry":
+        p.arc(210, 262, 22, 12, 200, 340, K, 6)
+    else:
+        p.arc(210, 236, 26, 18, 20, 160, K, 6)
+    if acc == "plaid":
+        p.r(30, 360, 390, 520, 50, (220, 60, 90))
+        for x in range(60, 380, 60):
+            p.l([(x, 365), (x, 515)], (250, 200, 210), 6)
+        p.l([(40, 440), (380, 440)], (250, 200, 210), 6)
+    return p.out()
+
+
+@lru_cache(maxsize=None)
+def advent_cal(mouth=0, open_door=0):
+    """Calendrier de l'Avent avec un visage, personnage du quiz (11 nov. 2026)."""
+    p = P(460, 560)
+    K = (24, 16, 30)
+    p.r(10, 40, 450, 550, 34, K)
+    p.r(22, 52, 438, 538, 26, (196, 40, 62))
+    p.r(150, 0, 310, 70, 20, K)
+    p.r(162, 12, 298, 58, 14, GREEN)
+    p.t((230, 35), "24", lambda k: inter(34 * k, "Black"), NAVY)
+    n = 1
+    for row in range(4):
+        for col in range(4):
+            x, y = 52 + col * 92, 250 + row * 70
+            if row == 0 and col in (1, 2):
+                n += 1
+                continue
+            c = YEL if n == open_door else (236, 200, 120)
+            p.r(x, y, x + 76, y + 56, 8, c)
+            p.t((x + 38, y + 29), str(n), lambda k: inter(26 * k, "Black"), (120, 30, 40))
+            n += 1
+    p.e(150, 150, 36, 40, WHITE)
+    p.e(310, 150, 36, 40, WHITE)
+    p.e(156, 158, 16, 18, K)
+    p.e(304, 158, 16, 18, K)
+    if mouth:
+        p.e(230, 222, 34, 20, K)
+    else:
+        p.arc(230, 206, 40, 22, 20, 160, K, 8)
+    return p.out()
+
+
+def brand_tag(img, x=40, y=1430):
+    """Petite signature de marque (logo + nom) présente pendant la vidéo."""
+    paste(img, logo(56), x, y)
+    ImageDraw.Draw(img).text((x + 70, y + 28), "BudgetLoyer.com", font=inter(34, "Bold"), fill=YEL, anchor="lm")
+
+
 def punch_in(img, t, amt=0.07, dur=0.6):
     """Zoom arrière rapide sur la première image : l'accroche bouge dès 0 s."""
     if t >= dur:
