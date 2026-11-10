@@ -48,7 +48,9 @@ _Rien de confirmé pour l'instant._
 - Couverture choisie (TikTok, vidéo 2 du 10 nov.).
 - Zoom d'ouverture, bruitages doux, jingle de marque : moteur prêt dans `bl.py`, première utilisation à la prochaine vidéo.
 - Mots-clés cherchables, séries, Trial Reel hebdomadaire : règles ajoutées au PLAYBOOK.
-- En attente du propriétaire : voix humaine, sons du catalogue Instagram, relevé de rétention dans TikTok Studio.
+- Son du catalogue Instagram autorisé par le propriétaire le 10 nov. : à tester dès la prochaine vidéo, avec un export `_ig` sans notre musique.
+- Voix : le moteur est prêt (`SoftMix.voice`). Le propriétaire doit déposer les prises listées dans `voix/A_ENREGISTRER.md`.
+- En attente du propriétaire : relevé de rétention dans TikTok Studio.
 
 ## Bilans hebdomadaires
 ### Semaine du 2 au 8 novembre 2026 (bilan du lundi 9)

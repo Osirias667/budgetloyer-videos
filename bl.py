@@ -650,9 +650,32 @@ class SoftMix:
     passe-bas 3,5 kHz, compression douce, puis normalisation à -20 LUFS.
     """
 
-    def __init__(s, total, sr=44100):
-        s.sr, s.total = sr, total
+    def __init__(s, total, sr=44100, music=True):
+        s.sr, s.total, s.music = sr, total, music
         s.out = np.zeros(int(total * sr) + sr)
+        s.mus = np.zeros_like(s.out)
+        s.duck = np.ones_like(s.out)
+
+    def add_music(s, sig, at, g):
+        """Musique de fond : coupée pour la version Instagram avec son du catalogue."""
+        if not s.music:
+            return
+        a = int(at * s.sr)
+        e = min(len(s.mus), a + len(sig))
+        if a < e:
+            s.mus[a:e] += sig[: e - a] * g
+
+    def voice(s, path, at, g=1.0):
+        """Ajoute une prise de voix (voix/*.m4a, .wav…) et baisse la musique dessous."""
+        raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", path, "-ac", "1", "-ar", str(s.sr),
+                              "-af", "highpass=f=80,afftdn,loudnorm=I=-16:TP=-2", "-f", "f32le", "-"],
+                             check=True, capture_output=True).stdout
+        v = np.frombuffer(raw, np.float32).astype(np.float64)
+        s.add(v * 2.2, at, g)
+        a, e = int(at * s.sr), min(len(s.duck), int(at * s.sr) + len(v))
+        fade = int(0.15 * s.sr)
+        s.duck[max(0, a - fade):e + fade] = np.minimum(s.duck[max(0, a - fade):e + fade], 0.35)
+        return len(v) / s.sr
 
     def x(s, l):
         return np.arange(int(l * s.sr)) / s.sr
@@ -696,7 +719,9 @@ class SoftMix:
         s.add(s.sn(1046.5, 0.7, 4) + 0.2 * s.sn(1568, 0.7, 7), at + 0.33, g * 0.9)
 
     def end(s, path):
-        a = s.out[: int(s.total * s.sr)].copy()
+        k2 = np.ones(int(0.08 * s.sr)) / int(0.08 * s.sr)
+        duck = np.convolve(s.duck, k2, mode="same")
+        a = (s.out + s.mus * duck)[: int(s.total * s.sr)].copy()
         k = math.exp(-2 * math.pi * 3500 / s.sr)
         y = np.empty_like(a)
         acc = 0.0

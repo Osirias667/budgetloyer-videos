@@ -32,6 +32,8 @@ Les deux familles déjà installées servent de base, pas de limite :
 
 **Audio (consigne du propriétaire, 10 nov. 2026) : jamais agressif.** Pas d'ondes carrées stridentes ni d'effets qui claquent : ondes douces (sinus, triangle), passe-bas vers 3,5 kHz, effets sonores discrets, aucun pic soudain. Viser environ -20 LUFS, crête maximale -3 dBFS, LRA de 5 LU au plus. Mesurer avant publication avec `ffmpeg -af ebur128=peak=true`. Utiliser `SoftMix` de `bl.py` : `tri`/`sn` pour la musique, `pop` à chaque texte ou objet qui apparaît, `whoosh` doux à chaque changement de plan, et `jingle` (signature sonore BudgetLoyer, toujours la même) au moment où le logo apparaît. `end` filtre et normalise.
 
+**Voix** : les prises du propriétaire sont dans `voix/` (liste et consignes dans `voix/A_ENREGISTRER.md`). Les ajouter avec `SoftMix.voice`, qui baisse automatiquement la musique dessous. Quand des prises existent, chaque vidéo en utilise au moins une : la question finale ou la marque, et une réaction ou un mot de format si ça colle. Pour Monsieur Découvert, abaisser la prise d'environ 4 demi-tons (`asetrate`/`atempo` dans ffmpeg). Ne jamais utiliser de voix de synthèse réaliste : TikTok et YouTube imposeraient alors une mention IA.
+
 **Image 1 en mouvement** : appeler `punch_in(img, t)` à la fin de la première scène, pour un léger zoom arrière pendant 0,6 s. L'accroche reste complète et lisible dès l'image 0.
 
 Le texte doit être lisible dès la première image, avec une accroche forte. Garder le contenu entre y=150 et y=1500 et loin du bord droit (interface TikTok).
@@ -42,7 +44,7 @@ Partir de l'actualité budget, logement, conso ou culture populaire en France, d
 - Montants de démonstration de l'app ou promos fictives : uniquement comme mise en scène, jamais présentés comme des données réelles.
 - Rester neutre : pas de parti, de candidat, de gouvernement ni de mouvement social comme sujet ou cible.
 - Ne jamais se moquer d'un drame, d'un décès ou d'une catastrophe.
-- Pas de personne réelle, de marque tierce mise en cause, de personnage protégé, de logo tiers, ni de musique externe. Citer une enseigne seulement si c'est nécessaire et factuel.
+- Pas de personne réelle, de marque tierce mise en cause, de personnage protégé, de logo tiers, ni de musique externe dans le fichier vidéo. Exception : la musique du catalogue Instagram, ajoutée par Instagram au moment de la publication (voir Publication). Citer une enseigne seulement si c'est nécessaire et factuel.
 
 ## Publication (Metricool, blogId 7967267, Europe/Paris)
 Chaque vidéo part sur les trois réseaux, en trois posts séparés (6 posts par jour).
@@ -60,6 +62,7 @@ Chaque vidéo part sur les trois réseaux, en trois posts séparés (6 posts par
 - Instagram : `instagramData: {type: REEL, showReelOnFeed: true, isAiGenerated: false}`.
 - Premier commentaire : `firstCommentText` porte la question finale de la vidéo sur les 3 réseaux, par exemple « Alors, tu as eu combien sur 4 ? 👇 Réponds en commentaire ! ». Une vraie question, jamais un faux témoignage.
 - Couverture : en test depuis le 10 nov. sur TikTok uniquement, `videoCoverMilliseconds` sur l'image de l'accroche (environ 300). Ne pas l'étendre à YouTube ou Instagram avant d'avoir vérifié qu'il ne fait pas rejeter le post.
+- Son du catalogue Instagram (accord du propriétaire, 10 nov. 2026) : sur Instagram seulement, `instagramData.audioConfiguration` avec `audioId` (un titre et un artiste précis, sinon la requête est refusée et renvoie les candidats), `audioVolume` 60 à 80 et `videoVolume` 100. La vidéo Instagram est alors un export `_ig` rendu avec `SoftMix(music=False)` : bruitages, jingle et voix gardés, sans notre musique, pour éviter deux mélodies superposées. Choisir un titre populaire en ce moment et dont l'ambiance colle à la vidéo, jamais de paroles qui contredisent le message. Cela ne marche que pour un compte professionnel relié à une page Facebook : si Metricool refuse, publier sans son du catalogue et le noter dans le journal.
 - Trial Reels : une fois par semaine, programmer en plus une variante d'accroche en `instagramData.type: TRIAL_REEL` (montrée d'abord aux non-abonnés), sur un créneau sans autre Reel. Noter dans le journal quelle accroche gagne.
 
 ## Descriptions (obligatoire : même style que les posts existants du compte)
