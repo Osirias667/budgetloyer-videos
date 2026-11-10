@@ -30,6 +30,8 @@ Les deux familles déjà installées servent de base, pas de limite :
 - **Sketch** : personnages plats (P1 à capuche et casque, boss monstres, colocs, etc.), décors colorés, étiquette de rôle + bandeau de dialogue néon avec texte tapé, scènes courtes, puis tableau de bord BudgetLoyer et carte de fin (logo vert, BudgetLoyer.com en jaune, confettis). Thèmes déjà utilisés : jeu vidéo, garde à vue, procès de coloc, vampire, zombie, boss de fin, ski, Gaston contre Rémi. En inventer de nouveaux.
 - **Tuto** : fond sombre, gros texte blanc avec mots en vert #20E388, téléphone avec écrans de l'app, « Étape 1/2/3 », écran vert « Spoiler », fin « Lien en bio ».
 
+**Audio (consigne du propriétaire, 10 nov. 2026) : jamais agressif.** Pas d'ondes carrées stridentes ni d'effets qui claquent : ondes douces (sinus, triangle), passe-bas vers 3,5 kHz, effets sonores discrets, aucun pic soudain. Viser environ -20 LUFS, crête maximale -3 dBFS, LRA de 5 LU au plus. Mesurer avant publication avec `ffmpeg -af ebur128=peak=true`. La classe `Mix` de `episodes/2026-11-10.py` donne un modèle.
+
 Le texte doit être lisible dès la première image, avec une accroche forte. Garder le contenu entre y=150 et y=1500 et loin du bord droit (interface TikTok).
 
 ## Actualité

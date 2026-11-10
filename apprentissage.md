@@ -24,6 +24,8 @@ _Rien de confirmé pour l'instant._
 - Piste : murs de 15 hashtags ou plus. Déjà corrigé par la règle des 5 hashtags.
 - Piste : trois vidéos le même jour.
 
+- Retour du propriétaire (10 nov.) : l'audio des vidéos était trop agressif (ondes carrées, effets forts). Les vidéos du 10 nov. sont passées en version douce (`_v2`), et la règle audio est ajoutée au PLAYBOOK.
+
 ## À tester en priorité
 1. Accroche complète dès l'image 1, contre texte qui se tape.
 2. Durée de 20 à 25 s, contre 30 à 40 s.
