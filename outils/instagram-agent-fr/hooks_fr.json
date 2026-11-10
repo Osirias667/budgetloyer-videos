@@ -1,0 +1,302 @@
+{
+ "version": "1.0-fr",
+ "note": "26 formules d'accroche, adaptées en français depuis instagram-agent-skill (MIT, Jake Schincariol). Une vidéo a deux accroches simultanées : la phrase dite et le texte à l'écran. Chaque formule a un modèle, un exemple BudgetLoyer, la version écran, son usage, son piège, et une regex `match` pour reconnaître une accroche existante. Parcourir dans `classify_order`, du plus spécifique au plus général, sans tenir compte de la casse. Les exemples chiffrés sont des mises en scène : en vidéo, tout chiffre présenté comme réel doit venir d'une source (PLAYBOOK).",
+ "rules": [
+  "Écrire séparément la phrase dite et le texte à l'écran. À l'écran : six mots maximum.",
+  "Pas de mise en place. La vidéo commence à la phrase qu'on dirait normalement à la sixième seconde.",
+  "Donner le chiffre. « Beaucoup » n'est pas un chiffre.",
+  "La première image est aussi une accroche : mouvement et texte dès l'image 0.",
+  "Si l'accroche marche pour n'importe quel compte du même sujet, ce n'est pas la tienne.",
+  "Une accroche promet quelque chose : le livrer avant la moitié de la vidéo."
+ ],
+ "hooks": [
+  {
+   "id": 1,
+   "name": "L'aveu du coût",
+   "template": "{Montant précis}, c'est ce que {une erreur} m'a coûté.",
+   "example": "312 €, c'est ce que mes abonnements oubliés m'ont coûté cette année.",
+   "on_screen": "312 € PERDUS",
+   "best_for": "La confiance, vite. On regarde jusqu'au bout quand le narrateur avoue une bêtise.",
+   "trap": "Un faux coût. « Ça m'a coûté ma tranquillité » n'est pas un chiffre.",
+   "match": "\\d[\\d  .,]*\\s?(?:€|euros?)\\s*,?\\s*c'?est ce que\\b|\\bm'?a coûté\\b|\\bnous a coûté\\b|\\b(?:perdu|claqué|cramé)\\b[^.!?]{0,25}\\d[\\d  .,]*\\s?(?:€|euros?)"
+  },
+  {
+   "id": 2,
+   "name": "L'ordre négatif",
+   "template": "Arrête de {habitude courante}. Fais {alternative} à la place.",
+   "example": "Arrête de regarder ton compte le 25. Regarde-le le 5.",
+   "on_screen": "ARRÊTE DE REGARDER LE 25",
+   "best_for": "Enregistrements et débats : l'impératif retient plus qu'un constat.",
+   "trap": "Dire d'arrêter une habitude que personne n'a.",
+   "match": "^\\s*(?:arrête|arrêtez|stop|jamais|ne (?:fais|faites|paie|paye|prends|signe|dis))\\b|\\b(?:ne|n')\\s*(?:fais|faites|achète|signe|prends)\\s+(?:jamais|plus|pas)\\b"
+  },
+  {
+   "id": 3,
+   "name": "Personne ne te dit",
+   "template": "Personne ne te dit que {vérité qui dérange}.",
+   "example": "Personne ne te dit que ton découvert peut te coûter plus que ton forfait.",
+   "on_screen": "PERSONNE NE TE LE DIT",
+   "best_for": "Nouveaux publics : tu dis tout haut ce que les autres taisent.",
+   "trap": "Une « vérité » que tout le monde répète déjà.",
+   "match": "\\b(?:personne|on)\\s+ne\\s+(?:te|vous|nous)\\s+(?:dit|a dit|parle|explique|apprend)\\b|\\bce que personne ne\\b|\\bon ne (?:te|vous) (?:dit|le dit) (?:jamais|pas)\\b"
+  },
+  {
+   "id": 4,
+   "name": "Le remplacement",
+   "template": "{Ce truc} a remplacé {chose chère} pour {prix}.",
+   "example": "Une appli à 7 € a remplacé mon tableur de 14 onglets.",
+   "on_screen": "14 ONGLETS → 1 APPLI",
+   "best_for": "Démos d'outil : l'écart fait le travail.",
+   "trap": "Exagérer le remplacement.",
+   "match": "\\bremplac\\w*\\b[^.!?]*\\d[\\d  .,]*\\s?(?:€|euros?)|\\d[\\d  .,]*\\s?(?:€|euros?)[^.!?]*\\bremplac\\w*|\\bau lieu de (?:payer|prendre)\\b"
+  },
+  {
+   "id": 5,
+   "name": "Le temps écrasé",
+   "template": "Avant, ça me prenait {long}. Maintenant, {court}.",
+   "example": "Avant, mes comptes me prenaient un dimanche. Maintenant, deux minutes.",
+   "on_screen": "1 DIMANCHE → 2 MIN",
+   "best_for": "Process dont le gain est la vitesse.",
+   "trap": "Un rapport que personne ne croit.",
+   "match": "\\bavant,? (?:ça|cela|il) me (?:prenait|fallait)\\b|\\bmaintenant,? (?:ça|il) (?:me )?(?:prend|faut)\\b|\\b(?:en|plus que) \\d+\\s*(?:sec|secondes?|min|minutes?|h|heures?)\\b|\\bavant,?\\s+[^.!?]{0,40}\\bme prenai(?:t|ent)\\b|\\bmaintenant,?\\s+(?:\\d+|deux|trois|cinq|dix)\\s*(?:sec|secondes?|min|minutes?)\\b"
+  },
+  {
+   "id": 6,
+   "name": "Le reçu",
+   "template": "J'ai {fait un truc} pendant {N jours}. Voici les vrais chiffres.",
+   "example": "J'ai noté chaque dépense pendant 30 jours. Voici où partait mon salaire.",
+   "on_screen": "30 JOURS. VRAIS CHIFFRES.",
+   "best_for": "Expériences, avec l'écran réel montré.",
+   "trap": "Des chiffres sans l'écran qui les prouve.",
+   "match": "\\bj'?ai\\s+\\w+[^.!?]{0,30}\\bpendant\\s+\\d+\\s+(?:jours?|semaines?|mois|ans?)\\b|\\bvoici (?:les|mes) (?:vrais )?chiffres\\b"
+  },
+  {
+   "id": 7,
+   "name": "Mauvaise façon, bonne façon",
+   "template": "Tu fais {truc} de travers, et ce n'est pas ta faute. {La solution}.",
+   "example": "Tu fais ton budget de travers, et ce n'est pas ta faute : tu le fais après la paie.",
+   "on_screen": "TON BUDGET EST À L'ENVERS",
+   "best_for": "Pédagogie. Le « pas ta faute » évite que ça sonne comme une insulte.",
+   "trap": "Oublier l'absolution.",
+   "match": "\\b(?:la plus grosse|l'?|une|la) erreur\\b|\\btu (?:fais|le fais|t'y prends)\\b[^.!?]*\\b(?:mal|de travers|à l'envers)\\b|\\bce n'?est pas (?:ta|votre) faute\\b"
+  },
+  {
+   "id": 8,
+   "name": "La fuite d'initié",
+   "template": "J'ai passé {N ans} {dans le milieu}. Voici ce qu'on ne dit jamais.",
+   "example": "J'ai passé 5 ans au guichet d'une banque. Voici ce qu'on ne te propose jamais.",
+   "on_screen": "5 ANS AU GUICHET",
+   "best_for": "Autorité sans diplôme. Uniquement si les années sont vraies.",
+   "trap": "Promettre un secret, livrer la plaquette. Pour BudgetLoyer : uniquement en fiction animée clairement présentée.",
+   "match": "\\bj'?ai (?:passé|travaillé|bossé)\\b[^.!?]*\\b\\d+\\s*\\+?\\s*ans?\\b|\\bce qu'?on ne (?:dit|montre|propose) jamais\\b"
+  },
+  {
+   "id": 9,
+   "name": "Le vol",
+   "template": "Vole-moi ce {truc}. Il m'a fallu {temps} pour le mettre au point.",
+   "example": "Vole-moi cette règle des 3 comptes. Elle m'a sauvé plus d'une fin de mois.",
+   "on_screen": "VOLE ÇA",
+   "best_for": "Enregistrements et envois.",
+   "trap": "Le truc à voler n'est pas à l'écran.",
+   "match": "^\\s*(?:vole|volez|pique|piquez|copie|copiez)\\b|\\b(?:vole|pique|copie)(?:-moi|-le)?\\s+(?:ce|cette|ces|mon|ma)\\b|^\\s*voici (?:la|ma|mon) (?:méthode|règle|liste) exacte\\b"
+  },
+  {
+   "id": 10,
+   "name": "Si c'est toi, regarde",
+   "template": "Si tu {situation précise}, ces {durée} vont te sauver.",
+   "example": "Si tu es à découvert avant le 20, regarde les 20 prochaines secondes.",
+   "on_screen": "À DÉCOUVERT AVANT LE 20 ?",
+   "best_for": "Qualifier fort : moins de monde reste, mais le bon.",
+   "trap": "Une situation qui ne trie personne.",
+   "match": "^\\s*(?:si|quand) (?:tu|t'|vous|ton|ta|tes|ton)\\b"
+  },
+  {
+   "id": 11,
+   "name": "La liste avec un chouchou",
+   "template": "{N} {trucs} qui {résultat}. Le n°{k}, personne ne le fait.",
+   "example": "4 réflexes pour finir le mois dans le vert. Le n°3, personne ne le fait.",
+   "on_screen": "4 RÉFLEXES. LE N°3.",
+   "best_for": "Rétention au milieu : un favori annoncé fait rester.",
+   "trap": "Plus de 7 éléments.",
+   "match": "^\\s*(?:voici\\s+)?\\d+\\s+\\w+|\\b(?:le|la) n°\\s?\\d+\\b|\\bnuméro \\d+\\b|^\\s*(?:trois|quatre|cinq|sept|dix)\\s+\\w+"
+  },
+  {
+   "id": 12,
+   "name": "L'objection",
+   "template": "« {Objection entendue}. » OK. Voici la version qui marche quand même.",
+   "example": "« Je gagne trop peu pour faire un budget. » OK. Justement.",
+   "on_screen": "« TROP PEU POUR UN BUDGET »",
+   "best_for": "Convaincre ceux qui ont déjà dit non.",
+   "trap": "Inventer l'objection : la reprendre d'un vrai commentaire.",
+   "match": "^\\s*[«\"“][^»\"”]{5,120}[»\"”][,.]?\\s*(?:ok|d'accord|bon|justement|soit|voici)"
+  },
+  {
+   "id": 13,
+   "name": "Avant / après",
+   "template": "{Montrer l'ancien}. {Montrer le nouveau}. {Une phrase sur le levier}.",
+   "example": "Mon mois en septembre. Mon mois en octobre. J'ai changé une seule chose.",
+   "on_screen": "SEPTEMBRE / OCTOBRE",
+   "best_for": "Tout ce qui est visuel : la coupe entre les deux images fait l'accroche.",
+   "trap": "Trois leviers au lieu d'un.",
+   "match": "\\bavant\\b[^.!?]*\\baprès\\b|\\b(?:ça|ceci|voilà) (?:c'était|était)\\b[^.!?]*[.!?]\\s*(?:ça|voilà|ceci) (?:c'est|est)\\b|\\b(?:mon|ma|mes) \\w+ en (?:janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)\\b[^.!?]*[.!?]\\s*(?:mon|ma|mes) \\w+ en\\b"
+  },
+  {
+   "id": 14,
+   "name": "L'interpellation",
+   "template": "{Groupe précis}, celle-là est pour vous.",
+   "example": "Les colocs qui font les comptes sur un ticket de caisse : celle-là est pour vous.",
+   "on_screen": "LES COLOCS, VENEZ",
+   "best_for": "Réduire l'audience à ceux qui se reconnaissent, et qui s'identifient entre eux.",
+   "trap": "Un groupe trop large (« les gens »).",
+   "match": "^\\s*(?:les|tous les|toutes les|à tous les|à toutes les)\\s+\\w+[^.!?:,]{0,60}[,:]|^\\s*(?:pour|à) (?:ceux|celles|tous ceux) qui\\b|^\\s*(?:attention|avis aux)\\b|\\b(?:celle-là|celle-ci|celle-ci|cette vidéo) est pour (?:vous|toi)\\b"
+  },
+  {
+   "id": 15,
+   "name": "Le registre des ratés",
+   "template": "Mes {N} premiers {essais} n'ont rien donné. Voici ce qui a changé au {N+1}.",
+   "example": "Mes 6 premiers budgets ont explosé. Le 7e a tenu. Une seule différence.",
+   "on_screen": "6 RATÉS, PUIS ÇA",
+   "best_for": "Les débutants, c'est-à-dire presque tout le public.",
+   "trap": "Faire passer le changement pour de la chance.",
+   "match": "\\bmes \\d+ premi(?:ers|ères)\\b|\\b(?:premiers?|premières?)\\s+\\d+\\s+(?:mois|budgets?|vidéos?|essais?)\\b"
+  },
+  {
+   "id": 16,
+   "name": "La question telle quelle",
+   "template": "« {Question exacte, comme posée} » — on me la pose chaque semaine.",
+   "example": "« Comment tu fais pour tenir jusqu'à la fin du mois ? » On me la pose tout le temps.",
+   "on_screen": "VOUS ME LE DEMANDEZ",
+   "best_for": "La recherche : une question tapée comme les gens la tapent.",
+   "trap": "Reformuler la question proprement.",
+   "match": "^\\s*[«\"“]?\\s*(?:comment|pourquoi|quand|combien|où|qui|quel|quelle|quels|quelles|est-ce que|est-ce qu'|tu|vous|on peut|faut-il|c'est quoi)\\b[^?]{3,110}\\?"
+  },
+  {
+   "id": 17,
+   "name": "Le duel",
+   "template": "{A} contre {B}. J'ai testé les deux pendant {durée}, pas de match.",
+   "example": "Payer en 4 fois contre épargner 4 mois. Pas de match.",
+   "on_screen": "4X vs 4 MOIS",
+   "best_for": "Les commentaires : chacun arrive avec son camp.",
+   "trap": "Refuser de trancher.",
+   "match": "\\b(?:vs\\.?|versus|contre)\\b|\\bla différence entre\\b|\\bteam \\w+ ou (?:team )?\\w+\\b"
+  },
+  {
+   "id": 18,
+   "name": "La démo à froid",
+   "template": "{Commencer en pleine action.} Regarde ce que ça fait.",
+   "example": "Regarde ce qui se passe quand je saisis mes dépenses du week-end.",
+   "on_screen": "REGARDE ÇA",
+   "best_for": "Écrans et résultats visibles.",
+   "trap": "Un résultat qui arrive au bout de 12 secondes.",
+   "match": "^\\s*regarde(?:z)?\\s+(?:ce qui|ce que|ça|bien|moi)\\b|^\\s*(?:laisse-moi|je vais) te montrer\\b|^\\s*répète après moi\\b"
+  },
+  {
+   "id": 19,
+   "name": "L'échéance",
+   "template": "{Chose} change le {date}. Fais {action} avant.",
+   "example": "Le découvert change le 20 novembre. Voici ce qui est vrai et ce qui est faux.",
+   "on_screen": "LE 20 NOVEMBRE",
+   "best_for": "Une urgence réelle et datée : règle, saison, date limite.",
+   "trap": "Une fausse urgence. Une seule, et toutes les suivantes perdent leur poids.",
+   "match": "\\b(?:change|changent|tombe|arrive|s'arrête|expire)\\w*\\s+le\\s+\\d{1,2}\\b|\\bà partir du \\d{1,2}\\b|\\bavant le \\d{1,2}\\b|\\bd'ici (?:le|au) \\d{1,2}\\b"
+  },
+  {
+   "id": 20,
+   "name": "La permission",
+   "template": "Tu n'as pas besoin de {ce que tout le monde dit qu'il faut}.",
+   "example": "Tu n'as pas besoin d'un tableur. Il te faut un chiffre : ce qu'il te reste.",
+   "on_screen": "PAS BESOIN D'UN TABLEUR",
+   "best_for": "Le soulagement : beaucoup d'enregistrements.",
+   "trap": "Retirer l'obstacle sans rien proposer à la place.",
+   "match": "\\b(?:tu n'?as|t'as|vous n'?avez) pas besoin\\b|\\barrête de (?:te prendre la tête|stresser pour)\\b"
+  },
+  {
+   "id": 21,
+   "name": "Le début en pleine phrase",
+   "template": "« …et c'est là que {le retournement}. »",
+   "example": "…et c'est là que la banque a prélevé 8 € de frais. Pour 3 € de découvert.",
+   "on_screen": "8 € POUR 3 €",
+   "best_for": "Les histoires : arriver en retard donne envie de rester.",
+   "trap": "Ne jamais revenir combler le trou.",
+   "match": "^\\s*(?:\\.\\.\\.|…)|^\\s*(?:et (?:c'est là que|là|du coup))\\b|^\\s*(?:euh|bref)\\b"
+  },
+  {
+   "id": 22,
+   "name": "Le proverbe retourné",
+   "template": "{Dicton connu, inversé.}",
+   "example": "L'argent ne fait pas le bonheur. Le découvert, si : celui de ta banque.",
+   "on_screen": "L'ARGENT NE FAIT PAS…",
+   "best_for": "Les commentaires : on vérifie qu'on a bien entendu.",
+   "trap": "Retourner un dicton que personne ne connaît.",
+   "match": "\\bl'argent (?:ne )?fait (?:pas )?le bonheur\\b|\\bpetit à petit\\b|\\bil ne faut pas\\b[^.!?]*\\b(?:vendre|mettre)\\b|\\bqui (?:paie|paye) ses dettes\\b"
+  },
+  {
+   "id": 23,
+   "name": "La statistique",
+   "template": "{N} % des {groupe} {fait surprenant}.",
+   "example": "81 % des Français disent se serrer la ceinture.",
+   "on_screen": "81 % SE SERRENT LA CEINTURE",
+   "best_for": "Les envois : un chiffre qu'on répète au dîner.",
+   "trap": "Un chiffre sans source. Citer la source dans la vidéo ou la description, sinon ne pas l'utiliser.",
+   "match": "^\\s*\\d[\\d,.]*\\s?%|\\b\\d[\\d,.]*\\s?%\\s+des?\\b|\\bun (?:français|jeune|étudiant|salarié) sur \\d+\\b"
+  },
+  {
+   "id": 24,
+   "name": "La révélation",
+   "template": "Voici le nouveau {truc}.",
+   "example": "Voici la nouvelle règle du découvert, et elle change une chose.",
+   "on_screen": "LA NOUVELLE RÈGLE",
+   "best_for": "Tout ce qui est nouveau et montrable.",
+   "trap": "Montrer sans dire ce que ça change.",
+   "match": "^\\s*(?:voici|voilà|c'est)\\s+(?:le|la|les|mon|ma)\\s+(?:nouveau|nouvelle|nouveaux|nouvelles)\\b|^\\s*(?:nouveau|nouvelle)\\s+\\w+\\s*:"
+  },
+  {
+   "id": 25,
+   "name": "Le résultat d'un autre",
+   "template": "Il y a un {personne} qui {résultat} en {temps}.",
+   "example": "Il y a un coloc qui a fait rembourser 140 € à ses colocs en une soirée.",
+   "on_screen": "140 € EN UNE SOIRÉE",
+   "best_for": "Une preuve quand on n'a pas encore la sienne. Pour BudgetLoyer : personnage fictif présenté comme tel.",
+   "trap": "Un miracle anonyme présenté comme vrai.",
+   "match": "\\bil (?:y a|y avait) (?:un|une)\\b[^.!?]{0,30}\\bqui\\b|\\b(?:mon|ma) (?:pote|coloc|collègue|cousin|cousine|sœur|frère) (?:a|qui a)\\b"
+  },
+  {
+   "id": 26,
+   "name": "Le superlatif",
+   "template": "Le {plus rapide / seul / meilleur} {truc}, c'est {la réponse}.",
+   "example": "Le moyen le plus rapide de savoir où part ton salaire, c'est de noter 7 jours.",
+   "on_screen": "LE PLUS RAPIDE",
+   "best_for": "Une seule affirmation, sans histoire.",
+   "trap": "Un superlatif avec une réponse molle (« la régularité »).",
+   "match": "^\\s*(?:le|la|les)\\s+(?:seul|seule|meilleur|meilleure|pire|plus (?:rapide|simple|grosse?|gros|facile|important|importante))\\b|\\b(?:le|la) (?:seule|meilleure|pire) (?:façon|manière|chose)\\b|\\ble moyen le plus\\b"
+  }
+ ],
+ "classify_order": [
+  1,
+  23,
+  5,
+  4,
+  3,
+  15,
+  20,
+  7,
+  9,
+  26,
+  25,
+  24,
+  18,
+  17,
+  8,
+  6,
+  16,
+  12,
+  10,
+  2,
+  13,
+  19,
+  21,
+  22,
+  11,
+  14
+ ]
+}

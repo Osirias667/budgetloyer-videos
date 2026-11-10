@@ -112,13 +112,13 @@ Interdits : faux engagement, achats de vues, commentaires inventés, accroche tr
 ### Veille sur le viral
 À chaque session, lire une ou deux sources récentes sur les formats courts qui marchent en France ou dans la finance personnelle (tendances du mois, analyses). Noter le mécanisme qui fonctionne (structure, rythme, type d'accroche) et l'adapter en animation BudgetLoyer. S'inspirer de mécanismes, jamais copier une vidéo, un scénario, un personnage ou un son précis.
 
-### Outils « instagram-agent-skill » (installés le 10 nov. 2026, licence MIT, dans `outils/instagram-agent-skill/`)
-Pistes utiles, à adapter : ils sont réglés pour l'anglais.
-- `skills/ig-reel/hooks.json` : 26 formules d'accroche, avec leurs pièges. S'en servir pour proposer 3 accroches de formules différentes et garder la meilleure.
-- `skills/ig-caption/caption.py description.txt --keywords "mot-clé"` : montre les ~125 premiers caractères visibles avant « … plus » sur Instagram, et vérifie les mots-clés. La 1re phrase de la description doit tenir et accrocher dans cette fenêtre.
-- `skills/ig-carousel/SKILL.md` et `skills/ig-audit/SKILL.md` : bonnes pratiques de carrousel (numéroter les images, une image récapitulative à envoyer) et d'analyse (multiple de la médiane, partages par compte touché).
-- À ne pas utiliser comme critère bloquant : `hookscore.py`, `beats.py`, `humanize.py` et `detect.py` reposent sur des listes de mots anglais et notent mal le français.
-- En cas de conflit, le PLAYBOOK l'emporte : ces outils déconseillent `#fyp` et les listes à emojis, que le format de description du compte impose.
+### Outils d'accroche et de description (`outils/instagram-agent-fr/`, adaptés le 10 nov. 2026)
+Version française d'instagram-agent-skill (MIT). L'original anglais reste dans `outils/instagram-agent-skill/`. Voir le README du dossier. À chaque vidéo :
+1. Écrire 3 accroches de formules différentes, prises dans `hooks_fr.json`, et les noter avec `hookscore_fr.py`. Éliminer celles sous 50 ou qui ont un « dealbreaker ». Entre les autres, choisir selon `apprentissage.md`, pas selon le score.
+2. Si une voix est prévue : `beats_fr.py script.txt --target <durée>` (accroche de 3 s maximum, pas de temps de plus de 4 s).
+3. Description : `humanize_fr.py` puis `caption_fr.py --keywords "<mots-clés>"`. Les 125 premiers caractères doivent accrocher seuls et contenir le mot-clé principal.
+4. Tous les scores sont indicatifs : ne jamais bloquer une publication dessus. Le PLAYBOOK l'emporte sur les outils (emojis, `#fyp`, format des descriptions).
+Bonnes pratiques à reprendre de l'original : `skills/ig-carousel/SKILL.md` (numéroter les images, une image récapitulative à envoyer) et `skills/ig-audit/SKILL.md` (multiple de la médiane, partages par compte touché).
 
 ### Boucle d'analyse à chaque session
 Stats des 14 derniers jours, sur chaque réseau :
