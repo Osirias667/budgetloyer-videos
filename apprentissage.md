@@ -49,7 +49,7 @@ _Rien de confirmé pour l'instant._
 - Zoom d'ouverture, bruitages doux, jingle de marque : moteur prêt dans `bl.py`, première utilisation à la prochaine vidéo.
 - Mots-clés cherchables, séries, Trial Reel hebdomadaire : règles ajoutées au PLAYBOOK.
 - Son du catalogue Instagram autorisé par le propriétaire le 10 nov. : à tester dès la prochaine vidéo, avec un export `_ig` sans notre musique.
-- Voix : le moteur est prêt (`SoftMix.voice`). Le propriétaire doit déposer les prises listées dans `voix/A_ENREGISTRER.md`.
+- Voix : abandonnée par le propriétaire le 10 nov. Ne plus la proposer.
 - Carrousel photo TikTok avec musique ajoutée par TikTok : premier test le 11 nov. à 13:00 (« jour de paie, t'es lequel ? »). Pas de catalogue musical TikTok pour les vidéos via l'API.
 - En attente du propriétaire : relevé de rétention dans TikTok Studio.
 

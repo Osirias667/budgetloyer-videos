@@ -32,7 +32,7 @@ Les deux familles déjà installées servent de base, pas de limite :
 
 **Audio (consigne du propriétaire, 10 nov. 2026) : jamais agressif.** Pas d'ondes carrées stridentes ni d'effets qui claquent : ondes douces (sinus, triangle), passe-bas vers 3,5 kHz, effets sonores discrets, aucun pic soudain. Viser environ -20 LUFS, crête maximale -3 dBFS, LRA de 5 LU au plus. Mesurer avant publication avec `ffmpeg -af ebur128=peak=true`. Utiliser `SoftMix` de `bl.py` : `tri`/`sn` pour la musique, `pop` à chaque texte ou objet qui apparaît, `whoosh` doux à chaque changement de plan, et `jingle` (signature sonore BudgetLoyer, toujours la même) au moment où le logo apparaît. `end` filtre et normalise.
 
-**Voix** : les prises du propriétaire sont dans `voix/` (liste et consignes dans `voix/A_ENREGISTRER.md`). Les ajouter avec `SoftMix.voice`, qui baisse automatiquement la musique dessous. Quand des prises existent, chaque vidéo en utilise au moins une : la question finale ou la marque, et une réaction ou un mot de format si ça colle. Pour Monsieur Découvert, abaisser la prise d'environ 4 demi-tons (`asetrate`/`atempo` dans ffmpeg). Ne jamais utiliser de voix de synthèse réaliste : TikTok et YouTube imposeraient alors une mention IA.
+**Voix** : abandonnée par le propriétaire le 10 nov. 2026. Pas de voix enregistrée et pas de voix de synthèse : les vidéos reposent sur le texte à l'écran, la musique douce, les bruitages et le jingle. Le code `SoftMix.voice` reste disponible si le propriétaire change d'avis.
 
 **Image 1 en mouvement** : appeler `punch_in(img, t)` à la fin de la première scène, pour un léger zoom arrière pendant 0,6 s. L'accroche reste complète et lisible dès l'image 0.
 
