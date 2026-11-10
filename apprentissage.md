@@ -37,6 +37,19 @@ _Rien de confirmé pour l'instant._
 8. Jeu télé Vrai ou Faux avec Monsieur Découvert (publié le 10 nov.).
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
+## Calendrier des temps forts (à revérifier avant usage)
+- 19 nov. 2026 : Beaujolais nouveau (icalendrier.fr).
+- 20 nov. 2026 : nouvelles règles du découvert et du paiement en plusieurs fois. Faire une vidéo « C'est aujourd'hui » qui renvoie au vrai ou faux du 10 nov. (sources dans le journal).
+- 27 nov. 2026 : Black Friday, offres souvent jusqu'au lundi 30 (connexionfrance.com).
+- Novembre-décembre : compte à rebours de Noël, tendance relevée début novembre (startups.co.uk, 2 nov. 2026).
+
+## Mis en place le 10 nov. (à évaluer après 48 h et 3 vidéos)
+- Premier commentaire avec la question finale, à partir de la vidéo 2 du 10 nov.
+- Couverture choisie (TikTok, vidéo 2 du 10 nov.).
+- Zoom d'ouverture, bruitages doux, jingle de marque : moteur prêt dans `bl.py`, première utilisation à la prochaine vidéo.
+- Mots-clés cherchables, séries, Trial Reel hebdomadaire : règles ajoutées au PLAYBOOK.
+- En attente du propriétaire : voix humaine, sons du catalogue Instagram, relevé de rétention dans TikTok Studio.
+
 ## Bilans hebdomadaires
 ### Semaine du 2 au 8 novembre 2026 (bilan du lundi 9)
 - TikTok : médiane de 250 vues sur 4 vidéos (237 à 269), contre 268 sur 8 vidéos la semaine du 26 oct. au 1er nov. Baisse légère, échantillon faible.

@@ -633,6 +633,83 @@ def buzzer(img, x, y, w, h, label, col, active, dim, pulse=0):
            fill=WHITE if not dim else (140, 140, 160), anchor="mm")
 
 
+def punch_in(img, t, amt=0.07, dur=0.6):
+    """Zoom arrière rapide sur la première image : l'accroche bouge dès 0 s."""
+    if t >= dur:
+        return
+    k = 1 + amt * (1 - ease(t / dur))
+    w, h = int(W / k), int(H / k)
+    x0, y0 = (W - w) // 2, (H - h) // 2
+    img.paste(img.crop((x0, y0, x0 + w, y0 + h)).resize((W, H), Image.BICUBIC))
+
+
+class SoftMix:
+    """Mixeur audio doux (règle audio du PLAYBOOK).
+
+    Ondes triangle et sinus, bruitages légers (pop, whoosh), jingle de marque,
+    passe-bas 3,5 kHz, compression douce, puis normalisation à -20 LUFS.
+    """
+
+    def __init__(s, total, sr=44100):
+        s.sr, s.total = sr, total
+        s.out = np.zeros(int(total * sr) + sr)
+
+    def x(s, l):
+        return np.arange(int(l * s.sr)) / s.sr
+
+    def add(s, sig, at, g):
+        a = int(at * s.sr)
+        e = min(len(s.out), a + len(sig))
+        if a < e:
+            s.out[a:e] += sig[: e - a] * g
+
+    def tri(s, f, l, dec=6):
+        x = s.x(l)
+        return (2 / np.pi) * np.arcsin(np.sin(2 * np.pi * f * x)) * np.exp(-x * dec) * np.minimum(1, x / 0.006)
+
+    def sn(s, f, l, dec=4):
+        x = s.x(l)
+        return np.sin(2 * np.pi * f * x) * np.exp(-x * dec) * np.minimum(1, x / 0.004)
+
+    def kick(s):
+        x = s.x(0.17)
+        return np.sin(2 * np.pi * (52 * x + 42 * (1 - np.exp(-x * 34)) / 34)) * np.exp(-x * 20)
+
+    def pop(s, at, g=0.22):
+        """Petit « pop » rond pour un texte ou un objet qui apparaît."""
+        x = s.x(0.09)
+        f = 520 + 380 * np.exp(-x * 40)
+        s.add(np.sin(2 * np.pi * np.cumsum(f) / s.sr) * np.exp(-x * 35), at, g)
+
+    def whoosh(s, at, g=0.12, l=0.35):
+        """Souffle doux pour un changement de plan, centré sur `at`."""
+        x = s.x(l)
+        n = np.random.default_rng(int(at * 100)).normal(0, 1, len(x))
+        n = np.convolve(n, np.ones(24) / 24, mode="same")
+        env = np.sin(np.pi * x / l) ** 2
+        s.add(n * env, at - l / 2, g)
+
+    def jingle(s, at, g=0.3):
+        """Signature BudgetLoyer : trois notes douces montantes (do, mi, sol) puis do aigu."""
+        for k, f in enumerate((523.3, 659.3, 784.0)):
+            s.add(s.sn(f, 0.5, 5) + 0.3 * s.sn(f * 2, 0.5, 8), at + k * 0.11, g)
+        s.add(s.sn(1046.5, 0.7, 4) + 0.2 * s.sn(1568, 0.7, 7), at + 0.33, g * 0.9)
+
+    def end(s, path):
+        a = s.out[: int(s.total * s.sr)].copy()
+        k = math.exp(-2 * math.pi * 3500 / s.sr)
+        y = np.empty_like(a)
+        acc = 0.0
+        for i in range(len(a)):
+            acc = (1 - k) * a[i] + k * acc
+            y[i] = acc
+        y = np.tanh(y / (np.max(np.abs(y)) + 1e-9) * 1.6)
+        tmp = path + ".raw.wav"
+        write_wav(y, tmp)
+        subprocess.check_call(["ffmpeg", "-y", "-loglevel", "error", "-i", tmp, "-af",
+                               "loudnorm=I=-20:TP=-3:LRA=5", "-ar", "44100", path])
+
+
 # Rendu ------------------------------------------------------------------
 def frame(fn, t):
     img = Image.new("RGB", (W, H), (0, 0, 0))

@@ -30,7 +30,9 @@ Les deux familles déjà installées servent de base, pas de limite :
 - **Sketch** : personnages plats (P1 à capuche et casque, boss monstres, colocs, etc.), décors colorés, étiquette de rôle + bandeau de dialogue néon avec texte tapé, scènes courtes, puis tableau de bord BudgetLoyer et carte de fin (logo vert, BudgetLoyer.com en jaune, confettis). Thèmes déjà utilisés : jeu vidéo, garde à vue, procès de coloc, vampire, zombie, boss de fin, ski, Gaston contre Rémi. En inventer de nouveaux.
 - **Tuto** : fond sombre, gros texte blanc avec mots en vert #20E388, téléphone avec écrans de l'app, « Étape 1/2/3 », écran vert « Spoiler », fin « Lien en bio ».
 
-**Audio (consigne du propriétaire, 10 nov. 2026) : jamais agressif.** Pas d'ondes carrées stridentes ni d'effets qui claquent : ondes douces (sinus, triangle), passe-bas vers 3,5 kHz, effets sonores discrets, aucun pic soudain. Viser environ -20 LUFS, crête maximale -3 dBFS, LRA de 5 LU au plus. Mesurer avant publication avec `ffmpeg -af ebur128=peak=true`. La classe `Mix` de `episodes/2026-11-10.py` donne un modèle.
+**Audio (consigne du propriétaire, 10 nov. 2026) : jamais agressif.** Pas d'ondes carrées stridentes ni d'effets qui claquent : ondes douces (sinus, triangle), passe-bas vers 3,5 kHz, effets sonores discrets, aucun pic soudain. Viser environ -20 LUFS, crête maximale -3 dBFS, LRA de 5 LU au plus. Mesurer avant publication avec `ffmpeg -af ebur128=peak=true`. Utiliser `SoftMix` de `bl.py` : `tri`/`sn` pour la musique, `pop` à chaque texte ou objet qui apparaît, `whoosh` doux à chaque changement de plan, et `jingle` (signature sonore BudgetLoyer, toujours la même) au moment où le logo apparaît. `end` filtre et normalise.
+
+**Image 1 en mouvement** : appeler `punch_in(img, t)` à la fin de la première scène, pour un léger zoom arrière pendant 0,6 s. L'accroche reste complète et lisible dès l'image 0.
 
 Le texte doit être lisible dès la première image, avec une accroche forte. Garder le contenu entre y=150 et y=1500 et loin du bord droit (interface TikTok).
 
@@ -56,9 +58,13 @@ Chaque vidéo part sur les trois réseaux, en trois posts séparés (6 posts par
 - YouTube : `type: short`, `privacy: public`, `madeForKids: false`, `title`, `tags`, `category: HOWTO_STYLE`. `isAiGeneratedContent: false`.
 - Cette absence de mention vaut pour les animations clairement dessinées, seules vidéos autorisées ici. Ne jamais produire de scène ou de personne d'aspect réaliste : TikTok et YouTube exigent alors une mention.
 - Instagram : `instagramData: {type: REEL, showReelOnFeed: true, isAiGenerated: false}`.
+- Premier commentaire : `firstCommentText` porte la question finale de la vidéo sur les 3 réseaux, par exemple « Alors, tu as eu combien sur 4 ? 👇 Réponds en commentaire ! ». Une vraie question, jamais un faux témoignage.
+- Couverture : en test depuis le 10 nov. sur TikTok uniquement, `videoCoverMilliseconds` sur l'image de l'accroche (environ 300). Ne pas l'étendre à YouTube ou Instagram avant d'avoir vérifié qu'il ne fait pas rejeter le post.
+- Trial Reels : une fois par semaine, programmer en plus une variante d'accroche en `instagramData.type: TRIAL_REEL` (montrée d'abord aux non-abonnés), sur un créneau sans autre Reel. Noter dans le journal quelle accroche gagne.
 
 ## Descriptions (obligatoire : même style que les posts existants du compte)
 Même texte sur TikTok, YouTube et Instagram. Tout sur une seule ligne, sans retours à la ligne, en tutoiement. Dans cet ordre :
+0. Mots-clés : la première phrase et le texte de l'image 1 contiennent les mots que les gens tapent dans la recherche TikTok ou YouTube (« découvert bancaire », « budget étudiant », « colocation », « fin de mois »…).
 1. Accroche avec un emoji au début et « … » : `🎿 Les vacances au ski approchent… mais ton budget, lui, est-il prêt à dévaler les pistes ? ❄️`
 2. Une phrase de contexte liée au thème de la vidéo, qui finit par « ! » et un emoji.
 3. `Avec BudgetLoyer, <verbe> :` puis 3 ou 4 bénéfices courts, chacun précédé d'un emoji, à l'impératif (🎯 📊 🚨 💰 📅 🏠).
@@ -94,6 +100,8 @@ Les plateformes ne publient pas leurs poids exacts : ce sont des repères, les s
 6. **Conversation** : terminer sur une vraie question ou un choix de camp qui appelle un commentaire.
 7. **Texte animé** : texte à l'écran permanent et animé, car beaucoup regardent sans le son.
 8. **Original** : pas de filigrane ni de réutilisation d'un montage déjà publié.
+9. **Séries** : P1 et Monsieur Découvert sont des personnages récurrents. Au moins une fois par semaine, un épisode en plusieurs parties (« Partie 1/2 ») qui finit sur un vrai suspense, avec la suite publiée sous 48 h, et le numéro d'épisode visible dès l'image 1.
+10. **Dates à venir** : suivre le calendrier de `apprentissage.md` et préparer la vidéo la veille ou le jour même.
 
 Interdits : faux engagement, achats de vues, commentaires inventés, accroche trompeuse que la vidéo ne tient pas, fausse urgence présentée comme réelle. Une accroche forte doit rester vraie.
 
