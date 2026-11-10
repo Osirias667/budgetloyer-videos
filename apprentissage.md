@@ -18,7 +18,7 @@
 - TikTok : toujours le plateau, Black Friday 259 vues et Noël 255 vues (9 nov., plus de 24 h). Défi 0 € : 76 vues à 11 h de mise en ligne, à juger le 12. Vrai ou faux découvert : publié à 18:00, pas encore dans les stats. Complétion et durée vue toujours vides.
 - Instagram : défi 0 € à 12 vues mais 66,7 % de rétention (dernière colonne IGRE) et 13,8 s vues en moyenne sur 26 s, la meilleure rétention du compte. Black Friday 27,8 %, Noël 14,3 % (tuto). Un seul Reel, rien de confirmé, mais piste : le défi horloge retient mieux que le sketch et le tuto.
 - YouTube : Metricool ne renvoie toujours que dates et titres.
-- Son du catalogue Instagram : refusé par Metricool (HTTP 403, « compte non Business ou non relié à une page Facebook »). Ne plus réessayer tant que le propriétaire n'a pas relié le compte. Les exports `_ig` ne servent à rien d'ici là.
+- Son du catalogue Instagram : réglé le 10 nov. au soir. Il fallait connecter la page Facebook à la marque Metricool, puis reconnecter Instagram via Facebook. Le catalogue accessible est une bibliothèque libre de droits (pas les tubes : la recherche « All I Want for Christmas » ne renvoie que des instrumentaux). Chercher par mots-clés, puis passer l'`audioId` numérique. Premier essai : Reel de 10:00 du 11 nov. avec « Jingle Bells Swing », comparé au Reel de 18:00 avec notre musique.
 
 ## Ce qui marche
 _Rien de confirmé pour l'instant (moins de 3 vidéos par format comparable)._
@@ -61,7 +61,6 @@ _Rien de confirmé pour l'instant._
 - Voix : abandonnée par le propriétaire le 10 nov. Ne plus la proposer.
 - Carrousel photo TikTok avec musique ajoutée par TikTok : premier test le 11 nov. à 13:00 (« jour de paie, t'es lequel ? »). Pas de catalogue musical TikTok pour les vidéos via l'API.
 - En attente du propriétaire : relevé de rétention dans TikTok Studio.
-- En attente du propriétaire : relier le compte Instagram à une page Facebook (Business) pour le son du catalogue.
 - Encore à faire cette semaine : un Trial Reel (variante d'accroche) sur un créneau sans autre Reel.
 - Nouveaux éléments dans `bl.py` (11 nov.) : `thermostat`, `coloc_bust`, `advent_cal`, `brand_tag`.
 
