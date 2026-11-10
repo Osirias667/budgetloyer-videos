@@ -5,6 +5,7 @@ Vidéo B : jeu télé « Vrai ou Faux » sur les règles du découvert au 20 nov
 """
 import math
 import os
+import subprocess
 import sys
 
 import numpy as np
@@ -184,8 +185,10 @@ class Mix:
         return np.arange(int(l * s.sr)) / s.sr
 
     def sq(s, f, l, dec=6):
+        """Onde triangle douce (plus de carré strident)."""
         x = s.x(l)
-        return np.sign(np.sin(2 * np.pi * f * x)) * np.exp(-x * dec)
+        att = np.minimum(1, x / 0.006)
+        return (2 / np.pi) * np.arcsin(np.sin(2 * np.pi * f * x)) * np.exp(-x * dec) * att
 
     def sn(s, f, l, dec=4):
         x = s.x(l)
@@ -200,7 +203,19 @@ class Mix:
         return np.random.default_rng(3).normal(0, 1, len(x)) * np.exp(-x * dec)
 
     def end(s, path):
-        write_wav(s.out[: int(s.total * s.sr)], path)
+        """Filtre passe-bas, compression douce, puis normalisation à -20 LUFS."""
+        a = s.out[: int(s.total * s.sr)].copy()
+        k = math.exp(-2 * math.pi * 3500 / s.sr)
+        y = np.empty_like(a)
+        acc = 0.0
+        for i in range(len(a)):
+            acc = (1 - k) * a[i] + k * acc
+            y[i] = acc
+        y = np.tanh(y / (np.max(np.abs(y)) + 1e-9) * 1.6)
+        tmp = path + ".raw.wav"
+        write_wav(y, tmp)
+        subprocess.check_call(["ffmpeg", "-y", "-loglevel", "error", "-i", tmp, "-af",
+                               "loudnorm=I=-20:TP=-3:LRA=5", "-ar", "44100", path])
 
 
 def music_a(total, path):
@@ -219,16 +234,16 @@ def music_a(total, path):
             m.add(m.sq(ch[0] / 2, step * 2, 3), at, 0.17)
             m.add(m.kick(), at, 0.55)
         if i % 4 == 2:
-            m.add(m.noise(0.08, 40), at, 0.12)
+            m.add(m.noise(0.05, 60), at, 0.05)
     for c in cuts[1:6]:
         m.add(m.sq(1046, 0.05, 30), c, 0.3)
         m.add(m.sq(1568, 0.05, 30), c + 0.06, 0.3)
         m.add(m.sn(660, 0.16, 9), c + 1.5, 0.45)
     for k, f in enumerate((523, 659, 784, 1047)):
         m.add(m.sq(f, 0.14, 7), cuts[6] + k * 0.1, 0.28)
-    m.add(m.sn(70, 1.0, 2.2), midnight, 0.85)
-    m.add(m.sq(220, 0.45, 2), midnight, 0.3)
-    m.add(m.sq(164, 0.6, 2), midnight + 0.3, 0.3)
+    m.add(m.sn(70, 1.0, 2.2), midnight, 0.4)
+    m.add(m.sq(220, 0.45, 2), midnight, 0.15)
+    m.add(m.sq(164, 0.6, 2), midnight + 0.3, 0.15)
     m.end(path)
 
 
@@ -353,17 +368,17 @@ def music_b(total, path):
             m.add(m.sq(ch[0] / 2, step * 2, 3), at, 0.14)
             m.add(m.kick(), at, 0.5)
         if i % 4 == 2:
-            m.add(m.noise(0.06, 50), at, 0.1)
+            m.add(m.noise(0.05, 60), at, 0.04)
     for i, (_, ans, _e) in enumerate(QUESTIONS):
         q0 = i * 5.6
         for k in range(3):
-            m.add(m.sq(880, 0.08, 12), q0 + 2.2 + k * (QUIZ_T - 2.2) / 3, 0.35)
+            m.add(m.sn(880, 0.08, 20), q0 + 2.2 + k * (QUIZ_T - 2.2) / 3, 0.2)
         if ans:
             for j, f in enumerate((523, 784, 1047)):
                 m.add(m.sq(f, 0.16, 7), q0 + QUIZ_T + j * 0.09, 0.4)
         else:
-            m.add(m.sq(120, 0.55, 2.5), q0 + QUIZ_T, 0.55)
-            m.add(m.sq(90, 0.55, 2.5), q0 + QUIZ_T + 0.1, 0.45)
+            m.add(m.sq(196, 0.4, 4), q0 + QUIZ_T, 0.25)
+            m.add(m.sq(147, 0.5, 4), q0 + QUIZ_T + 0.12, 0.22)
     pay = 4 * 5.6
     for k, f in enumerate((659, 784, 1047)):
         m.add(m.sn(f, 0.25, 6), pay + 0.7 + k * 0.1, 0.5)
