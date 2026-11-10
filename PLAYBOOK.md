@@ -112,6 +112,14 @@ Interdits : faux engagement, achats de vues, commentaires inventés, accroche tr
 ### Veille sur le viral
 À chaque session, lire une ou deux sources récentes sur les formats courts qui marchent en France ou dans la finance personnelle (tendances du mois, analyses). Noter le mécanisme qui fonctionne (structure, rythme, type d'accroche) et l'adapter en animation BudgetLoyer. S'inspirer de mécanismes, jamais copier une vidéo, un scénario, un personnage ou un son précis.
 
+### Outils « instagram-agent-skill » (installés le 10 nov. 2026, licence MIT, dans `outils/instagram-agent-skill/`)
+Pistes utiles, à adapter : ils sont réglés pour l'anglais.
+- `skills/ig-reel/hooks.json` : 26 formules d'accroche, avec leurs pièges. S'en servir pour proposer 3 accroches de formules différentes et garder la meilleure.
+- `skills/ig-caption/caption.py description.txt --keywords "mot-clé"` : montre les ~125 premiers caractères visibles avant « … plus » sur Instagram, et vérifie les mots-clés. La 1re phrase de la description doit tenir et accrocher dans cette fenêtre.
+- `skills/ig-carousel/SKILL.md` et `skills/ig-audit/SKILL.md` : bonnes pratiques de carrousel (numéroter les images, une image récapitulative à envoyer) et d'analyse (multiple de la médiane, partages par compte touché).
+- À ne pas utiliser comme critère bloquant : `hookscore.py`, `beats.py`, `humanize.py` et `detect.py` reposent sur des listes de mots anglais et notent mal le français.
+- En cas de conflit, le PLAYBOOK l'emporte : ces outils déconseillent `#fyp` et les listes à emojis, que le format de description du compte impose.
+
 ### Boucle d'analyse à chaque session
 Stats des 14 derniers jours, sur chaque réseau :
 - TikTok, connecteur posts : TKPO02, 05, 06, 07, 08, 09, 10, 13, 15, 16.
