@@ -20,15 +20,22 @@
 - YouTube : Metricool ne renvoie toujours que dates et titres.
 - Son du catalogue Instagram : réglé le 10 nov. au soir. Il fallait connecter la page Facebook à la marque Metricool, puis reconnecter Instagram via Facebook. Le catalogue accessible est une bibliothèque libre de droits (pas les tubes : la recherche « All I Want for Christmas » ne renvoie que des instrumentaux). Chercher par mots-clés, puis passer l'`audioId` numérique. Premier essai : Reel de 10:00 du 11 nov. avec « Jingle Bells Swing », comparé au Reel de 18:00 avec notre musique.
 
+## Analyse du 11 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : **sortie du plateau des 260 vues**. Vrai ou faux découvert (10 nov. 18:00, 27 s) : 780 vues, 8 j'aime, 1 commentaire. Défi 0 € (10 nov. 10:00, 25 s) : 738 vues, 10 j'aime. Devine le prix (11 nov. 10:00, 25 s) : 536 vues en moins de 11 h. Les trois formats jeu ou défi, à accroche complète dès l'image 1, font 2 à 3 fois la médiane précédente (260). Moins de 48 h pour les trois : tendance forte mais à confirmer le 12-13 nov. Carrousel jour de paie (13:00) : 2 vues à 7 h, trop tôt. Thermostat partie 1 (18:00) pas encore dans les stats.
+- Instagram : devine le prix avec son du catalogue : 47 vues mais 19,8 s vues en moyenne sur 25 s, la meilleure durée vue du compte (défi 0 € 6,7 s, vrai ou faux 4,7 s, Black Friday 4,2 s). Un seul cas, mais piste nette : le son du catalogue retient. Premier commentaire Instagram : échec sur les 2 Reels du 11 nov. (statut « ERROR », Reel publié quand même). À faire par le propriétaire : vérifier l'autorisation de gestion des commentaires dans la connexion Facebook/Instagram de Metricool.
+- YouTube : les Shorts sont bien publiés (statut PUBLISHED), mais le connecteur « videos published in range » ne renvoie toujours que dates et titres, et pas encore les Shorts du 9 au 11 nov.
+- 5 dernières descriptions relues (format une ligne, 5 hashtags, chute filée) : style tenu.
+
 ## Ce qui marche
-_Rien de confirmé pour l'instant (moins de 3 vidéos par format comparable)._
-- Piste : les formats directs de 34-35 s (« 3 raisons », « où est passé ton salaire ») restent les deux meilleurs TikTok (366 et 355 vues).
-- Piste : sketch « garde à vue » en tête sur Instagram.
+- **Piste forte (3 vidéos, moins de 48 h)** : jeux et défis interactifs à accroche complète dès l'image 1, 25-28 s (vrai ou faux 780, défi horloge 738, devine le prix 536 en 11 h) contre 255-260 pour sketch et tuto de la même semaine. Garder un jeu dans au moins une vidéo par jour, et varier la mécanique.
+- Piste : son du catalogue Instagram sur un quiz, 19,8 s vues en moyenne (1 cas).
+- Ancien : formats directs de 34-35 s (« 3 raisons », « où est passé ton salaire ») à 355-366 vues ; sketch « garde à vue » en tête sur Instagram.
 
 ## Ce qui ne marche pas
 _Rien de confirmé pour l'instant._
 - Piste : murs de 15 hashtags ou plus. Déjà corrigé par la règle des 5 hashtags.
 - Piste : trois vidéos le même jour.
+- Piste : sketch et tuto classiques (Black Friday 260, Noël 255) restent au plateau quand un jeu sort le même jour.
 
 - Retour du propriétaire (10 nov.) : l'audio des vidéos était trop agressif (ondes carrées, effets forts). Les vidéos du 10 nov. sont passées en version douce (`_v2`), et la règle audio est ajoutée au PLAYBOOK.
 
@@ -42,10 +49,14 @@ _Rien de confirmé pour l'instant._
 7. Défi horloge « à quelle heure tu craques ? » (publié le 10 nov.).
 8. Jeu télé Vrai ou Faux avec Monsieur Découvert (publié le 10 nov.).
 10. QCM « Devine le prix » à 3 choix (publié le 11 nov.) contre vrai ou faux à 2 choix (10 nov.).
-11. Série en POV d'objet « La guerre du thermostat » (Partie 1/2 le 11 nov., **Partie 2/2 à faire le 12 nov.** : la facture arrive, chacun se défend, puis mode Foyer pour partager les frais communs, question finale « qui avait raison ? »).
+11. Série en POV d'objet « La guerre du thermostat » (Partie 1/2 le 11 nov., Partie 2/2 programmée le 12 nov. à 18:00, 21 s). Comparer les vues de la partie 2 à la partie 1 : si la suite garde son public, refaire une série en 2 parties la semaine prochaine.
+12. Jeu « Plus ou moins ? » à 2 boutons sur une actu de moins de 3 jours (Carte contre Billet, 12 nov. 10:00) contre QCM à 3 choix (11 nov.) et vrai ou faux (10 nov.). Mesurer surtout les commentaires (choix de camp).
+13. Son du catalogue Instagram, 2e essai (« Zulu (Instrumental) » sur Carte contre Billet) : confirmer ou non la durée vue de 19,8 s.
+14. Idée de la veille (socialpilot.co, tendances 27 oct.-10 nov. 2026) : la chute en dernière image porte le partage ; « … loading » puis arrêt sur image avant la révélation. À adapter : « Salaire loading… » avec arrêt sur image avant la fin du mois.
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
 ## Calendrier des temps forts (à revérifier avant usage)
+- Sondage espèces (Ifop / Monnaie de Paris, 9 nov.) : utilisé le 12 nov. Inflation d'octobre 3,4 % sur un an, énergie +24,1 % (Insee provisoire, via jechange.fr, 30 oct. 2026) : piste pour une vidéo chauffage ou énergie, à relire avant usage.
 - 19 nov. 2026 : Beaujolais nouveau (icalendrier.fr).
 - 20 nov. 2026 : nouvelles règles du découvert et du paiement en plusieurs fois. Faire une vidéo « C'est aujourd'hui » qui renvoie au vrai ou faux du 10 nov. (sources dans le journal).
 - 1er déc. 2026 : premières cases des calendriers de l'Avent (vidéo « devine le prix » publiée le 11 nov.).
@@ -62,8 +73,9 @@ _Rien de confirmé pour l'instant._
 - Carrousel photo TikTok avec musique ajoutée par TikTok : premier test le 11 nov. à 13:00 (« jour de paie, t'es lequel ? »). Pas de catalogue musical TikTok pour les vidéos via l'API.
 - En attente du propriétaire : relevé de rétention dans TikTok Studio.
 - 11 nov. 10:00 : le Reel avec son du catalogue est bien publié (instagram.com/reel/DfmHgrmjw1R), mais Metricool n'a pas pu poster le premier commentaire (statut « ERROR », avertissement seulement). Probablement une autorisation de gestion des commentaires non accordée lors de la reconnexion d'Instagram via Facebook. Vérifier sur le Reel de 18:00.
-- Encore à faire cette semaine : un Trial Reel (variante d'accroche) sur un créneau sans autre Reel.
+- Encore à faire cette semaine : un Trial Reel (variante d'accroche) sur un créneau sans autre Reel (pas fait le 11 nov. : à placer le 13 ou le 14, par exemple à 13:00).
 - Nouveaux éléments dans `bl.py` (11 nov.) : `thermostat`, `coloc_bust`, `advent_cal`, `brand_tag`.
+- Nouveaux éléments dans `bl.py` (12 nov.) : `carte_perso`, `billet_perso` (objets parlants génériques, visage commun `_face`), `bg_ring` (ring de match).
 
 ## Bilans hebdomadaires
 ### Semaine du 2 au 8 novembre 2026 (bilan du lundi 9)
