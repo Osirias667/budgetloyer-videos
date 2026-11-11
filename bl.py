@@ -907,3 +907,81 @@ def write_wav(out, path, sr=44100):
         w.setsampwidth(2)
         w.setframerate(sr)
         w.writeframes((out * 32767).astype(np.int16).tobytes())
+
+
+# Ajouts du 12 nov. 2026 ----------------------------------------------------
+@lru_cache(maxsize=None)
+def carte_perso(expr="happy", mouth=0):
+    """Carte bancaire générique avec un visage (série Carte contre Billet, 12 nov. 2026)."""
+    p = P(440, 300)
+    K = (20, 16, 40)
+    p.r(6, 6, 434, 294, 34, K)
+    p.r(16, 16, 424, 284, 26, (60, 90, 230))
+    p.r(16, 200, 424, 240, 0, (40, 64, 190))
+    p.r(46, 52, 116, 106, 10, YEL)
+    p.l([(46, 79), (116, 79)], (200, 150, 30), 4)
+    p.l([(81, 52), (81, 106)], (200, 150, 30), 4)
+    for k in range(4):
+        p.t((70 + k * 100, 262), "••••", lambda s: inter(26 * s, "Black"), (210, 220, 255))
+    _face(p, 290, 112, expr, mouth, K)
+    return p.out()
+
+
+@lru_cache(maxsize=None)
+def billet_perso(expr="happy", mouth=0):
+    """Billet générique avec un visage (pas de reproduction d'un vrai billet)."""
+    p = P(460, 260)
+    K = (20, 40, 30)
+    p.r(6, 6, 454, 254, 18, K)
+    p.r(16, 16, 444, 244, 12, (150, 214, 160))
+    p.r(32, 32, 428, 228, 8, None, (90, 160, 110), 5)
+    p.e(96, 130, 52, 52, (110, 190, 130))
+    p.t((96, 132), "€", lambda s: inter(64 * s, "Black"), K)
+    p.t((390, 62), "€", lambda s: inter(40 * s, "Black"), (60, 120, 80))
+    _face(p, 290, 112, expr, mouth, K)
+    return p.out()
+
+
+def _face(p, cx, cy, expr, mouth, K):
+    """Visage commun aux objets parlants : yeux, sourcils, bouche."""
+    if expr == "happy":
+        p.arc(cx - 50, cy, 20, 16, 200, 340, K, 7)
+        p.arc(cx + 50, cy, 20, 16, 200, 340, K, 7)
+    else:
+        p.e(cx - 50, cy, 20, 22, WHITE)
+        p.e(cx + 50, cy, 20, 22, WHITE)
+        p.e(cx - 50, cy + 3, 9, 11, K)
+        p.e(cx + 50, cy + 3, 9, 11, K)
+        if expr == "angry":
+            p.l([(cx - 76, cy - 34), (cx - 28, cy - 20)], K, 7)
+            p.l([(cx + 76, cy - 34), (cx + 28, cy - 20)], K, 7)
+        elif expr == "sad":
+            p.l([(cx - 76, cy - 20), (cx - 28, cy - 34)], K, 7)
+            p.l([(cx + 76, cy - 20), (cx + 28, cy - 34)], K, 7)
+    if mouth:
+        p.e(cx, cy + 58, 24, 16, (130, 30, 50))
+    elif expr == "sad":
+        p.arc(cx, cy + 70, 26, 14, 200, 340, K, 6)
+    else:
+        p.arc(cx, cy + 44, 28, 18, 20, 160, K, 6)
+
+
+@lru_cache(maxsize=None)
+def bg_ring():
+    """Ring de match plat : projecteurs, cordes, tapis (12 nov. 2026)."""
+    im = Image.fromarray(grad((16, 8, 46), (60, 18, 90), 0, 1500))
+    d = ImageDraw.Draw(im, "RGBA")
+    for cx in (180, 540, 900):
+        d.polygon([(cx - 30, 0), (cx + 30, 0), (cx + 260, 1500), (cx - 260, 1500)], fill=(255, 240, 200, 18))
+    rng = random.Random(12)
+    for _ in range(140):
+        x, y = rng.randint(0, W), rng.randint(1180, 1480)
+        d.ellipse((x, y, x + 10, y + 10), fill=(255, 255, 255, rng.randint(30, 90)))
+    d.rectangle((0, 1500, W, H), fill=(36, 60, 150, 255))
+    d.polygon([(0, 1500), (W, 1500), (W, 1560), (0, 1560)], fill=(26, 44, 120, 255))
+    for k, c in enumerate((RED, WHITE, CYAN)):
+        y = 1310 + k * 62
+        d.line((0, y, W, y), fill=c + (255,), width=12)
+    for x in (40, W - 60):
+        d.rectangle((x, 1280, x + 20, 1560), fill=(200, 200, 210, 255))
+    return im
