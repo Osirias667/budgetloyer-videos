@@ -27,3 +27,5 @@ Le moteur est `musique.py` (classe `Track`). La règle audio douce du PLAYBOOK s
 | 2026-11-11 | Thermostat partie 1 | v1 accords plaqués | G | 104 | - | v1 | à mesurer |
 | 2026-11-12 | Carte ou billet | v1 accords plaqués | A | 120 | - | v1 | à mesurer (Instagram en son du catalogue) |
 | 2026-11-12 | Thermostat partie 2 | v1 accords plaqués | G | 104 | - | v1 | à mesurer |
+| 2026-11-13 | Heures creuses quiz (+ Trial Reel) | jeu_tele | Bb | 114 | 8945 | v2.0 | à mesurer (Instagram avec notre musique, pas de son du catalogue) |
+| 2026-11-13 | Survie fin de mois p1 | suspense | E | 96 | 1313 | v2.0 | à mesurer |

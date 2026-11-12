@@ -26,15 +26,25 @@
 - YouTube : les Shorts sont bien publiés (statut PUBLISHED), mais le connecteur « videos published in range » ne renvoie toujours que dates et titres, et pas encore les Shorts du 9 au 11 nov.
 - 5 dernières descriptions relues (format une ligne, 5 hashtags, chute filée) : style tenu.
 
+## Analyse du 12 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : **nouveau plateau autour de 740-785 vues**, quel que soit le format. Thermostat partie 1 (POV d'objet, série, 23 s) 783 vues, 14 j'aime, 2 commentaires ; vrai ou faux découvert 782 ; devine le prix 755 (5 j'aime, 0 commentaire) ; défi 0 € 740. Avant le 10 nov. : 238-275. Le saut n'est donc pas propre aux jeux (le POV fait autant) : il coïncide avec ce qui a changé pour toutes les vidéos le 10 nov. (accroche complète à l'image 1, 5 hashtags, description au format, audio doux, premier commentaire, couverture à 300 ms). Prochain cap : sortir de 780. Carrousel jour de paie : 8 vues (format à ne pas répéter tel quel). Vidéos du 12 nov. pas encore dans les stats.
+- Instagram : thermostat partie 1 en tête (143 vues, 120 comptes atteints, 8,2 s vues en moyenne, 46 % sur la dernière colonne IGRE), devant devine le prix (114 vues, 4,9 s, 30 %) et vrai ou faux (38 vues, 4,4 s). **Correction** : les 19,8 s vues relevées le 11 nov. pour devine le prix (son du catalogue) sont retombées à 4,9 s une fois les données complètes ; la piste « le son du catalogue retient » n'est pas confirmée. Le premier commentaire Instagram échoue toujours (statut ERROR sur les 2 Reels du 12 nov., Reels publiés quand même) : en attente du propriétaire.
+- YouTube : le connecteur renvoie enfin des valeurs, mais seulement pour les Shorts d'avant le 9 nov. (« ton pote gère mieux » 737, Gaston contre Rémi 412, ski 89, garde à vue 5). Les Shorts du 9 au 12 nov. sont publiés mais absents des stats.
+- 5 dernières descriptions relues : format une ligne, 5 hashtags, chute filée, tenu.
+- Vendredi 13 novembre : date anniversaire des attentats de 2015. Aucune blague « vendredi 13 » ni allusion, dans la vidéo comme dans la description (règle drame).
+
 ## Ce qui marche
-- **Piste forte (3 vidéos, moins de 48 h)** : jeux et défis interactifs à accroche complète dès l'image 1, 25-28 s (vrai ou faux 780, défi horloge 738, devine le prix 536 en 11 h) contre 255-260 pour sketch et tuto de la même semaine. Garder un jeu dans au moins une vidéo par jour, et varier la mécanique.
-- Piste : son du catalogue Instagram sur un quiz, 19,8 s vues en moyenne (1 cas).
+- **Confirmé (4 vidéos à plus de 48 h)** : le format de publication en place depuis le 10 nov. (accroche complète dès l'image 1, 5 hashtags, description au format, audio doux) fait passer TikTok de ~260 à 740-785 vues, pour les jeux comme pour le POV d'objet en série.
+- Piste : POV d'objet en série (thermostat) = meilleure durée vue Instagram (8,2 s, 46 %) et le plus de j'aime TikTok (14). À recroiser avec un jeu (13 nov.).
+- Jeux et défis : au niveau du plateau, pas au-dessus. Garder un jeu par jour mais varier la mécanique ; le jeu seul ne suffit plus à progresser.
 - Ancien : formats directs de 34-35 s (« 3 raisons », « où est passé ton salaire ») à 355-366 vues ; sketch « garde à vue » en tête sur Instagram.
 
 ## Ce qui ne marche pas
 _Rien de confirmé pour l'instant._
 - Piste : murs de 15 hashtags ou plus. Déjà corrigé par la règle des 5 hashtags.
 - Piste : trois vidéos le même jour.
+- Carrousel photo TikTok (jour de paie) : 8 vues à plus de 24 h. Ne pas refaire tel quel ; si un nouveau carrousel est tenté, accroche plus forte et sujet d'actu.
+- Son du catalogue Instagram : pas d'effet confirmé (4,9 s vues sur devine le prix). Suspendu le 13 nov. pour mesurer la nouvelle musique `musique.py` v2 sur Instagram aussi.
 - Piste : sketch et tuto classiques (Black Friday 260, Noël 255) restent au plateau quand un jeu sort le même jour.
 
 - Retour du propriétaire (10 nov.) : l'audio des vidéos était trop agressif (ondes carrées, effets forts). Les vidéos du 10 nov. sont passées en version douce (`_v2`), et la règle audio est ajoutée au PLAYBOOK.
@@ -53,11 +63,18 @@ _Rien de confirmé pour l'instant._
 12. Jeu « Plus ou moins ? » à 2 boutons sur une actu de moins de 3 jours (Carte contre Billet, 12 nov. 10:00) contre QCM à 3 choix (11 nov.) et vrai ou faux (10 nov.). Mesurer surtout les commentaires (choix de camp).
 13. Son du catalogue Instagram, 2e essai (« Zulu (Instrumental) » sur Carte contre Billet) : confirmer ou non la durée vue de 19,8 s.
 14. Idée de la veille (socialpilot.co, tendances 27 oct.-10 nov. 2026) : la chute en dernière image porte le partage ; « … loading » puis arrêt sur image avant la révélation. À adapter : « Salaire loading… » avec arrêt sur image avant la fin du mois.
+15. Quiz « Possible ou interdit ? » + objet qui parle (machine à laver), heures creuses (13 nov. 10:00, 24 s) : le mélange jeu + POV d'objet dépasse-t-il le plateau de 780 ?
+16. Trial Reel (13 nov. 13:00) : accroche « Ta machine à laver tourne à 19 h ? » (question perso) contre l'accroche chiffrée « 9,3 millions de foyers » du Reel de 10:00. Comparer vues et durée vue.
+17. Série « Survie fin de mois », histoire dont tu es le héros, 2e personne, widget BudgetLoyer qui bouge à chaque choix, choix final A/B (Partie 1/2 le 13 nov. 18:00, 21 s). Mesurer les commentaires A/B et la rétention de la partie 2 (14 nov.). Mécanisme repris des séries de survie animées (newengen.com, 5 nov. 2026).
+18. Tendances du mois (ramd.am, 3 et 10 nov. 2026) à adapter : « oh no, I'm so cringe » (confession d'une vieille habitude, ex. budget sur un tableur) et « Go go go » (impatience intérieure, ex. attendre la paie).
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
 ## Calendrier des temps forts (à revérifier avant usage)
 - Sondage espèces (Ifop / Monnaie de Paris, 9 nov.) : utilisé le 12 nov. Inflation d'octobre 3,4 % sur un an, énergie +24,1 % (Insee provisoire, via jechange.fr, 30 oct. 2026) : piste pour une vidéo chauffage ou énergie, à relire avant usage.
 - 19 nov. 2026 : Beaujolais nouveau (icalendrier.fr).
+- 1er déc. 2026 : début du changement des heures creuses pour 9,3 millions de clients Enedis (utilisé le 13 nov. ; possible rappel « c'est aujourd'hui » le 1er déc.).
+- Vers le 24 nov. 2026 : fin possible de l'encadrement des loyers sans vote des députés (L'Express Éducation, 11 nov. 2026). Sujet parlementaire : seulement en version pratique et neutre (« ce qui change pour ton loyer »), après vérification du résultat du vote, jamais sur les partis.
+- 27 nov. 2026 : prochaine publication Insee sur la consommation des ménages (consommation de biens -0,5 % en septembre, Insee du 30 oct., via leconseilpatrimoine.fr).
 - 20 nov. 2026 : nouvelles règles du découvert et du paiement en plusieurs fois. Faire une vidéo « C'est aujourd'hui » qui renvoie au vrai ou faux du 10 nov. (sources dans le journal).
 - 1er déc. 2026 : premières cases des calendriers de l'Avent (vidéo « devine le prix » publiée le 11 nov.).
 - 27 nov. 2026 : Black Friday, offres souvent jusqu'au lundi 30 (connexionfrance.com).
@@ -73,7 +90,8 @@ _Rien de confirmé pour l'instant._
 - Carrousel photo TikTok avec musique ajoutée par TikTok : premier test le 11 nov. à 13:00 (« jour de paie, t'es lequel ? »). Pas de catalogue musical TikTok pour les vidéos via l'API.
 - En attente du propriétaire : relevé de rétention dans TikTok Studio.
 - 11 nov. 10:00 : le Reel avec son du catalogue est bien publié (instagram.com/reel/DfmHgrmjw1R), mais Metricool n'a pas pu poster le premier commentaire (statut « ERROR », avertissement seulement). Probablement une autorisation de gestion des commentaires non accordée lors de la reconnexion d'Instagram via Facebook. Vérifier sur le Reel de 18:00.
-- Encore à faire cette semaine : un Trial Reel (variante d'accroche) sur un créneau sans autre Reel (pas fait le 11 nov. : à placer le 13 ou le 14, par exemple à 13:00).
+- Trial Reel de la semaine : programmé le 13 nov. à 13:00 (variante d'accroche du quiz heures creuses, id 426152582).
+- Nouveaux éléments dans `bl.py` (13 nov.) : `machine_perso`, `horloge`, `bg_laverie`, `hud_budget` (widget « Il te reste » + repère par jour), option `bg_sky(heure, sun=False)`.
 - Nouveaux éléments dans `bl.py` (11 nov.) : `thermostat`, `coloc_bust`, `advent_cal`, `brand_tag`.
 - Retour du propriétaire (12 nov.) : les musiques doivent varier et s'améliorer. Jusqu'au 12 nov. inclus, toutes les vidéos utilisaient le même générateur (accords plaqués + kick). Nouveau moteur `musique.py` v2.0 (8 styles), registre et règles dans `musique.md`. Première utilisation : vidéos du 13 nov. À mesurer : durée moyenne vue Instagram et vues TikTok par style.
 - Nouveaux éléments dans `bl.py` (12 nov.) : `carte_perso`, `billet_perso` (objets parlants génériques, visage commun `_face`), `bg_ring` (ring de match).
