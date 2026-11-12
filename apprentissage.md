@@ -75,6 +75,7 @@ _Rien de confirmé pour l'instant._
 - 11 nov. 10:00 : le Reel avec son du catalogue est bien publié (instagram.com/reel/DfmHgrmjw1R), mais Metricool n'a pas pu poster le premier commentaire (statut « ERROR », avertissement seulement). Probablement une autorisation de gestion des commentaires non accordée lors de la reconnexion d'Instagram via Facebook. Vérifier sur le Reel de 18:00.
 - Encore à faire cette semaine : un Trial Reel (variante d'accroche) sur un créneau sans autre Reel (pas fait le 11 nov. : à placer le 13 ou le 14, par exemple à 13:00).
 - Nouveaux éléments dans `bl.py` (11 nov.) : `thermostat`, `coloc_bust`, `advent_cal`, `brand_tag`.
+- Retour du propriétaire (12 nov.) : les musiques doivent varier et s'améliorer. Jusqu'au 12 nov. inclus, toutes les vidéos utilisaient le même générateur (accords plaqués + kick). Nouveau moteur `musique.py` v2.0 (8 styles), registre et règles dans `musique.md`. Première utilisation : vidéos du 13 nov. À mesurer : durée moyenne vue Instagram et vues TikTok par style.
 - Nouveaux éléments dans `bl.py` (12 nov.) : `carte_perso`, `billet_perso` (objets parlants génériques, visage commun `_face`), `bg_ring` (ring de match).
 
 ## Bilans hebdomadaires

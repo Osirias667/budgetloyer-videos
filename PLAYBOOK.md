@@ -32,6 +32,8 @@ Les deux familles déjà installées servent de base, pas de limite :
 
 **Audio (consigne du propriétaire, 10 nov. 2026) : jamais agressif.** Pas d'ondes carrées stridentes ni d'effets qui claquent : ondes douces (sinus, triangle), passe-bas vers 3,5 kHz, effets sonores discrets, aucun pic soudain. Viser environ -20 LUFS, crête maximale -3 dBFS, LRA de 5 LU au plus. Mesurer avant publication avec `ffmpeg -af ebur128=peak=true`. Utiliser `SoftMix` de `bl.py` : `tri`/`sn` pour la musique, `pop` à chaque texte ou objet qui apparaît, `whoosh` doux à chaque changement de plan, et `jingle` (signature sonore BudgetLoyer, toujours la même) au moment où le logo apparaît. `end` filtre et normalise.
 
+**Musique variée et de mieux en mieux (consigne du propriétaire, 12 nov. 2026).** Depuis le 12 nov., la musique se compose avec `musique.py` (classe `Track`, même interface que `SoftMix`) et non plus avec `chords_music`. Chaque vidéo prend un style, une tonalité, un tempo et une graine différents des précédentes (`python3 musique.py next 2`), choisis selon l'ambiance du sujet, et s'inscrit dans le registre `musique.md`. Le moteur reçoit au moins une amélioration par semaine, notée dans `musique.md` ; les styles sont gardés ou retravaillés selon les stats. Le jingle de marque reste toujours le même.
+
 **Voix** : abandonnée par le propriétaire le 10 nov. 2026. Pas de voix enregistrée et pas de voix de synthèse : les vidéos reposent sur le texte à l'écran, la musique douce, les bruitages et le jingle. Le code `SoftMix.voice` reste disponible si le propriétaire change d'avis.
 
 **Image 1 en mouvement** : appeler `punch_in(img, t)` à la fin de la première scène, pour un léger zoom arrière pendant 0,6 s. L'accroche reste complète et lisible dès l'image 0.
