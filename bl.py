@@ -556,15 +556,17 @@ SKY = {8: ((252, 170, 130), (150, 205, 250)), 11: ((88, 170, 245), (190, 228, 25
 
 
 @lru_cache(maxsize=None)
-def bg_sky(hour):
-    """Ciel plat dont la couleur et l'astre suivent l'heure, skyline en bas."""
+def bg_sky(hour, sun=True):
+    """Ciel plat dont la couleur et l'astre suivent l'heure, skyline en bas. sun=False : sans astre."""
     top, bot = SKY[hour]
     im = Image.fromarray(grad(top, bot, 0, 1180))
     d = ImageDraw.Draw(im, "RGBA")
     night = hour in (22, 0)
     a = math.pi * (hour - 6) / 14 if not night else math.pi * 0.72
     cx, cy = 540 + 440 * math.cos(math.pi - a), 900 - 560 * math.sin(a)
-    if night:
+    if not sun:
+        pass
+    elif night:
         d.ellipse((cx - 70, cy - 70, cx + 70, cy + 70), fill=(238, 238, 214, 255))
         d.ellipse((cx - 36, cy - 86, cx + 90, cy + 42), fill=top + (255,))
         rng = random.Random(hour + 5)
@@ -985,3 +987,104 @@ def bg_ring():
     for x in (40, W - 60):
         d.rectangle((x, 1280, x + 20, 1560), fill=(200, 200, 210, 255))
     return im
+
+
+# Ajouts du 13 nov. 2026 ----------------------------------------------------
+@lru_cache(maxsize=None)
+def machine_perso(expr="happy", mouth=0, spin=0):
+    """Machine à laver générique avec un visage (quiz heures creuses, 13 nov. 2026).
+
+    spin : angle (en degrés, multiple de 15) du linge dans le hublot.
+    """
+    p = P(440, 520)
+    K = (24, 22, 40)
+    p.r(10, 10, 430, 510, 40, K)
+    p.r(22, 22, 418, 498, 32, (236, 240, 250))
+    p.r(22, 22, 418, 120, 32, (206, 214, 232))
+    p.r(40, 52, 200, 92, 12, (40, 50, 80))
+    p.t((120, 72), "23:00", lambda k: mono(30 * k), GREEN)
+    p.e(300, 72, 26, 26, K)
+    p.e(300, 72, 18, 18, (150, 160, 190))
+    p.e(370, 72, 14, 14, CYAN)
+    # hublot
+    p.e(220, 320, 150, 150, K)
+    p.e(220, 320, 136, 136, (170, 180, 200))
+    p.e(220, 320, 112, 112, (60, 140, 220))
+    for k, col in enumerate(((255, 120, 150), YEL, GREEN)):
+        a = math.radians(spin + k * 120)
+        p.e(220 + 54 * math.cos(a), 320 + 54 * math.sin(a), 34, 26, col)
+    p.arc(220, 320, 92, 92, 200, 250, (230, 240, 255), 10)
+    # visage sur le bandeau du bas
+    ey = 478
+    if expr == "happy":
+        p.arc(170, ey, 16, 12, 200, 340, K, 6)
+        p.arc(270, ey, 16, 12, 200, 340, K, 6)
+    else:
+        p.e(170, ey - 4, 13, 14, WHITE)
+        p.e(270, ey - 4, 13, 14, WHITE)
+        p.e(170, ey - 2, 6, 7, K)
+        p.e(270, ey - 2, 6, 7, K)
+        p.arc(170, ey - 4, 14, 15, 0, 360, K, 3)
+        p.arc(270, ey - 4, 14, 15, 0, 360, K, 3)
+    if mouth or expr == "panic":
+        p.e(220, 486, 16, 10, (130, 30, 50))
+    else:
+        p.arc(220, 478, 16, 10, 20, 160, K, 5)
+    return p.out()
+
+
+@lru_cache(maxsize=None)
+def horloge(h, m=0, col=CYAN, size=360):
+    """Horloge murale plate, aiguilles à l'heure donnée."""
+    p = P(size, size)
+    K = (20, 18, 36)
+    c = size / 2
+    p.e(c, c, c - 4, c - 4, K)
+    p.e(c, c, c - 18, c - 18, col)
+    p.e(c, c, c - 34, c - 34, (246, 246, 252))
+    for k in range(12):
+        a = math.radians(k * 30)
+        r0, r1 = c - 52, c - (70 if k % 3 else 84)
+        p.l([(c + r0 * math.sin(a), c - r0 * math.cos(a)), (c + r1 * math.sin(a), c - r1 * math.cos(a))], K,
+            8 if k % 3 == 0 else 4)
+    ah = math.radians((h % 12) * 30 + m * 0.5)
+    am = math.radians(m * 6)
+    p.l([(c, c), (c + (c * 0.42) * math.sin(ah), c - (c * 0.42) * math.cos(ah))], K, 14)
+    p.l([(c, c), (c + (c * 0.62) * math.sin(am), c - (c * 0.62) * math.cos(am))], K, 9)
+    p.e(c, c, 14, 14, RED)
+    return p.out()
+
+
+@lru_cache(maxsize=None)
+def bg_laverie():
+    """Buanderie plate : carrelage bleu nuit, étagère, sol (13 nov. 2026)."""
+    im = Image.fromarray(grad((18, 30, 72), (34, 60, 120), 0, 1600))
+    d = ImageDraw.Draw(im, "RGBA")
+    for y in range(0, 1600, 120):
+        d.line((0, y, W, y), fill=(255, 255, 255, 22), width=3)
+    for x in range(0, W, 120):
+        d.line((x, 0, x, 1600), fill=(255, 255, 255, 22), width=3)
+    d.rectangle((0, 1600, W, H), fill=(26, 34, 60, 255))
+    d.rectangle((0, 1600, W, 1616), fill=(80, 110, 190, 255))
+    return im
+
+
+def hud_budget(img, reste, jours, y=150, flash=0.0, delta=None):
+    """Widget BudgetLoyer « Il te reste » + repère par jour jusqu'à la paie (série Survie)."""
+    b, g = glow_box(940, 190, 26, (14, 20, 30), (28, 90, 74), 22)
+    paste(img, b, 70 - g, y - g)
+    d = ImageDraw.Draw(img)
+    paste(img, logo(54), 100, y + 22)
+    d.text((168, y + 49), "Il te reste", font=inter(34, "Medium"), fill=(170, 182, 190), anchor="lm")
+    col = RED if flash > 0 and delta and delta < 0 else GREEN
+    txt = f"{reste:.2f}".replace(".", ",") + f"{NB}€"
+    d.text((100, y + 140), txt, font=inter(78, "Black"), fill=col, anchor="lm")
+    d.text((980, y + 49), f"Paie dans {jours}{NB}j", font=inter(34, "Bold"), fill=WHITE, anchor="rm")
+    per = reste / max(1, jours)
+    d.text((980, y + 106), "Repère / jour", font=inter(30, "Medium"), fill=(170, 182, 190), anchor="rm")
+    d.text((980, y + 150), f"{per:.2f}".replace(".", ",") + f"{NB}€", font=inter(48, "Black"),
+           fill=YEL if per < 4 else WHITE, anchor="rm")
+    if delta and flash > 0:
+        s = f"{delta:+.2f}".replace(".", ",") + f"{NB}€"
+        d.text((430, y + 118 - 30 * (1 - flash)), s, font=inter(50, "Black"),
+               fill=RED if delta < 0 else GREEN, anchor="lm")
