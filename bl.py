@@ -1088,3 +1088,75 @@ def hud_budget(img, reste, jours, y=150, flash=0.0, delta=None):
         s = f"{delta:+.2f}".replace(".", ",") + f"{NB}€"
         d.text((430, y + 118 - 30 * (1 - flash)), s, font=inter(50, "Black"),
                fill=RED if delta < 0 else GREEN, anchor="lm")
+
+
+# Ajouts du 14 nov. 2026 ----------------------------------------------------
+@lru_cache(maxsize=None)
+def bg_supermarche():
+    """Rayon de supermarché plat, sans marque : étagères, produits en blocs colorés, carrelage (14 nov. 2026)."""
+    im = Image.fromarray(grad((236, 240, 248), (206, 214, 232), 0, 1560))
+    d = ImageDraw.Draw(im, "RGBA")
+    rng = random.Random(14)
+    cols = [(240, 96, 96), (255, 200, 70), (90, 190, 130), (80, 150, 240), (200, 120, 220), (250, 150, 80)]
+    for y in range(380, 1500, 280):
+        d.rectangle((0, y + 200, W, y + 226), fill=(120, 132, 160, 255))
+        x = 14
+        while x < W - 40:
+            w = rng.randint(54, 110)
+            h = rng.randint(110, 190)
+            c = rng.choice(cols)
+            d.rounded_rectangle((x, y + 200 - h, x + w, y + 200), 10, fill=c + (255,))
+            d.rectangle((x + 8, y + 200 - h + 26, x + w - 8, y + 200 - h + 52), fill=(255, 255, 255, 150))
+            x += w + rng.randint(6, 16)
+    d.rectangle((0, 1560, W, H), fill=(180, 190, 210, 255))
+    for x in range(-60, W, 120):
+        d.line((x, 1560, x - 140, H), fill=(150, 160, 186, 255), width=4)
+    d.line((0, 1640, W, 1640), fill=(150, 160, 186, 255), width=4)
+    d.line((0, 1760, W, 1760), fill=(150, 160, 186, 255), width=4)
+    return im
+
+
+def ticket(img, x, y, w, items, total=None, shown=None, title="TICKET", hi=None):
+    """Ticket de caisse blanc à bord dentelé ; items = [(libellé, montant)] ; shown = nb de lignes visibles."""
+    n = len(items) if shown is None else max(0, min(len(items), shown))
+    lh = 62
+    h = 130 + n * lh + (110 if total is not None else 30)
+    p = P(w, h + 30)
+    p.r(0, 0, w, h, 8, (252, 252, 246))
+    teeth = [(0, h)]
+    for k in range(0, w + 1, 30):
+        teeth += [(k, h), (k + 15, h + 22)]
+    teeth += [(w, h)]
+    p.p(teeth + [(w, h - 2), (0, h - 2)], (252, 252, 246))
+    paste(img, p.out(), x, y)
+    d = ImageDraw.Draw(img)
+    d.text((x + w / 2, y + 56), title, font=mono(44), fill=(40, 40, 50), anchor="mm")
+    d.line((x + 30, y + 100, x + w - 30, y + 100), fill=(180, 180, 170), width=3)
+    for i, (lab, val) in enumerate(items[:n]):
+        yy = y + 120 + i * lh
+        col = RED if hi is not None and i == hi else (40, 40, 50)
+        d.text((x + 34, yy), lab, font=mono(40), fill=col)
+        d.text((x + w - 34, yy), f"{val:.2f}".replace(".", ",") + f"{NB}€", font=mono(40), fill=col, anchor="ra")
+    if total is not None:
+        yy = y + 130 + n * lh
+        d.line((x + 30, yy, x + w - 30, yy), fill=(40, 40, 50), width=4)
+        d.text((x + 34, yy + 22), "TOTAL", font=mono(48), fill=(40, 40, 50))
+        d.text((x + w - 34, yy + 22), f"{total:.2f}".replace(".", ",") + f"{NB}€", font=mono(48), fill=RED,
+               anchor="ra")
+
+
+@lru_cache(maxsize=None)
+def panier_perso(expr="happy", mouth=0, full=0):
+    """Panier de courses générique avec un visage. full : 0 (vide) à 3 (débordant)."""
+    p = P(420, 360)
+    K = (30, 16, 30)
+    p.arc(210, 150, 150, 130, 180, 360, K, 22)
+    for k in range(full):
+        cx = 110 + k * 100
+        p.e(cx, 130 - (k % 2) * 30, 52, 52, [(255, 200, 70), (90, 190, 130), (240, 120, 120)][k % 3])
+    p.p([(20, 140), (400, 140), (360, 350), (60, 350)], K)
+    p.p([(34, 152), (386, 152), (350, 338), (70, 338)], (226, 60, 70))
+    for x in range(90, 360, 60):
+        p.l([(x, 170), (x - 4, 320)], (180, 40, 52), 6)
+    _face(p, 210, 230, expr, mouth, K)
+    return p.out()
