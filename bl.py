@@ -1160,3 +1160,72 @@ def panier_perso(expr="happy", mouth=0, full=0):
         p.l([(x, 170), (x - 4, 320)], (180, 40, 52), 6)
     _face(p, 210, 230, expr, mouth, K)
     return p.out()
+
+
+# Ajouts du 15 nov. 2026 ----------------------------------------------------
+@lru_cache(maxsize=None)
+def bg_salon(night=True):
+    """Salon plat le soir : mur chaud, fenêtre de nuit, guirlande, table en bas (15 nov. 2026)."""
+    im = Image.fromarray(grad((70, 40, 90), (150, 80, 90), 0, 1500))
+    d = ImageDraw.Draw(im, "RGBA")
+    wx0, wy0, wx1, wy1 = 850, 1060, 1110, 1440
+    d.rounded_rectangle((wx0, wy0, wx1, wy1), 20, fill=(30, 26, 60, 255))
+    d.rounded_rectangle((wx0 + 20, wy0 + 20, wx1, wy1 - 20), 14, fill=(16, 20, 64, 255) if night else (140, 200, 250, 255))
+    d.line((wx0 + 20, (wy0 + wy1) // 2, wx1, (wy0 + wy1) // 2), fill=(30, 26, 60, 255), width=12)
+    if night:
+        d.ellipse((930, 1100, 975, 1145), fill=(250, 240, 200, 255))
+        rng = random.Random(15)
+        for _ in range(8):
+            x, y = rng.randint(880, 1070), rng.randint(1090, 1410)
+            d.ellipse((x, y, x + 5, y + 5), fill=(220, 220, 255, 255))
+    for k in range(13):
+        x = 40 + k * 80
+        y = 70 + 30 * math.sin(k * 0.9)
+        d.line((x, y, x + 80, 70 + 30 * math.sin((k + 1) * 0.9)), fill=(40, 30, 50, 255), width=4)
+        d.ellipse((x - 11, y - 4, x + 11, y + 20), fill=[YEL, GREEN, MAG, CYAN][k % 4] + (255,))
+    d.rectangle((0, 1500, W, H), fill=(120, 70, 50, 255))
+    d.rectangle((0, 1500, W, 1530), fill=(150, 92, 66, 255))
+    return im
+
+
+@lru_cache(maxsize=None)
+def raclette_perso(expr="happy", mouth=0, fromage=1.0):
+    """Appareil à raclette générique avec un visage, témoin de la soirée. fromage : 0 (vide) à 1 (plein)."""
+    p = P(620, 380)
+    K = (26, 18, 30)
+    p.r(20, 40, 600, 110, 30, K)
+    p.r(32, 50, 588, 100, 24, (70, 70, 84))
+    for k in range(6):
+        x = 70 + k * 85
+        p.e(x, 66, 26, 18, (220, 180, 110) if k % 2 else (196, 120, 70))
+    p.r(60, 130, 560, 300, 40, K)
+    p.r(72, 142, 548, 288, 32, (200, 40, 50))
+    p.r(70, 280, 550, 312, 10, (70, 70, 84))
+    n = round(6 * max(0, min(1, fromage)))
+    for k in range(6):
+        x = 96 + k * 76
+        p.r(x - 30, 300, x + 30, 352, 8, K)
+        p.r(x - 24, 306, x + 24, 346, 6, (60, 60, 72))
+        if k < n:
+            p.r(x - 22, 300, x + 22, 318, 6, (255, 214, 120))
+    _face(p, 310, 214, expr, mouth, K)
+    return p.out()
+
+
+def guess_badge(img, x, y, lab, col, size=84, on=True):
+    """Pastille ronde de choix (A, B, C, D) posée sur un personnage."""
+    c = col if on else (70, 72, 92)
+    b = box(size, size, size // 2, c + (255,), WHITE + (255,), 5)
+    paste(img, b, x - size / 2, y - size / 2)
+    ImageDraw.Draw(img).text((x, y + 2), lab, font=inter(int(size * 0.6), "Black"),
+                             fill=NAVY if c in (YEL, GREEN, CYAN) else WHITE, anchor="mm")
+
+
+def gauge(img, t, x, y, w, level, start=0.0, label="DANGER", col=None):
+    """Jauge horizontale qui se remplit jusqu'à level (0-1), du vert au rouge."""
+    p = ease((t - start) / 0.5) * level
+    d = ImageDraw.Draw(img)
+    d.text((x, y), label, font=inter(34, "Black"), fill=WHITE)
+    d.rounded_rectangle((x, y + 50, x + w, y + 92), 21, fill=(36, 40, 64))
+    c = col or (GREEN if p < 0.4 else (YEL if p < 0.75 else RED))
+    d.rounded_rectangle((x, y + 50, x + max(42, w * p), y + 92), 21, fill=c)
