@@ -41,6 +41,15 @@
 - 5 dernières descriptions relues : format une ligne, 5 hashtags, chute filée, tenu.
 - Programmation du 14 nov. : aucun post existant ce jour-là avant la session.
 
+## Analyse du 14 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : Heures creuses quiz (13 nov. 10:00) 754 vues, 4 j'aime : **au plateau**. **Survie fin de mois p1** (13 nov. 18:00, 21 s, histoire en 2e personne) : **436 vues à ~27 h**, nettement sous le plateau (thermostat p1 était déjà à 783 vues au même âge), 9 j'aime, 0 commentaire malgré le choix A/B. À rejuger le 15 nov. Vidéos du 14 nov. pas encore dans les stats. Partages : toujours 0 partout.
+- Instagram : Survie p1 à **3 vues seulement** (14,3 s vues, 50 %), anomalie de diffusion à surveiller ; heures creuses 113 vues, 3,9 s, 30 %. Thermostat p1 garde la meilleure durée vue (8,2 s).
+- YouTube : seuls les Shorts du 9-10 nov. remontent (1-2 vues) ; ceux du 11 au 14 nov. sont absents des stats.
+- 5 dernières descriptions relues : format une ligne, 5 hashtags, chute filée, tenu.
+- Piste : l'ouverture « SURVIE · FIN DE MOIS · PARTIE 1/2 » (série + 2e personne, sans question d'identification ni jeu) décroche sur les 2 réseaux. Si la partie 2 (14 nov.) fait aussi moins, ne pas refaire de série d'histoire sans enjeu de jeu dès l'image 1.
+- Veille (ppl.studio, tendances TikTok de novembre 2026) : les formats en hausse sont courts (médiane 13 s), avec accroche en texte sur la première image, gag sans dialogue à retournement final, formules POV et questions. Testé le 15 nov. avec un « devine qui » de 15,6 s.
+- Programmation du 15 nov. : aucun post existant ce jour-là avant la session.
+
 ## Ce qui marche
 - **Confirmé (4 vidéos à plus de 48 h)** : le format de publication en place depuis le 10 nov. (accroche complète dès l'image 1, 5 hashtags, description au format, audio doux) fait passer TikTok de ~260 à 740-785 vues, pour les jeux comme pour le POV d'objet en série.
 - Piste : POV d'objet en série (thermostat) = meilleure durée vue Instagram (8,2 s, 46 %, puis 6,8 s en partie 2) et le plus de j'aime TikTok (14). À recroiser avec un jeu (13 nov.).
@@ -56,6 +65,7 @@ _Rien de confirmé pour l'instant._
 - Son du catalogue Instagram : pas d'effet confirmé (4,9 s vues sur devine le prix). Suspendu le 13 nov. pour mesurer la nouvelle musique `musique.py` v2 sur Instagram aussi.
 - Plafond TikTok à ~750 vues : 6 vidéos sur 6 (10-12 nov.), 0 partage. Changer de format seul ne suffit pas.
 - Piste : sketch et tuto classiques (Black Friday 260, Noël 255) restent au plateau quand un jeu sort le même jour.
+- Piste (1 cas, < 48 h) : histoire dont tu es le héros en série (Survie p1) : 436 vues TikTok et 3 vues Instagram à ~27 h, sous le plateau. À confirmer le 15 nov.
 
 - Retour du propriétaire (10 nov.) : l'audio des vidéos était trop agressif (ondes carrées, effets forts). Les vidéos du 10 nov. sont passées en version douce (`_v2`), et la règle audio est ajoutée au PLAYBOOK.
 
@@ -80,6 +90,8 @@ _Rien de confirmé pour l'instant._
 19. « Attente vs Réalité » en ticket de caisse (courses en petits passages, 14 nov. 10:00, 22 s) : sujet quotidien très envoyable + actu de moins de 7 jours. Mesurer surtout les partages (0 jusqu'ici) et les commentaires « combien de fois par semaine ».
 20. Fin de série « deux fins + vraie fin » (Survie p2, 14 nov. 18:00) : garde-t-elle plus de 95 % des vues de la partie 1 ?
 21. Pour sortir du plafond de 750 : sujets « à envoyer » explicites (« envoie ça à ton pote qui… » à l'écran ?), à tester la semaine prochaine sans fausse promesse ; et thème mélodique propre à une série (piste de `musique.md`).
+22. Vidéo très courte (15,6 s) « devine qui » à 4 choix, réponse à la toute fin, dernière image identique à la première (raclette, 15 nov. 10:00) : complétion et vues TikTok contre le plateau de ~750 et contre les 21-25 s habituelles.
+23. Classement top 5 à rebours, n°1 caché, question à réponse en un chiffre (« réponds avec son numéro ») (phrases avant de craquer, 15 nov. 18:00) : nombre de commentaires contre 0-2 habituels.
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
 ## Calendrier des temps forts (à revérifier avant usage)
@@ -89,6 +101,8 @@ _Rien de confirmé pour l'instant._
 - Vers le 24 nov. 2026 : fin possible de l'encadrement des loyers sans vote des députés (L'Express Éducation, 11 nov. 2026). Sujet parlementaire : seulement en version pratique et neutre (« ce qui change pour ton loyer »), après vérification du résultat du vote, jamais sur les partis.
 - 27 nov. 2026 : prochaine publication Insee sur la consommation des ménages (consommation de biens -0,5 % en septembre, Insee du 30 oct., via leconseilpatrimoine.fr).
 - 20 nov. 2026 : nouvelles règles du découvert et du paiement en plusieurs fois. Faire une vidéo « C'est aujourd'hui » qui renvoie au vrai ou faux du 10 nov. (sources dans le journal).
+- Black Friday 2026 : moins d'un Français sur deux fait confiance aux remises affichées (BCG, communiqué du 11 nov. 2026, titre lu dans la recherche, article non ouvert : à relire avant usage) ; budget moyen annoncé 151 € (toutsurmesfinances.com, non ouvert). Sujet Black Friday déjà traité le 9 nov. : possible à partir du 24 nov. sous un angle neuf (« vraie ou fausse promo »).
+- Encadrement des loyers (fin possible le 24 nov.) : nombreux articles le 13 nov. ; toujours sujet parlementaire, seulement après le vote et en version pratique.
 - 1er déc. 2026 : premières cases des calendriers de l'Avent (vidéo « devine le prix » publiée le 11 nov.).
 - 27 nov. 2026 : Black Friday, offres souvent jusqu'au lundi 30 (connexionfrance.com). 30 % des Français comptent y acheter (YouGov pour FLOA, via economiematin.fr, 9 nov. 2026).
 - Noël 2026 : 34 % prévoient de payer leurs cadeaux en une fois, 31 % d'étaler les achats sur plusieurs mois, 11 % de payer en plusieurs fois (19 % des moins de 35 ans) ; 46 % disent que leur budget ne permettra pas de fêter Noël comme ils le voudraient (FLOA / YouGov, oct. 2026, via economiematin.fr, 9 nov. 2026). Piste pour une vidéo Noël après le 23 nov.
@@ -105,6 +119,7 @@ _Rien de confirmé pour l'instant._
 - En attente du propriétaire : relevé de rétention dans TikTok Studio.
 - 11 nov. 10:00 : le Reel avec son du catalogue est bien publié (instagram.com/reel/DfmHgrmjw1R), mais Metricool n'a pas pu poster le premier commentaire (statut « ERROR », avertissement seulement). Probablement une autorisation de gestion des commentaires non accordée lors de la reconnexion d'Instagram via Facebook. Vérifier sur le Reel de 18:00.
 - Trial Reel de la semaine : programmé le 13 nov. à 13:00 (variante d'accroche du quiz heures creuses, id 426152582).
+- Nouveaux éléments dans `bl.py` (15 nov.) : `bg_salon`, `raclette_perso` (appareil à raclette témoin), `guess_badge` (pastilles A-D), `gauge` (jauge de danger).
 - Nouveaux éléments dans `bl.py` (14 nov.) : `bg_supermarche`, `ticket` (ticket de caisse qui s'imprime ligne à ligne), `panier_perso`.
 - Nouveaux éléments dans `bl.py` (13 nov.) : `machine_perso`, `horloge`, `bg_laverie`, `hud_budget` (widget « Il te reste » + repère par jour), option `bg_sky(heure, sun=False)`.
 - Nouveaux éléments dans `bl.py` (11 nov.) : `thermostat`, `coloc_bust`, `advent_cal`, `brand_tag`.

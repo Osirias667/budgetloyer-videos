@@ -31,3 +31,5 @@ Le moteur est `musique.py` (classe `Track`). La règle audio douce du PLAYBOOK s
 | 2026-11-13 | Survie fin de mois p1 | suspense | E | 96 | 1313 | v2.0 | à mesurer |
 | 2026-11-14 | Courses attente vs réalité | chiptune_doux | D | 122 | 9485 | v2.0 | à mesurer |
 | 2026-11-14 | Survie fin de mois p2 | synthwave | F | 100 | 2206 | v2.0 | à mesurer |
+| 2026-11-15 | Raclette devine qui | house_light | C | 120 | 6495 | v2.0 | à mesurer |
+| 2026-11-15 | Classement phrases avant de craquer | lofi | A | 86 | 6370 | v2.0 | à mesurer |
