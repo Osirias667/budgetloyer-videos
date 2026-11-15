@@ -1069,7 +1069,7 @@ def bg_laverie():
     return im
 
 
-def hud_budget(img, reste, jours, y=150, flash=0.0, delta=None):
+def hud_budget(img, reste, jours, y=150, flash=0.0, delta=None, delta_x=430):
     """Widget BudgetLoyer « Il te reste » + repère par jour jusqu'à la paie (série Survie)."""
     b, g = glow_box(940, 190, 26, (14, 20, 30), (28, 90, 74), 22)
     paste(img, b, 70 - g, y - g)
@@ -1086,7 +1086,7 @@ def hud_budget(img, reste, jours, y=150, flash=0.0, delta=None):
            fill=YEL if per < 4 else WHITE, anchor="rm")
     if delta and flash > 0:
         s = f"{delta:+.2f}".replace(".", ",") + f"{NB}€"
-        d.text((430, y + 118 - 30 * (1 - flash)), s, font=inter(50, "Black"),
+        d.text((delta_x, y + 118 - 30 * (1 - flash)), s, font=inter(50, "Black"),
                fill=RED if delta < 0 else GREEN, anchor="lm")
 
 
@@ -1229,3 +1229,69 @@ def gauge(img, t, x, y, w, level, start=0.0, label="DANGER", col=None):
     d.rounded_rectangle((x, y + 50, x + w, y + 92), 21, fill=(36, 40, 64))
     c = col or (GREEN if p < 0.4 else (YEL if p < 0.75 else RED))
     d.rounded_rectangle((x, y + 50, x + max(42, w * p), y + 92), 21, fill=c)
+
+
+# Ajouts du 16 nov. 2026 ----------------------------------------------------
+@lru_cache(maxsize=None)
+def carton(w=220, h=170, txt=""):
+    """Carton de déménagement plat, scotch et mention au feutre."""
+    p = P(w, h)
+    K = (60, 40, 24)
+    p.r(4, 4, w - 4, h - 4, 10, K)
+    p.r(12, 12, w - 12, h - 12, 6, (214, 164, 104))
+    p.r(w / 2 - 18, 12, w / 2 + 18, h - 12, 0, (236, 206, 150))
+    p.l([(12, 40), (w - 12, 40)], (180, 130, 76), 4)
+    if txt:
+        p.t((w / 2, h * 0.68), txt, lambda k: inter(int(h * 0.17) * k, "Black"), K)
+    return p.out()
+
+
+@lru_cache(maxsize=None)
+def bg_appart(night=False):
+    """Premier appartement vide (16 nov. 2026) : murs nus, ampoule au plafond, fenêtre, parquet, cartons."""
+    top, bot = ((40, 40, 84), (70, 64, 120)) if night else ((246, 226, 196), (232, 200, 170))
+    im = Image.fromarray(grad(top, bot, 0, 1480))
+    d = ImageDraw.Draw(im, "RGBA")
+    d.line((540, 0, 540, 70), fill=(40, 30, 30, 255), width=5)
+    d.ellipse((510, 66, 570, 130), fill=(255, 236, 160, 255) if night else (255, 250, 220, 255))
+    wx0, wy0, wx1, wy1 = 760, 980, 1080, 1360
+    d.rectangle((wx0, wy0, wx1, wy1), fill=(250, 250, 250, 255))
+    d.rectangle((wx0 + 16, wy0 + 16, wx1, wy1 - 16), fill=(20, 24, 70, 255) if night else (150, 205, 250, 255))
+    d.line(((wx0 + wx1) // 2 + 8, wy0, (wx0 + wx1) // 2 + 8, wy1), fill=(250, 250, 250, 255), width=12)
+    d.rectangle((0, 1480, W, H), fill=(170, 112, 70, 255))
+    for y in range(1500, H, 48):
+        d.line((0, y, W, y), fill=(140, 88, 52, 255), width=4)
+    d.rectangle((0, 1470, W, 1490), fill=(250, 246, 236, 255))
+    for (x, y, w, h, t) in ((30, 1330, 240, 180, "CUISINE"), (60, 1170, 190, 160, ""), (830, 1380, 220, 150, "FRAGILE")):
+        c = carton(w, h, t)
+        im.paste(c, (x, y), c)
+    return im
+
+
+def chat_bubble(img, x, y, txt, me=False, name=None, p=1.0, n=None, size=44, w=760):
+    """Bulle de messagerie générique. me=True : bulle verte à droite (envoyée). n : nb de caractères tapés."""
+    if p <= 0:
+        return 0
+    f = inter(size, "Bold")
+    lh = int(size * 1.3)
+    lines = txt.split("\n")
+    tw = max(f.getlength(l.replace("*", "")) for l in lines)
+    bw = int(min(w, tw + 64))
+    bh = int(len(lines) * lh + 44 + (40 if name else 0))
+    col = (38, 190, 120) if me else (246, 246, 250)
+    fg = WHITE if me else (24, 24, 34)
+    bx = x - bw if me else x
+    yy = y + (1 - p) * 60
+    paste(img, box(bw, bh, 34, col + (255,)), bx, yy)
+    d = ImageDraw.Draw(img)
+    ty = yy + 22
+    if name:
+        d.text((bx + 32, ty), name, font=inter(32, "Black"), fill=(200, 70, 160))
+        ty += 40
+    left = 10 ** 9 if n is None else n
+    for i, l in enumerate(lines):
+        chars = parse(l)
+        s = "".join(c for c, _ in chars[: max(0, left)])
+        d.text((bx + 32, ty + i * lh), s, font=f, fill=fg)
+        left -= len(chars)
+    return bh
