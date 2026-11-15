@@ -50,8 +50,17 @@
 - Veille (ppl.studio, tendances TikTok de novembre 2026) : les formats en hausse sont courts (médiane 13 s), avec accroche en texte sur la première image, gag sans dialogue à retournement final, formules POV et questions. Testé le 15 nov. avec un « devine qui » de 15,6 s.
 - Programmation du 15 nov. : aucun post existant ce jour-là avant la session.
 
+## Analyse du 15 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : **Survie fin de mois p1 remonte à 817 vues, 15 j'aime : meilleur score du compte** (le 14 nov., à ~27 h, elle n'était qu'à 436 : la diffusion a été plus lente, pas plus faible). Survie p2 745 (6 j'aime), courses attente vs réalité 728 (2 j'aime). Correction de la piste du 14 nov. : la série d'histoire en 2e personne ne décroche pas. Vidéos du 15 nov. pas encore dans les stats. Partages : toujours 0 partout.
+- Instagram : **Survie p1 = meilleure rétention du compte** (121 vues, 148 comptes atteints, 10,2 s vues en moyenne, 63,6 % sur la dernière colonne IGRE), Survie p2 deuxième (110 vues, 6,9 s, 57,3 %). Courses attente vs réalité faible (52 vues, 4,8 s, 32 %). L'anomalie de 3 vues relevée le 14 nov. était un retard de remontée.
+- YouTube : rien de nouveau (seuls les Shorts du 9-10 nov. remontent, 1-2 vues).
+- 5 dernières descriptions relues : format une ligne, 5 hashtags, chute filée, tenu.
+- Veille (tryvolume.app/working, mesuré le 15 nov. 2026) : en tête de la niche argent, « liste vide qui se remplit » ; ailleurs, « script mot pour mot » (phrase exacte à dire ou écrire, 12x la médiane en relations) et « résultat d'abord, processus ensuite ». Testé le 16 nov. 18:00 (conversation de groupe, 3 phrases à copier).
+- Programmation du 16 nov. : aucun post existant ce jour-là avant la session.
+
 ## Ce qui marche
 - **Confirmé (4 vidéos à plus de 48 h)** : le format de publication en place depuis le 10 nov. (accroche complète dès l'image 1, 5 hashtags, description au format, audio doux) fait passer TikTok de ~260 à 740-785 vues, pour les jeux comme pour le POV d'objet en série.
+- **Piste forte (2 réseaux, 1 série)** : histoire dont tu es le héros en 2e personne, widget « Il te reste » qui bouge, choix A/B (Survie p1) : 817 vues et 15 j'aime TikTok (record), 10,2 s et 63,6 % de durée vue Instagram (record). Diffusion plus lente au départ (436 vues à 27 h). Reprise le 16 nov. sur un nouveau thème (premier appart) pour vérifier que ce n'est pas le sujet seul.
 - Piste : POV d'objet en série (thermostat) = meilleure durée vue Instagram (8,2 s, 46 %, puis 6,8 s en partie 2) et le plus de j'aime TikTok (14). À recroiser avec un jeu (13 nov.).
 - Série en 2 parties : la suite garde 85 à 95 % du public de la partie 1 (thermostat), sans le dépasser. Un seul cas.
 - Jeux et défis : au niveau du plateau, pas au-dessus. Garder un jeu par jour mais varier la mécanique ; le jeu seul ne suffit plus à progresser.
@@ -65,7 +74,8 @@ _Rien de confirmé pour l'instant._
 - Son du catalogue Instagram : pas d'effet confirmé (4,9 s vues sur devine le prix). Suspendu le 13 nov. pour mesurer la nouvelle musique `musique.py` v2 sur Instagram aussi.
 - Plafond TikTok à ~750 vues : 6 vidéos sur 6 (10-12 nov.), 0 partage. Changer de format seul ne suffit pas.
 - Piste : sketch et tuto classiques (Black Friday 260, Noël 255) restent au plateau quand un jeu sort le même jour.
-- Piste (1 cas, < 48 h) : histoire dont tu es le héros en série (Survie p1) : 436 vues TikTok et 3 vues Instagram à ~27 h, sous le plateau. À confirmer le 15 nov.
+- Infirmé le 15 nov. : la série Survie n'était pas sous le plateau, elle a démarré plus lentement (voir Ce qui marche). Ne pas juger une vidéo avant 48 h.
+- Piste : « Attente vs Réalité » ticket de caisse (courses) : 728 vues TikTok, 4,8 s Instagram, sous les deux médianes.
 
 - Retour du propriétaire (10 nov.) : l'audio des vidéos était trop agressif (ondes carrées, effets forts). Les vidéos du 10 nov. sont passées en version douce (`_v2`), et la règle audio est ajoutée au PLAYBOOK.
 
@@ -92,6 +102,8 @@ _Rien de confirmé pour l'instant._
 21. Pour sortir du plafond de 750 : sujets « à envoyer » explicites (« envoie ça à ton pote qui… » à l'écran ?), à tester la semaine prochaine sans fausse promesse ; et thème mélodique propre à une série (piste de `musique.md`).
 22. Vidéo très courte (15,6 s) « devine qui » à 4 choix, réponse à la toute fin, dernière image identique à la première (raclette, 15 nov. 10:00) : complétion et vues TikTok contre le plateau de ~750 et contre les 21-25 s habituelles.
 23. Classement top 5 à rebours, n°1 caché, question à réponse en un chiffre (« réponds avec son numéro ») (phrases avant de craquer, 15 nov. 18:00) : nombre de commentaires contre 0-2 habituels.
+24. Survie · Premier appart, Épisode 1/2 (16 nov. 10:00, 20,8 s) : la mécanique Survie tient-elle sur un autre thème ? Épisode 2/2 promis le 17 nov.
+25. « Script mot pour mot » en conversation de groupe + appel « Envoie ça au pote qui… » à l'écran (16 nov. 18:00, 21,6 s) : enregistrements et partages (0 jusqu'ici), vues contre le plateau.
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
 ## Calendrier des temps forts (à revérifier avant usage)
@@ -119,6 +131,7 @@ _Rien de confirmé pour l'instant._
 - En attente du propriétaire : relevé de rétention dans TikTok Studio.
 - 11 nov. 10:00 : le Reel avec son du catalogue est bien publié (instagram.com/reel/DfmHgrmjw1R), mais Metricool n'a pas pu poster le premier commentaire (statut « ERROR », avertissement seulement). Probablement une autorisation de gestion des commentaires non accordée lors de la reconnexion d'Instagram via Facebook. Vérifier sur le Reel de 18:00.
 - Trial Reel de la semaine : programmé le 13 nov. à 13:00 (variante d'accroche du quiz heures creuses, id 426152582).
+- Nouveaux éléments dans `bl.py` (16 nov.) : `bg_appart` (premier appart vide, cartons), `carton`, `chat_bubble` (bulle de messagerie avec frappe progressive) ; option `delta_x` de `hud_budget` pour les montants à 3 chiffres.
 - Nouveaux éléments dans `bl.py` (15 nov.) : `bg_salon`, `raclette_perso` (appareil à raclette témoin), `guess_badge` (pastilles A-D), `gauge` (jauge de danger).
 - Nouveaux éléments dans `bl.py` (14 nov.) : `bg_supermarche`, `ticket` (ticket de caisse qui s'imprime ligne à ligne), `panier_perso`.
 - Nouveaux éléments dans `bl.py` (13 nov.) : `machine_perso`, `horloge`, `bg_laverie`, `hud_budget` (widget « Il te reste » + repère par jour), option `bg_sky(heure, sun=False)`.

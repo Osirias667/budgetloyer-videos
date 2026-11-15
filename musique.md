@@ -27,9 +27,11 @@ Le moteur est `musique.py` (classe `Track`). La règle audio douce du PLAYBOOK s
 | 2026-11-11 | Thermostat partie 1 | v1 accords plaqués | G | 104 | - | v1 | à mesurer |
 | 2026-11-12 | Carte ou billet | v1 accords plaqués | A | 120 | - | v1 | à mesurer (Instagram en son du catalogue) |
 | 2026-11-12 | Thermostat partie 2 | v1 accords plaqués | G | 104 | - | v1 | à mesurer |
-| 2026-11-13 | Heures creuses quiz (+ Trial Reel) | jeu_tele | Bb | 114 | 8945 | v2.0 | à mesurer (Instagram avec notre musique, pas de son du catalogue) |
-| 2026-11-13 | Survie fin de mois p1 | suspense | E | 96 | 1313 | v2.0 | à mesurer |
-| 2026-11-14 | Courses attente vs réalité | chiptune_doux | D | 122 | 9485 | v2.0 | à mesurer |
-| 2026-11-14 | Survie fin de mois p2 | synthwave | F | 100 | 2206 | v2.0 | à mesurer |
+| 2026-11-13 | Heures creuses quiz (+ Trial Reel) | jeu_tele | Bb | 114 | 8945 | v2.0 | TikTok 755 vues, Instagram 4,0 s vues |
+| 2026-11-13 | Survie fin de mois p1 | suspense | E | 96 | 1313 | v2.0 | TikTok 817 vues, Instagram 10,2 s vues |
+| 2026-11-14 | Courses attente vs réalité | chiptune_doux | D | 122 | 9485 | v2.0 | TikTok 728 vues, Instagram 4,8 s vues |
+| 2026-11-14 | Survie fin de mois p2 | synthwave | F | 100 | 2206 | v2.0 | TikTok 745 vues, Instagram 6,9 s vues |
 | 2026-11-15 | Raclette devine qui | house_light | C | 120 | 6495 | v2.0 | à mesurer |
 | 2026-11-15 | Classement phrases avant de craquer | lofi | A | 86 | 6370 | v2.0 | à mesurer |
+| 2026-11-16 | Survie premier appart é1 | swing | G | 140 | 1794 | v2.0 | à mesurer |
+| 2026-11-16 | 3 phrases pour refuser une sortie | bossa | Bb | 128 | 4514 | v2.0 | à mesurer |
