@@ -58,11 +58,20 @@
 - Veille (tryvolume.app/working, mesuré le 15 nov. 2026) : en tête de la niche argent, « liste vide qui se remplit » ; ailleurs, « script mot pour mot » (phrase exacte à dire ou écrire, 12x la médiane en relations) et « résultat d'abord, processus ensuite ». Testé le 16 nov. 18:00 (conversation de groupe, 3 phrases à copier).
 - Programmation du 16 nov. : aucun post existant ce jour-là avant la session.
 
+## Analyse du 16 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : Raclette « devine qui » (15,6 s) 773 vues, 3 j'aime, 0 commentaire à ~35 h : **au plateau, la vidéo très courte ne fait pas mieux**. Classement des 5 phrases 688 vues, 3 j'aime, 2 commentaires à ~27 h (à rejuger). Survie p2 754 (6 j'aime), courses 731. Vidéos du 16 nov. pas encore dans les stats. **Partages : toujours 0 sur toutes les vidéos.**
+- Instagram : raclette 108 vues, 6,3 s, 45,5 % ; classement 110 vues, 6,1 s, 50,9 % ; Survie p1 garde la meilleure durée vue (10,2 s, 63,6 %), Survie p2 6,9 s. Toutes les vidéos depuis le 11 nov. tiennent entre 104 et 121 vues : plateau Instagram aussi.
+- YouTube : **première vidéo qui sort du lot depuis le 9 nov. : « Calendrier de l'Avent : devine le prix » à 80 vues** (les autres Shorts du 9 au 13 nov. : 0 à 6 vues). Le titre en question avec prix à deviner semble mieux marcher dans la recherche YouTube. Un seul cas.
+- 5 dernières descriptions relues : format une ligne, 5 hashtags, chute filée, tenu.
+- Veille : ppl.studio/viral-formats/2026-11 (mesuré le 15 nov.) : format le plus vu du mois = « silent face caption » (visage muet + légende, 74,5 M pour le meilleur post) ; aussi « couple texts screenshot ». tryvolume.app/working (mesuré le 16 nov.) : « script mot pour mot » toujours en tête des relations (13x la médiane, 23 comptes) ; en argent, « liste vide qui se remplit ». Testé le 17 nov. 18:00 (échelle de panique, visage muet + légende).
+- Programmation du 17 nov. : aucun post existant ce jour-là avant la session.
+
 ## Ce qui marche
 - **Confirmé (4 vidéos à plus de 48 h)** : le format de publication en place depuis le 10 nov. (accroche complète dès l'image 1, 5 hashtags, description au format, audio doux) fait passer TikTok de ~260 à 740-785 vues, pour les jeux comme pour le POV d'objet en série.
 - **Piste forte (2 réseaux, 1 série)** : histoire dont tu es le héros en 2e personne, widget « Il te reste » qui bouge, choix A/B (Survie p1) : 817 vues et 15 j'aime TikTok (record), 10,2 s et 63,6 % de durée vue Instagram (record). Diffusion plus lente au départ (436 vues à 27 h). Reprise le 16 nov. sur un nouveau thème (premier appart) pour vérifier que ce n'est pas le sujet seul.
 - Piste : POV d'objet en série (thermostat) = meilleure durée vue Instagram (8,2 s, 46 %, puis 6,8 s en partie 2) et le plus de j'aime TikTok (14). À recroiser avec un jeu (13 nov.).
 - Série en 2 parties : la suite garde 85 à 95 % du public de la partie 1 (thermostat), sans le dépasser. Un seul cas.
+- Piste YouTube (1 cas) : titre en question « devine le prix » = 80 vues, contre 0 à 6 pour les autres Shorts récents. Reprendre des titres YouTube en question de jeu.
 - Jeux et défis : au niveau du plateau, pas au-dessus. Garder un jeu par jour mais varier la mécanique ; le jeu seul ne suffit plus à progresser.
 - Ancien : formats directs de 34-35 s (« 3 raisons », « où est passé ton salaire ») à 355-366 vues ; sketch « garde à vue » en tête sur Instagram.
 
@@ -75,6 +84,7 @@ _Rien de confirmé pour l'instant._
 - Plafond TikTok à ~750 vues : 6 vidéos sur 6 (10-12 nov.), 0 partage. Changer de format seul ne suffit pas.
 - Piste : sketch et tuto classiques (Black Friday 260, Noël 255) restent au plateau quand un jeu sort le même jour.
 - Infirmé le 15 nov. : la série Survie n'était pas sous le plateau, elle a démarré plus lentement (voir Ce qui marche). Ne pas juger une vidéo avant 48 h.
+- Piste : vidéo très courte (15,6 s, raclette) : 773 vues TikTok à ~35 h, au plateau ; la durée seule ne fait pas sortir du plafond.
 - Piste : « Attente vs Réalité » ticket de caisse (courses) : 728 vues TikTok, 4,8 s Instagram, sous les deux médianes.
 
 - Retour du propriétaire (10 nov.) : l'audio des vidéos était trop agressif (ondes carrées, effets forts). Les vidéos du 10 nov. sont passées en version douce (`_v2`), et la règle audio est ajoutée au PLAYBOOK.
@@ -104,12 +114,17 @@ _Rien de confirmé pour l'instant._
 23. Classement top 5 à rebours, n°1 caché, question à réponse en un chiffre (« réponds avec son numéro ») (phrases avant de craquer, 15 nov. 18:00) : nombre de commentaires contre 0-2 habituels.
 24. Survie · Premier appart, Épisode 1/2 (16 nov. 10:00, 20,8 s) : la mécanique Survie tient-elle sur un autre thème ? Épisode 2/2 promis le 17 nov.
 25. « Script mot pour mot » en conversation de groupe + appel « Envoie ça au pote qui… » à l'écran (16 nov. 18:00, 21,6 s) : enregistrements et partages (0 jusqu'ici), vues contre le plateau.
+26. Survie · Premier appart, Épisode 2/2 (17 nov. 10:00, 23,8 s) : même imprévu pour les deux fins + « Envoie ça au pote qui emménage » ; garde-t-il plus de 92 % des vues de l'épisode 1 ?
+27. Format inédit de la semaine : « échelle de panique » visage muet + légende, 6 niveaux, réponse en un chiffre, n°6 retourné à la fin (17 nov. 18:00, 19,7 s) : commentaires (chiffres) et partages contre le plateau.
+28. Titres YouTube en question de jeu (« devine… », « quelle tête… ») : comparer aux 0-6 vues habituelles.
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
 ## Calendrier des temps forts (à revérifier avant usage)
 - Sondage espèces (Ifop / Monnaie de Paris, 9 nov.) : utilisé le 12 nov. Inflation d'octobre 3,4 % sur un an, énergie +24,1 % (Insee provisoire, via jechange.fr, 30 oct. 2026) : piste pour une vidéo chauffage ou énergie, à relire avant usage.
 - 19 nov. 2026 : Beaujolais nouveau (icalendrier.fr).
 - 1er déc. 2026 : début du changement des heures creuses pour 9,3 millions de clients Enedis (utilisé le 13 nov. ; possible rappel « c'est aujourd'hui » le 1er déc.).
+- 18 nov. 2026 : vote des députés sur l'encadrement des loyers, échéance le 24 nov. (kohenavocats.fr, 10 nov. 2026). Sujet parlementaire : seulement après le vote, en version pratique et neutre.
+- Noël 2026 : budget moyen 478 € (+8 € sur 2025), 612 € en Île-de-France contre 383 € dans le Grand Est, le prix 1er critère d'achat (étude Ankorstore, Sud Radio, 12 nov. 2026). Budget de Noël déjà traité le 9 nov. : possible à partir du 24 nov., angle régions (« t'es de quelle région ? »).
 - Vers le 24 nov. 2026 : fin possible de l'encadrement des loyers sans vote des députés (L'Express Éducation, 11 nov. 2026). Sujet parlementaire : seulement en version pratique et neutre (« ce qui change pour ton loyer »), après vérification du résultat du vote, jamais sur les partis.
 - 27 nov. 2026 : prochaine publication Insee sur la consommation des ménages (consommation de biens -0,5 % en septembre, Insee du 30 oct., via leconseilpatrimoine.fr).
 - 20 nov. 2026 : nouvelles règles du découvert et du paiement en plusieurs fois. Faire une vidéo « C'est aujourd'hui » qui renvoie au vrai ou faux du 10 nov. (sources dans le journal).
@@ -131,6 +146,7 @@ _Rien de confirmé pour l'instant._
 - En attente du propriétaire : relevé de rétention dans TikTok Studio.
 - 11 nov. 10:00 : le Reel avec son du catalogue est bien publié (instagram.com/reel/DfmHgrmjw1R), mais Metricool n'a pas pu poster le premier commentaire (statut « ERROR », avertissement seulement). Probablement une autorisation de gestion des commentaires non accordée lors de la reconnexion d'Instagram via Facebook. Vérifier sur le Reel de 18:00.
 - Trial Reel de la semaine : programmé le 13 nov. à 13:00 (variante d'accroche du quiz heures creuses, id 426152582).
+- Nouveaux éléments dans `bl.py` (17 nov.) : `compte_perso` (personnage « Ton compte », 6 expressions : zen, happy, side, worry, panic, cool), `bg_mood(couleur)` (fond à rayons d'ambiance), `caption` (légende à contour noir façon « silent face caption »). Moteur musical v2.1 : `Track.fill`.
 - Nouveaux éléments dans `bl.py` (16 nov.) : `bg_appart` (premier appart vide, cartons), `carton`, `chat_bubble` (bulle de messagerie avec frappe progressive) ; option `delta_x` de `hud_budget` pour les montants à 3 chiffres.
 - Nouveaux éléments dans `bl.py` (15 nov.) : `bg_salon`, `raclette_perso` (appareil à raclette témoin), `guess_badge` (pastilles A-D), `gauge` (jauge de danger).
 - Nouveaux éléments dans `bl.py` (14 nov.) : `bg_supermarche`, `ticket` (ticket de caisse qui s'imprime ligne à ligne), `panier_perso`.
@@ -140,6 +156,14 @@ _Rien de confirmé pour l'instant._
 - Nouveaux éléments dans `bl.py` (12 nov.) : `carte_perso`, `billet_perso` (objets parlants génériques, visage commun `_face`), `bg_ring` (ring de match).
 
 ## Bilans hebdomadaires
+### Semaine du 9 au 15 novembre 2026 (bilan du lundi 16)
+- TikTok : **médiane de 753 vues sur 14 vidéos** (257 à 817), contre 250 la semaine précédente : x3. Record : Survie fin de mois p1 (817). Mais 12 vidéos sur 14 entre 688 et 817 : plafond de diffusion autour de 750, quel que soit le format (jeu, POV d'objet, série, ticket, classement, gag de 15 s). **0 partage sur toute la semaine.**
+- Instagram : médiane de 106 vues (14 à 121) et 5,8 s de durée vue moyenne ; meilleure rétention : Survie p1 (10,2 s, 63,6 %), puis thermostat p1 (8,2 s). Les séries en 2e personne ou POV retiennent le mieux.
+- YouTube : quasi nul (0 à 6 vues), sauf « devine le prix » (80 vues).
+- Ce qui a marché : format de publication du 10 nov. (accroche complète, 5 hashtags, description au format) ; séries à choix (Survie) pour la rétention Instagram et les j'aime TikTok.
+- Ce qui n'a pas changé le plafond : la durée (15,6 s comme 25 s), le type de jeu, le son du catalogue Instagram, le classement.
+- Changement décidé pour la semaine du 16 au 22 : viser le **partage** (appel explicite « envoie ça au pote qui… » sur la carte de fin, sujets d'identification à réponse en un chiffre), un format inédit inspiré des tendances du mois (visage muet + légende, 17 nov.), et des titres YouTube en question « devine » pour la recherche. Moteur musical v2.1 (roulements aux changements de plan).
+
 ### Semaine du 2 au 8 novembre 2026 (bilan du lundi 9)
 - TikTok : médiane de 250 vues sur 4 vidéos (237 à 269), contre 268 sur 8 vidéos la semaine du 26 oct. au 1er nov. Baisse légère, échantillon faible.
 - Instagram : un seul Reel a décollé (garde à vue, 121 vues).

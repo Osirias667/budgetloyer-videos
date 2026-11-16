@@ -14,7 +14,8 @@ Le moteur est `musique.py` (classe `Track`). La règle audio douce du PLAYBOOK s
 ## Versions du moteur
 - **v1** (9-12 nov. 2026) : `chords_music` / `SoftMix` de `bl.py`. Accords plaqués en sinus, kick, petit arpège triangle. Même son pour toutes les vidéos, seuls le tempo et la grille changeaient. Gardé pour les anciens épisodes.
 - **v2.0** (12 nov. 2026) : `musique.py`. 8 styles (lofi, jeu_tele, synthwave, bossa, swing, chiptune_doux, house_light, suspense), instruments synthétisés doux (piano électrique FM, guitare Karplus-Strong, marimba, vibraphone, triangle, nappe, basse ronde, balais, claps, shaker), swing, mélodie composée par motifs (AABA'), contre-chant en 2e couche, respiration et résolution finales, stéréo, réverbération, compression douce, bruitages accordés, jingle inchangé avec la musique effacée dessous. Démo : 12 s par style (`python3 musique.py demo`).
-- Pistes pour les prochaines versions : variations de batterie (fills) aux changements de plan, accords de passage, thème mélodique propre à chaque série (thermostat, Carte contre Billet) repris d'un épisode à l'autre, intro « signature » de 1 s.
+- **v2.1** (17 nov. 2026) : `Track.fill(at, beats)` : petit roulement doux (balais + toms ronds descendants) qui finit pile sur un changement de plan. Fait partie de la musique (absent des exports `_ig`). Première utilisation : vidéos du 17 nov.
+- Pistes pour les prochaines versions : variations de batterie (fills, faites en v2.1) aux changements de plan, accords de passage, thème mélodique propre à chaque série (thermostat, Carte contre Billet) repris d'un épisode à l'autre, intro « signature » de 1 s.
 
 ## Registre
 | Date | Vidéo | Style | Tonalité | BPM | Graine | Moteur | Résultat |
@@ -31,7 +32,9 @@ Le moteur est `musique.py` (classe `Track`). La règle audio douce du PLAYBOOK s
 | 2026-11-13 | Survie fin de mois p1 | suspense | E | 96 | 1313 | v2.0 | TikTok 817 vues, Instagram 10,2 s vues |
 | 2026-11-14 | Courses attente vs réalité | chiptune_doux | D | 122 | 9485 | v2.0 | TikTok 728 vues, Instagram 4,8 s vues |
 | 2026-11-14 | Survie fin de mois p2 | synthwave | F | 100 | 2206 | v2.0 | TikTok 745 vues, Instagram 6,9 s vues |
-| 2026-11-15 | Raclette devine qui | house_light | C | 120 | 6495 | v2.0 | à mesurer |
-| 2026-11-15 | Classement phrases avant de craquer | lofi | A | 86 | 6370 | v2.0 | à mesurer |
+| 2026-11-15 | Raclette devine qui | house_light | C | 120 | 6495 | v2.0 | TikTok 773 vues (~35 h), Instagram 6,3 s vues |
+| 2026-11-15 | Classement phrases avant de craquer | lofi | A | 86 | 6370 | v2.0 | TikTok 688 vues (~27 h), Instagram 6,1 s vues |
 | 2026-11-16 | Survie premier appart é1 | swing | G | 140 | 1794 | v2.0 | à mesurer |
 | 2026-11-16 | 3 phrases pour refuser une sortie | bossa | Bb | 128 | 4514 | v2.0 | à mesurer |
+| 2026-11-17 | Survie premier appart é2 | suspense | D | 97 | 9993 | v2.1 | à mesurer |
+| 2026-11-17 | Échelle de panique de ton compte | jeu_tele | Eb | 109 | 9803 | v2.1 | à mesurer |
