@@ -422,6 +422,25 @@ class Track:
             else:
                 s.note(st["lead"], s.deg(7, 0), t0, s.bar, 0.1, send=0.4)
 
+    def fill(s, at, beats=1.0, g=0.16):
+        """v2.1 (17 nov. 2026) : petit roulement doux (balais + toms ronds descendants) qui finit pile sur `at`.
+
+        À placer juste avant un changement de plan. Fait partie de la musique : absent de l'export `_ig`.
+        """
+        if not s.music:
+            return
+        n = int(beats * 4)
+        t0 = at - n * s.step
+        for i in range(n):
+            ti = t0 + i * s.step
+            s._put(s.mus, drum_brush(9000 + i + int(at * 10)), ti, g * (0.6 + 0.4 * i / max(1, n - 1)), pan=0.2,
+                   send=0.2)
+            if i % 2 == 1:
+                x = _x(0.18)
+                f0 = 190 - 22 * i
+                tom = np.sin(2 * np.pi * np.cumsum(f0 * (1 + 0.5 * np.exp(-x * 30))) / SR) * np.exp(-x * 16)
+                s._put(s.mus, tom, ti, g * 1.4, pan=-0.2 + 0.1 * i, send=0.15)
+
     # -- bruitages (accordés à la tonalité)
     def add(s, sig, at, g):
         s._put(s.sfx, sig, at, g)

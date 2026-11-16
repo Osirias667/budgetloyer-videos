@@ -1295,3 +1295,107 @@ def chat_bubble(img, x, y, txt, me=False, name=None, p=1.0, n=None, size=44, w=7
         d.text((bx + 32, ty + i * lh), s, font=f, fill=fg)
         left -= len(chars)
     return bh
+
+
+# Ajouts du 17 nov. 2026 ----------------------------------------------------
+@lru_cache(maxsize=None)
+def compte_perso(expr="zen", label="", mouth=0):
+    """« Ton compte », personnage générique (tirelire-écran) au visage expressif (17 nov. 2026).
+
+    expr : zen, happy, side (regard fuyant + goutte), worry, panic (yeux ronds, gouttes), cool (lunettes).
+    label : texte du bandeau sur le front (ex. « 1 850 € », « ??? »).
+    """
+    p = P(560, 600)
+    K = (22, 18, 40)
+    p.r(20, 40, 540, 580, 120, K)
+    p.r(36, 56, 524, 564, 106, (40, 200, 140))
+    p.r(36, 56, 524, 200, 106, (30, 170, 120))
+    p.r(36, 140, 524, 200, 0, (30, 170, 120))
+    # fente de tirelire et bandeau
+    p.r(230, 18, 330, 50, 14, K)
+    p.r(100, 92, 460, 176, 30, K)
+    if label:
+        p.t((280, 134), label, lambda k: inter(54 * k, "Black"), GREEN if expr in ("zen", "happy", "cool") else
+            (YEL if expr in ("side", "worry") else RED))
+    cx, ey, my = 280, 320, 450
+    W_ = WHITE
+    if expr in ("zen", "happy"):
+        p.arc(cx - 95, ey, 44, 34, 200, 340, K, 14)
+        p.arc(cx + 95, ey, 44, 34, 200, 340, K, 14)
+        p.e(cx - 160, ey + 70, 40, 24, (250, 150, 160))
+        p.e(cx + 160, ey + 70, 40, 24, (250, 150, 160))
+    elif expr == "cool":
+        p.r(cx - 190, ey - 46, cx - 20, ey + 40, 30, K)
+        p.r(cx + 20, ey - 46, cx + 190, ey + 40, 30, K)
+        p.r(cx - 30, ey - 30, cx + 30, ey - 12, 6, K)
+        p.l([(cx - 160, ey - 26), (cx - 110, ey - 26)], (120, 120, 160), 8)
+        p.l([(cx + 50, ey - 26), (cx + 100, ey - 26)], (120, 120, 160), 8)
+    else:
+        r = 56 if expr == "panic" else 44
+        dx = -20 if expr == "side" else 0
+        for sx in (-95, 95):
+            p.e(cx + sx, ey, r, r + 6, W_)
+            p.e(cx + sx + dx, ey + (6 if expr != "panic" else 0), r * 0.42, r * 0.46, K)
+        if expr in ("worry", "side"):
+            p.l([(cx - 150, ey - 50), (cx - 50, ey - 74)], K, 12)
+            p.l([(cx + 150, ey - 50), (cx + 50, ey - 74)], K, 12)
+        if expr == "panic":
+            p.l([(cx - 150, ey - 86), (cx - 50, ey - 66)], K, 12)
+            p.l([(cx + 150, ey - 86), (cx + 50, ey - 66)], K, 12)
+    # gouttes de sueur
+    drops = {"side": [(470, 250)], "worry": [(470, 240)], "panic": [(470, 230), (90, 260), (490, 380)]}.get(expr, [])
+    for x, y in drops:
+        p.p([(x, y - 46), (x - 22, y), (x + 22, y)], (120, 200, 255))
+        p.e(x, y + 4, 22, 22, (120, 200, 255))
+    # bouche
+    if expr == "zen":
+        p.arc(cx, my - 30, 70, 44, 20, 160, K, 12)
+    elif expr == "happy" or mouth:
+        p.d.chord(((cx - 90) * S, (my - 70) * S, (cx + 90) * S, (my + 60) * S), 0, 180, fill=(130, 30, 50))
+        p.r(cx - 60, my - 8, cx + 60, my + 8, 4, WHITE)
+    elif expr == "cool":
+        p.arc(cx + 20, my - 40, 70, 44, 10, 120, K, 12)
+    elif expr == "side":
+        p.l([(cx - 60, my), (cx + 60, my - 14)], K, 12)
+    elif expr == "worry":
+        p.arc(cx, my + 30, 60, 36, 210, 330, K, 12)
+    elif expr == "panic":
+        p.e(cx, my, 56, 64, (130, 30, 50))
+        p.r(cx - 40, my - 58, cx + 40, my - 40, 6, WHITE)
+    return p.out()
+
+
+@lru_cache(maxsize=None)
+def bg_mood(col, dark=0.55):
+    """Fond à rayons plat dans une couleur d'ambiance (calme vert → panique rouge), 17 nov. 2026."""
+    base = tuple(int(c * (1 - dark)) for c in col)
+    ray = tuple(int(c * (1 - dark * 0.55)) for c in col)
+    im = Image.new("RGB", (W, H), base)
+    d = ImageDraw.Draw(im)
+    cx, cy = 540, 1050
+    for i in range(0, 360, 18):
+        a, b = math.radians(i), math.radians(i + 9)
+        d.polygon([(cx, cy), (cx + 2600 * math.cos(a), cy + 2600 * math.sin(a)),
+                   (cx + 2600 * math.cos(b), cy + 2600 * math.sin(b))], fill=ray)
+    return im
+
+
+def caption(img, txt, y, size=72, col=WHITE, hi=YEL, lh=None):
+    """Légende façon « silent face caption » : texte gras à contour noir, centré, *mot* surligné."""
+    d = ImageDraw.Draw(img)
+    f = inter(size, "Black")
+    lh = lh or int(size * 1.22)
+    for li, line in enumerate(txt.split("\n")):
+        chars = parse(line)
+        tw = f.getlength("".join(c for c, _ in chars))
+        x = 540 - tw / 2
+        run, flag = "", None
+        for c, h in chars + [(None, None)]:
+            if h != flag or c is None:
+                if run:
+                    d.text((x, y + li * lh), run, font=f, fill=hi if flag else col, stroke_width=max(4, size // 12),
+                           stroke_fill=(0, 0, 0))
+                    x += f.getlength(run)
+                run, flag = "", h
+            if c is not None:
+                run += c
