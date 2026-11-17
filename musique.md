@@ -9,12 +9,14 @@ Le moteur est `musique.py` (classe `Track`). La règle audio douce du PLAYBOOK s
 3. **Améliorer** : au moins une amélioration du moteur par semaine (nouveau style, nouvel instrument, meilleure mélodie, meilleur mixage), notée dans « Versions » ci-dessous avec son numéro. Ne jamais casser les épisodes existants : ajouter, ne pas supprimer.
 4. **Mesurer** : à chaque analyse, reporter dans la colonne « Résultat » la durée moyenne vue Instagram et les vues TikTok à 48 h, puis, une fois 3 vidéos par style, garder les styles au-dessus de la médiane et retravailler les autres.
 5. **Vérifier** avant publication : `ffmpeg -af ebur128=peak=true` (≈ -20 LUFS, crête ≤ -3 dBFS, LRA ≤ 5 LU) ; écouter n'est pas possible ici, donc contrôler aussi la répartition spectrale (pas plus de 65 % de l'énergie sous 150 Hz : les haut-parleurs de téléphone ne la rendent pas).
+7. **Airs connus** (demande du propriétaire, 17 nov. 2026) : au moins une vidéo sur deux prend un air du domaine public avec `theme=` (`python3 musique.py themes`), pas le même air sur les 4 dernières lignes, noté « style + air » dans la colonne Style. Jamais de tube récent ni de chanson sous droits.
 6. Instagram avec son du catalogue : export `_ig` avec `music=False` (bruitages et jingle seuls), comme avant.
 
 ## Versions du moteur
 - **v1** (9-12 nov. 2026) : `chords_music` / `SoftMix` de `bl.py`. Accords plaqués en sinus, kick, petit arpège triangle. Même son pour toutes les vidéos, seuls le tempo et la grille changeaient. Gardé pour les anciens épisodes.
 - **v2.0** (12 nov. 2026) : `musique.py`. 8 styles (lofi, jeu_tele, synthwave, bossa, swing, chiptune_doux, house_light, suspense), instruments synthétisés doux (piano électrique FM, guitare Karplus-Strong, marimba, vibraphone, triangle, nappe, basse ronde, balais, claps, shaker), swing, mélodie composée par motifs (AABA'), contre-chant en 2e couche, respiration et résolution finales, stéréo, réverbération, compression douce, bruitages accordés, jingle inchangé avec la musique effacée dessous. Démo : 12 s par style (`python3 musique.py demo`).
 - **v2.1** (17 nov. 2026) : `Track.fill(at, beats)` : petit roulement doux (balais + toms ronds descendants) qui finit pile sur un changement de plan. Fait partie de la musique (absent des exports `_ig`). Première utilisation : vidéos du 17 nov.
+- **v2.2** (17 nov. 2026) : airs connus du domaine public (`THEMES` : roi_montagne, marche_turque, ode_joie, vive_le_vent, frere_jacques), joués par l'instrument principal du style avec un contre-chant à la tierce, sur leurs propres accords ; `python3 musique.py themes` et `demo_themes`. Les musiques sans thème ne changent pas.
 - Pistes pour les prochaines versions : variations de batterie (fills, faites en v2.1) aux changements de plan, accords de passage, thème mélodique propre à chaque série (thermostat, Carte contre Billet) repris d'un épisode à l'autre, intro « signature » de 1 s.
 
 ## Registre

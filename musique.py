@@ -27,6 +27,13 @@ Commandes :
     python3 musique.py styles             liste des styles
     python3 musique.py next [n]           propose n réglages qui évitent les 6 dernières musiques
     python3 musique.py demo [dossier]     rend 12 s de chaque style pour écoute
+    python3 musique.py themes             liste des airs connus du domaine public (v2.2)
+    python3 musique.py demo_themes [dos.] rend 12 s de chaque air connu
+
+Airs connus (v2.2, demande du propriétaire du 17 nov. 2026) : `Track(..., theme="marche_turque")`
+remplace la mélodie inventée par un air célèbre du domaine public (compositeurs morts depuis plus
+de 70 ans), rejoué et arrangé par le moteur dans le style choisi (groove, instruments, mixage doux).
+Aucun enregistrement extérieur n'est utilisé. Les tubes récents ne sont jamais reproduits.
 """
 import math
 import os
@@ -39,7 +46,7 @@ import wave
 import numpy as np
 from scipy.signal import butter, lfilter, sosfilt
 
-ENGINE_VERSION = "2.0"
+ENGINE_VERSION = "2.2"
 SR = 44100
 
 NOTES = {"C": 0, "C#": 1, "Db": 1, "D": 2, "Eb": 3, "E": 4, "F": 5, "F#": 6, "Gb": 6, "G": 7,
@@ -107,6 +114,62 @@ STYLES = {
         lead="vibes", density=0.2, octave=5, pad=True, arp="pulse", energy=0.7, mood="cliffhanger"),
 }
 KEYS = ["C", "D", "Eb", "E", "F", "G", "A", "Bb"]
+
+
+# --- Airs connus du domaine public (v2.2, 17 nov. 2026) ------------------------
+# Compositeurs morts depuis plus de 70 ans : la mélodie est libre, notre interprétation est originale.
+# melody : (mesure, pas de double croche, degré de la gamme, durée en pas[, altération en demi-tons]).
+# prog : un degré d'accord par mesure ; la boucle fait len(prog) mesures.
+THEMES = {
+    "roi_montagne": dict(
+        label="Dans l'antre du roi de la montagne (Grieg, 1875)", scale="minor", mood="suspense, panique, montée",
+        prog=[0, 4, 0, 4],
+        melody=[(0, 0, 0, 2), (0, 2, 1, 2), (0, 4, 2, 2), (0, 6, 3, 2), (0, 8, 4, 2), (0, 10, 2, 2), (0, 12, 4, 4),
+                (1, 0, 3, 2, 1), (1, 2, 1, 2), (1, 4, 3, 4, 1), (1, 8, 3, 2), (1, 10, 1, 2, -1), (1, 12, 3, 4),
+                (2, 0, 0, 2), (2, 2, 1, 2), (2, 4, 2, 2), (2, 6, 3, 2), (2, 8, 4, 2), (2, 10, 2, 2), (2, 12, 4, 2),
+                (2, 14, 7, 2), (3, 0, 6, 2), (3, 2, 4, 2), (3, 4, 2, 2), (3, 6, 4, 2), (3, 8, 6, 8)]),
+    "marche_turque": dict(
+        label="Marche turque (Mozart, 1783)", scale="minor", mood="jeu, rythme, malice",
+        prog=[0, 4],
+        melody=[(0, 0, 1, 1), (0, 1, 0, 1), (0, 2, -1, 1, 1), (0, 3, 0, 1), (0, 4, 2, 4),
+                (0, 8, 3, 1), (0, 9, 2, 1), (0, 10, 1, 1), (0, 11, 2, 1), (0, 12, 4, 4),
+                (1, 0, 5, 1), (1, 1, 4, 1), (1, 2, 3, 1, 1), (1, 3, 4, 1),
+                (1, 4, 8, 1), (1, 5, 7, 1), (1, 6, 6, 1, 1), (1, 7, 7, 1),
+                (1, 8, 8, 1), (1, 9, 7, 1), (1, 10, 6, 1, 1), (1, 11, 7, 1), (1, 12, 9, 4)]),
+    "ode_joie": dict(
+        label="Ode à la joie (Beethoven, 1824)", scale="major", mood="victoire, fin heureuse, épargne",
+        prog=[0, 4, 0, 4, 0, 4, 0, 0],
+        melody=[(0, 0, 2, 4), (0, 4, 2, 4), (0, 8, 3, 4), (0, 12, 4, 4),
+                (1, 0, 4, 4), (1, 4, 3, 4), (1, 8, 2, 4), (1, 12, 1, 4),
+                (2, 0, 0, 4), (2, 4, 0, 4), (2, 8, 1, 4), (2, 12, 2, 4),
+                (3, 0, 2, 6), (3, 6, 1, 2), (3, 8, 1, 8),
+                (4, 0, 2, 4), (4, 4, 2, 4), (4, 8, 3, 4), (4, 12, 4, 4),
+                (5, 0, 4, 4), (5, 4, 3, 4), (5, 8, 2, 4), (5, 12, 1, 4),
+                (6, 0, 0, 4), (6, 4, 0, 4), (6, 8, 1, 4), (6, 12, 2, 4),
+                (7, 0, 1, 6), (7, 6, 0, 2), (7, 8, 0, 8)]),
+    "vive_le_vent": dict(
+        label="Jingle Bells / Vive le vent (Pierpont, 1857)", scale="major", mood="Noël, fêtes, cadeaux",
+        prog=[0, 0, 0, 4, 3, 0, 1, 4],
+        melody=[(0, 0, 2, 4), (0, 4, 2, 4), (0, 8, 2, 8),
+                (1, 0, 2, 4), (1, 4, 2, 4), (1, 8, 2, 8),
+                (2, 0, 2, 4), (2, 4, 4, 4), (2, 8, 0, 6), (2, 14, 1, 2),
+                (3, 0, 2, 16),
+                (4, 0, 3, 4), (4, 4, 3, 4), (4, 8, 3, 6), (4, 14, 3, 2),
+                (5, 0, 3, 4), (5, 4, 2, 4), (5, 8, 2, 4), (5, 12, 2, 2), (5, 14, 2, 2),
+                (6, 0, 2, 4), (6, 4, 1, 4), (6, 8, 1, 4), (6, 12, 2, 4),
+                (7, 0, 1, 8), (7, 8, 4, 8)]),
+    "frere_jacques": dict(
+        label="Frère Jacques (traditionnel)", scale="major", mood="routine, boucle, réveil, quotidien",
+        prog=[0, 0, 0, 0, 0, 0, 0, 0],
+        melody=[(0, 0, 0, 4), (0, 4, 1, 4), (0, 8, 2, 4), (0, 12, 0, 4),
+                (1, 0, 0, 4), (1, 4, 1, 4), (1, 8, 2, 4), (1, 12, 0, 4),
+                (2, 0, 2, 4), (2, 4, 3, 4), (2, 8, 4, 8),
+                (3, 0, 2, 4), (3, 4, 3, 4), (3, 8, 4, 8),
+                (4, 0, 4, 2), (4, 2, 5, 2), (4, 4, 4, 2), (4, 6, 3, 2), (4, 8, 2, 4), (4, 12, 0, 4),
+                (5, 0, 4, 2), (5, 2, 5, 2), (5, 4, 4, 2), (5, 6, 3, 2), (5, 8, 2, 4), (5, 12, 0, 4),
+                (6, 0, 0, 4), (6, 4, -3, 4), (6, 8, 0, 8),
+                (7, 0, 0, 4), (7, 4, -3, 4), (7, 8, 0, 8)]),
+}
 
 
 # --- Instruments (doux : sinus, triangle, FM léger) ------------------------------
@@ -236,8 +299,9 @@ INSTS = {"epiano": inst_epiano, "pluck": inst_pluck, "marimba": inst_marimba, "v
 class Track:
     """Musique + bruitages en stéréo, même interface que SoftMix (pop, whoosh, jingle, add, end)."""
 
-    def __init__(s, total, style="lofi", key="C", bpm=None, seed=0, music=True, cuts=None):
+    def __init__(s, total, style="lofi", key="C", bpm=None, seed=0, music=True, cuts=None, theme=None):
         s.total, s.music, s.seed = total, music, seed
+        s.theme = THEMES[theme] if theme else None
         s.st = STYLES[style]
         s.style, s.key = style, key
         lo, hi = s.st["bpm"]
@@ -247,7 +311,7 @@ class Track:
         s.bar = s.beat * 4
         s.cuts = cuts or []
         s.root = 48 + NOTES[key]  # tonique à l'octave 3
-        s.scale = SCALES[s.st["scale"]]
+        s.scale = SCALES[s.theme["scale"] if s.theme else s.st["scale"]]
         n = int((total + 2) * SR)
         s.mus = np.zeros((2, n))
         s.rev = np.zeros((2, n))
@@ -337,7 +401,7 @@ class Track:
         end_at = end_at or s.total
         layers_at = layers_at if layers_at is not None else s.total * 0.45
         nbars = int(math.ceil(end_at / s.bar)) + 1
-        prog_a, prog_b = st["prog"], st["prog_b"]
+        prog_a, prog_b = (s.theme["prog"], s.theme["prog"]) if s.theme else (st["prog"], st["prog_b"])
         motif = s.melody_phrase(prog_a, 2)
         answer = s.melody_phrase(prog_a[2:] + prog_a[:2], 2)
         variant = motif[: len(motif) // 2] + s.melody_phrase(prog_b, 2)[len(motif) // 2:]
@@ -349,7 +413,7 @@ class Track:
                 break
             section_b = (bar // 4) % 2 == 1 and t0 >= layers_at
             prog = prog_b if section_b else prog_a
-            cd = prog[bar % 4]
+            cd = prog[bar % len(prog)]
             chord = s.chord(cd)
             layer2 = t0 >= layers_at
             brk = break_at is not None and t0 >= break_at
@@ -380,7 +444,7 @@ class Track:
             if last:
                 s.note("bass", s.deg(0, -1), t0, s.bar, 0.22)
             elif st["bass"] == "walk":
-                nxt = prog[(bar + 1) % 4]
+                nxt = prog[(bar + 1) % len(prog)]
                 walk = [s.deg(cd, -1), s.deg(cd + 2, -1), s.deg(cd + 4, -1), s.deg(nxt, -1) + s.rng.choice([-1, 1])]
                 for i, m in enumerate(walk):
                     s.note("bass", m, s.t_of(bar, i * 4), s.beat * 0.9, 0.22, send=0.05)
@@ -406,7 +470,21 @@ class Track:
                         s._put(s.mus, drum_shaker(bar * 31 + stp), s.t_of(bar, stp), 0.12 + 0.04 * (stp % 4 == 2),
                                pan=0.4)
             # mélodie : phrases en AABA', plus discrète pendant la respiration
-            if not last:
+            if not last and s.theme:
+                # air connu : joué tel quel en boucle, contre-chant à la tierce sur les notes longues
+                th = s.theme
+                for nt in th["melody"]:
+                    b, stp, d, ln = nt[:4]
+                    acc = nt[4] if len(nt) > 4 else 0
+                    if b != bar % len(th["prog"]):
+                        continue
+                    m = s.deg(d, 1 + (st["octave"] - 5)) + acc
+                    s.note(st["lead"], m, s.t_of(bar, stp), ln * s.step * 0.95, 0.17 * (0.6 if brk else 1), pan=0.15,
+                           send=0.3)
+                    if layer2 and not brk and not acc and ln >= 4:
+                        s.note("vibes" if st["lead"] != "vibes" else "epiano", s.deg(d - 2, 1), s.t_of(bar, stp),
+                               ln * s.step, 0.04, pan=-0.4, send=0.35)
+            elif not last:
                 ph = phrases[(bar // 2) % 4]
                 for (b, stp, d, ln) in ph:
                     if b != bar % 2:
@@ -545,7 +623,7 @@ def journal_musique(path=None):
 def suggest(n=2, recent=6):
     rows = journal_musique()
     last = rows[-recent:]
-    used_styles = [r[2] for r in last]
+    used_styles = [r[2].split()[0] for r in last]
     used_keys = [r[3] for r in rows[-4:]]
     rng = random.Random(len(rows) * 7 + 3)
     styles = [k for k in STYLES if k not in used_styles] or list(STYLES)
@@ -580,5 +658,20 @@ if __name__ == "__main__":
     elif cmd == "next":
         for st, key, bpm, seed in suggest(int(sys.argv[2]) if len(sys.argv) > 2 else 2):
             print(f"style={st} key={key} bpm={bpm} seed={seed}")
+    elif cmd == "themes":
+        for k, v in THEMES.items():
+            print(f"{k:15s} {v['scale']:6s} {v['label']}  [{v['mood']}]")
+    elif cmd == "demo_themes":
+        folder = sys.argv[2] if len(sys.argv) > 2 else "demo_themes"
+        os.makedirs(folder, exist_ok=True)
+        pairs = [("roi_montagne", "suspense", "E", 97), ("marche_turque", "jeu_tele", "A", 112),
+                 ("ode_joie", "bossa", "F", 126), ("vive_le_vent", "swing", "G", 138),
+                 ("frere_jacques", "lofi", "D", 86)]
+        for i, (th, st, key, bpm) in enumerate(pairs):
+            t = Track(12.0, style=st, key=key, bpm=bpm, seed=500 + i, theme=th)
+            t.compose(layers_at=4.0, end_at=10.6)
+            t.jingle(10.6)
+            t.end(f"{folder}/{i + 1:02d}_{th}_{st}.wav")
+            print(f"{folder}/{i + 1:02d}_{th}_{st}.wav")
     elif cmd == "demo":
         demo(sys.argv[2] if len(sys.argv) > 2 else "demo_musique")

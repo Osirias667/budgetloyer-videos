@@ -135,6 +135,12 @@ _Rien de confirmé pour l'instant._
 - Noël 2026 : 34 % prévoient de payer leurs cadeaux en une fois, 31 % d'étaler les achats sur plusieurs mois, 11 % de payer en plusieurs fois (19 % des moins de 35 ans) ; 46 % disent que leur budget ne permettra pas de fêter Noël comme ils le voudraient (FLOA / YouGov, oct. 2026, via economiematin.fr, 9 nov. 2026). Piste pour une vidéo Noël après le 23 nov.
 - Novembre-décembre : compte à rebours de Noël, tendance relevée début novembre (startups.co.uk, 2 nov. 2026).
 
+## Mis en place le 17 nov. (décision du propriétaire, à évaluer après 48 h et 3 vidéos)
+- Plafond TikTok : 14 vidéos sur 15 entre 733 et 819 vues (relevé du 17 nov.), 1 seul partage (premier appart é1, 806 vues). Défi 0 € reparti après coup : 742 puis 990 vues.
+- Nouvelles règles 11 à 13 du PLAYBOOK : marque discrète (au plus un plan d'app, aucun une vidéo sur deux), destinataire précis (« envoie ça à… »), participation chaque jour (défi, réponse d'un mot ou d'un chiffre). Première application : vidéos du 18 nov.
+- Airs connus du domaine public en musique de fond (`musique.py` v2.2, `theme=`), une vidéo sur deux au moins. À mesurer : durée vue Instagram et vues TikTok avec air connu contre sans.
+- À demander au propriétaire : captures de rétention TikTok Studio (Metricool ne les remonte pas).
+
 ## Mis en place le 10 nov. (à évaluer après 48 h et 3 vidéos)
 - Premier commentaire avec la question finale, à partir de la vidéo 2 du 10 nov.
 - Couverture choisie (TikTok, vidéo 2 du 10 nov.).
