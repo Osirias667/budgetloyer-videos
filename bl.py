@@ -1399,3 +1399,57 @@ def caption(img, txt, y, size=72, col=WHITE, hi=YEL, lh=None):
                 run, flag = "", h
             if c is not None:
                 run += c
+
+
+# Ajouts du 18 nov. 2026 ----------------------------------------------------
+@lru_cache(maxsize=None)
+def manette_perso(expr="happy", mouth=0, label=""):
+    """Manette de jeu générique (aucune marque) avec un visage (18 nov. 2026).
+
+    expr : happy, neutral, sad, angry (visage commun `_face`). label : texte sur l'écran du haut (ex. « 79,99 € »).
+    """
+    p = P(620, 420)
+    K = (22, 18, 40)
+    body = (70, 60, 150)
+    # poignées puis corps
+    p.e(130, 300, 110, 115, K)
+    p.e(490, 300, 110, 115, K)
+    p.r(40, 100, 580, 330, 110, K)
+    p.e(130, 300, 98, 103, body)
+    p.e(490, 300, 98, 103, body)
+    p.r(52, 112, 568, 318, 100, body)
+    # écran du haut
+    if label:
+        p.r(200, 40, 420, 104, 18, K)
+        p.r(208, 48, 412, 96, 12, (20, 26, 40))
+        p.t((310, 72), label, lambda k: inter(34 * k, "Black"), YEL)
+    # croix directionnelle
+    p.r(98, 170, 138, 270, 8, K)
+    p.r(68, 200, 168, 240, 8, K)
+    # boutons ronds
+    for (x, y, c) in ((482, 168, GREEN), (526, 212, RED), (438, 212, CYAN), (482, 256, YEL)):
+        p.e(x, y, 22, 22, K)
+        p.e(x, y, 17, 17, c)
+    _face(p, 310, 210, expr, mouth, K)
+    return p.out()
+
+
+def barre_chargement(img, x, y, w, frac, label="", col=None, h=110, pct=True):
+    """Barre de chargement façon logiciel (série « Salaire loading »), frac de 0 à 1."""
+    frac = max(0.0, min(1.0, frac))
+    c = col or (GREEN if frac > 0.5 else (YEL if frac > 0.2 else RED))
+    b, g = glow_box(w, h, 22, (14, 18, 34), c, 18)
+    paste(img, b, x - g, y - g)
+    d = ImageDraw.Draw(img)
+    inner = w - 24
+    if frac > 0:
+        d.rounded_rectangle((x + 12, y + 12, x + 12 + max(30, inner * frac), y + h - 12), 14, fill=c)
+        # rayures de chargement
+        for k in range(0, int(inner * frac) - 20, 46):
+            d.polygon([(x + 22 + k, y + h - 14), (x + 42 + k, y + h - 14), (x + 62 + k, y + 14), (x + 42 + k, y + 14)],
+                      fill=tuple(min(255, v + 30) for v in c))
+    if pct:
+        d.text((x + w / 2, y + h / 2), f"{round(frac * 100)} %".replace(" ", NB), font=inter(int(h * 0.48), "Black"),
+               fill=WHITE, anchor="mm", stroke_width=4, stroke_fill=(0, 0, 0))
+    if label:
+        d.text((x, y - 16), label, font=inter(40, "Black"), fill=WHITE, anchor="ls")
