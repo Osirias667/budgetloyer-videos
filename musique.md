@@ -40,3 +40,5 @@ Le moteur est `musique.py` (classe `Track`). La règle audio douce du PLAYBOOK s
 | 2026-11-16 | 3 phrases pour refuser une sortie | bossa | Bb | 128 | 4514 | v2.0 | à mesurer |
 | 2026-11-17 | Survie premier appart é2 | suspense | D | 97 | 9993 | v2.1 | à mesurer |
 | 2026-11-17 | Échelle de panique de ton compte | jeu_tele | Eb | 109 | 9803 | v2.1 | à mesurer |
+| 2026-11-18 | Compteur €/heure (GTA 6) | synthwave + marche_turque | C | 102 | 4681 | v2.2 | à mesurer |
+| 2026-11-18 | Salaire loading | chiptune_doux + frere_jacques | F | 119 | 2832 | v2.2 | à mesurer |

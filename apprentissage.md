@@ -66,9 +66,17 @@
 - Veille : ppl.studio/viral-formats/2026-11 (mesuré le 15 nov.) : format le plus vu du mois = « silent face caption » (visage muet + légende, 74,5 M pour le meilleur post) ; aussi « couple texts screenshot ». tryvolume.app/working (mesuré le 16 nov.) : « script mot pour mot » toujours en tête des relations (13x la médiane, 23 comptes) ; en argent, « liste vide qui se remplit ». Testé le 17 nov. 18:00 (échelle de panique, visage muet + légende).
 - Programmation du 17 nov. : aucun post existant ce jour-là avant la session.
 
+## Analyse du 17 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : **Survie · Premier appart é1 (16 nov. 10:00) : 806 vues, 9 j'aime, 1 partage à ~35 h : le 1er partage du compte**, au niveau du record (Survie fin de mois p1, 819). La mécanique Survie tient sur un 2e thème. Script mot pour mot (16 nov. 18:00) : 400 vues, 1 j'aime, 0 commentaire à ~27 h, diffusion lente (à rejuger le 18). Défi 0 € reparti à 990 vues (à 7 jours). Classement 746, raclette 776, Survie p2 755, courses 733. Vidéos du 17 nov. pas encore dans les stats.
+- Instagram : Survie premier appart é1 **8,7 s vues, 62,4 %, 136 comptes atteints** (2e meilleure rétention après Survie p1, 10,2 s) ; script mot pour mot 5,4 s, 30,7 % (sous la médiane). Plateau de 104 à 121 vues inchangé.
+- YouTube : rien de nouveau (seuls devine le prix 81 vues et heures creuses 10 vues sortent du lot ; les Shorts du 14 nov. sont à 0-2).
+- 5 dernières descriptions relues : format une ligne, 5 hashtags, chute filée, tenu.
+- Veille : tryvolume.app/working (mesuré le 17 nov. 2026) : « script mot pour mot » toujours en tête des relations (12x la médiane, 22 comptes) mais il ne marche pas chez nous (400 vues, 5,4 s) : ne pas insister. Actu : GTA 6 sort le 19 nov. à 79,99 € (spiritgamer.fr, mis à jour le 14 nov.) : utilisé le 18 nov. ; consommation de biens -0,5 % en septembre, prochaine publication Insee le 27 nov. (leconseilpatrimoine.fr, 3 nov.).
+- Programmation du 18 nov. : aucun post existant ce jour-là avant la session. Première application des règles 11 à 13 (marque discrète, destinataire, réponse en un nombre).
+
 ## Ce qui marche
 - **Confirmé (4 vidéos à plus de 48 h)** : le format de publication en place depuis le 10 nov. (accroche complète dès l'image 1, 5 hashtags, description au format, audio doux) fait passer TikTok de ~260 à 740-785 vues, pour les jeux comme pour le POV d'objet en série.
-- **Piste forte (2 réseaux, 1 série)** : histoire dont tu es le héros en 2e personne, widget « Il te reste » qui bouge, choix A/B (Survie p1) : 817 vues et 15 j'aime TikTok (record), 10,2 s et 63,6 % de durée vue Instagram (record). Diffusion plus lente au départ (436 vues à 27 h). Reprise le 16 nov. sur un nouveau thème (premier appart) pour vérifier que ce n'est pas le sujet seul.
+- **Piste forte, confirmée sur 2 thèmes** (fin de mois 819 vues, premier appart 806 vues + 1er partage ; Instagram 10,2 s puis 8,7 s) : histoire dont tu es le héros en 2e personne, widget « Il te reste » qui bouge, choix A/B (Survie p1) : 817 vues et 15 j'aime TikTok (record), 10,2 s et 63,6 % de durée vue Instagram (record). Diffusion plus lente au départ (436 vues à 27 h). Reprise le 16 nov. sur un nouveau thème (premier appart) pour vérifier que ce n'est pas le sujet seul.
 - Piste : POV d'objet en série (thermostat) = meilleure durée vue Instagram (8,2 s, 46 %, puis 6,8 s en partie 2) et le plus de j'aime TikTok (14). À recroiser avec un jeu (13 nov.).
 - Série en 2 parties : la suite garde 85 à 95 % du public de la partie 1 (thermostat), sans le dépasser. Un seul cas.
 - Piste YouTube (1 cas) : titre en question « devine le prix » = 80 vues, contre 0 à 6 pour les autres Shorts récents. Reprendre des titres YouTube en question de jeu.
@@ -85,6 +93,7 @@ _Rien de confirmé pour l'instant._
 - Piste : sketch et tuto classiques (Black Friday 260, Noël 255) restent au plateau quand un jeu sort le même jour.
 - Infirmé le 15 nov. : la série Survie n'était pas sous le plateau, elle a démarré plus lentement (voir Ce qui marche). Ne pas juger une vidéo avant 48 h.
 - Piste : vidéo très courte (15,6 s, raclette) : 773 vues TikTok à ~35 h, au plateau ; la durée seule ne fait pas sortir du plafond.
+- Piste : « script mot pour mot » en conversation de groupe : 400 vues TikTok à ~27 h, 5,4 s et 30,7 % Instagram, malgré son succès ailleurs (tryvolume.app). À rejuger le 18 nov.
 - Piste : « Attente vs Réalité » ticket de caisse (courses) : 728 vues TikTok, 4,8 s Instagram, sous les deux médianes.
 
 - Retour du propriétaire (10 nov.) : l'audio des vidéos était trop agressif (ondes carrées, effets forts). Les vidéos du 10 nov. sont passées en version douce (`_v2`), et la règle audio est ajoutée au PLAYBOOK.
@@ -117,11 +126,15 @@ _Rien de confirmé pour l'instant._
 26. Survie · Premier appart, Épisode 2/2 (17 nov. 10:00, 23,8 s) : même imprévu pour les deux fins + « Envoie ça au pote qui emménage » ; garde-t-il plus de 92 % des vues de l'épisode 1 ?
 27. Format inédit de la semaine : « échelle de panique » visage muet + légende, 6 niveaux, réponse en un chiffre, n°6 retourné à la fin (17 nov. 18:00, 19,7 s) : commentaires (chiffres) et partages contre le plateau.
 28. Titres YouTube en question de jeu (« devine… », « quelle tête… ») : comparer aux 0-6 vues habituelles.
+29. « Le compteur €/heure » sur un temps fort de culture populaire (GTA 6, 18 nov. 10:00, 23 s, aucun plan d'app) : #gta6 et le calcul « à vérifier » font-ils sortir du plafond de ~750 vues et partager (« le pote qui a posé son jeudi ») ? Commentaires en nombre d'heures.
+30. « Salaire loading… » avec arrêt sur image « Ton pari ? » avant la révélation (18 nov. 18:00, 23,6 s, piste 14) : complétion et durée vue Instagram contre 6 s de médiane ; commentaires en un nombre (jour).
+31. À faire cette semaine : Trial Reel hebdomadaire et carrousel photo (aucun programmé du 16 au 22 nov. à ce jour) ; Survie saison 3 (mécanique confirmée).
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
 ## Calendrier des temps forts (à revérifier avant usage)
 - Sondage espèces (Ifop / Monnaie de Paris, 9 nov.) : utilisé le 12 nov. Inflation d'octobre 3,4 % sur un an, énergie +24,1 % (Insee provisoire, via jechange.fr, 30 oct. 2026) : piste pour une vidéo chauffage ou énergie, à relire avant usage.
 - 19 nov. 2026 : Beaujolais nouveau (icalendrier.fr).
+- 19 nov. 2026 : sortie de GTA 6 (PS5, Xbox Series X|S), 79,99 € standard, 99,99 € Ultimate (spiritgamer.fr, mis à jour le 14 nov.). Utilisé le 18 nov. ; version PC non annoncée.
 - 1er déc. 2026 : début du changement des heures creuses pour 9,3 millions de clients Enedis (utilisé le 13 nov. ; possible rappel « c'est aujourd'hui » le 1er déc.).
 - 18 nov. 2026 : vote des députés sur l'encadrement des loyers, échéance le 24 nov. (kohenavocats.fr, 10 nov. 2026). Sujet parlementaire : seulement après le vote, en version pratique et neutre.
 - Noël 2026 : budget moyen 478 € (+8 € sur 2025), 612 € en Île-de-France contre 383 € dans le Grand Est, le prix 1er critère d'achat (étude Ankorstore, Sud Radio, 12 nov. 2026). Budget de Noël déjà traité le 9 nov. : possible à partir du 24 nov., angle régions (« t'es de quelle région ? »).
