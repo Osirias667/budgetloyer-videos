@@ -74,6 +74,14 @@
 - Veille : tryvolume.app/working (mesuré le 17 nov. 2026) : « script mot pour mot » toujours en tête des relations (12x la médiane, 22 comptes) mais il ne marche pas chez nous (400 vues, 5,4 s) : ne pas insister. Actu : GTA 6 sort le 19 nov. à 79,99 € (spiritgamer.fr, mis à jour le 14 nov.) : utilisé le 18 nov. ; consommation de biens -0,5 % en septembre, prochaine publication Insee le 27 nov. (leconseilpatrimoine.fr, 3 nov.).
 - Programmation du 18 nov. : aucun post existant ce jour-là avant la session. Première application des règles 11 à 13 (marque discrète, destinataire, réponse en un nombre).
 
+## Analyse du 18 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : script mot pour mot (16 nov. 18:00) remonte à 729 vues à ~51 h (400 à 27 h) : **diffusion lente, puis plateau** ; Survie premier appart é1 807 vues, 9 j'aime, 1 partage ; é2 (17 nov. 10:00) 715 vues, 13 j'aime à ~35 h (-11 %) ; échelle de panique (17 nov. 18:00) 245 vues, 2 j'aime à ~27 h (démarrage lent, à rejuger le 19). Défi 0 € toujours le record (990). Vidéos du 18 nov. pas encore dans les stats. Partages : 1 sur tout le compte.
+- Instagram : Survie é2 133 comptes atteints, 6,6 s, 42,2 % (contre 8,7 s et 62,4 % pour l'é1) ; script 5,5 s, 31,1 % ; échelle de panique 52 comptes, 1,9 s, 13,3 % à ~27 h (le plus bas depuis le 10 nov., à rejuger) ; plateau 104-121 vues inchangé.
+- YouTube : rien de nouveau (dernières données au 14 nov.).
+- 5 dernières descriptions relues : format une ligne, 5 hashtags, chute filée, tenu.
+- Veille : socialpilot.co/blog/tiktok-trends (fenêtre du 17 au 25 nov. 2026) : « soft launch » (indice partiel puis révélation), avant/après « même lieu, années d'écart », réaction exagérée, « tsundere » (refus puis capitulation). Testé le 19 nov. 18:00 (silhouette dans le judas). Actu : tournée des calendriers des pompiers (Infos Yvelines, 2-4 nov. ; MoneyVox et stephanelarue.com, 16 nov. 2026) : utilisé le 19 nov.
+- Programmation du 19 nov. : aucun post existant ce jour-là avant la session. Premières vidéos publiées avec Remotion et les vrais instruments (`sf2=True`).
+
 ## Ce qui marche
 - **Confirmé (4 vidéos à plus de 48 h)** : le format de publication en place depuis le 10 nov. (accroche complète dès l'image 1, 5 hashtags, description au format, audio doux) fait passer TikTok de ~260 à 740-785 vues, pour les jeux comme pour le POV d'objet en série.
 - **Piste forte, confirmée sur 2 thèmes** (fin de mois 819 vues, premier appart 806 vues + 1er partage ; Instagram 10,2 s puis 8,7 s) : histoire dont tu es le héros en 2e personne, widget « Il te reste » qui bouge, choix A/B (Survie p1) : 817 vues et 15 j'aime TikTok (record), 10,2 s et 63,6 % de durée vue Instagram (record). Diffusion plus lente au départ (436 vues à 27 h). Reprise le 16 nov. sur un nouveau thème (premier appart) pour vérifier que ce n'est pas le sujet seul.
@@ -93,7 +101,7 @@ _Rien de confirmé pour l'instant._
 - Piste : sketch et tuto classiques (Black Friday 260, Noël 255) restent au plateau quand un jeu sort le même jour.
 - Infirmé le 15 nov. : la série Survie n'était pas sous le plateau, elle a démarré plus lentement (voir Ce qui marche). Ne pas juger une vidéo avant 48 h.
 - Piste : vidéo très courte (15,6 s, raclette) : 773 vues TikTok à ~35 h, au plateau ; la durée seule ne fait pas sortir du plafond.
-- Piste : « script mot pour mot » en conversation de groupe : 400 vues TikTok à ~27 h, 5,4 s et 30,7 % Instagram, malgré son succès ailleurs (tryvolume.app). À rejuger le 18 nov.
+- « Script mot pour mot » en conversation de groupe : 729 vues TikTok à ~51 h (au plateau après un départ lent), 5,5 s et 31 % Instagram (sous la médiane), malgré son succès ailleurs (tryvolume.app). Ne pas refaire.
 - Piste : « Attente vs Réalité » ticket de caisse (courses) : 728 vues TikTok, 4,8 s Instagram, sous les deux médianes.
 
 - Retour du propriétaire (10 nov.) : l'audio des vidéos était trop agressif (ondes carrées, effets forts). Les vidéos du 10 nov. sont passées en version douce (`_v2`), et la règle audio est ajoutée au PLAYBOOK.
@@ -128,6 +136,9 @@ _Rien de confirmé pour l'instant._
 28. Titres YouTube en question de jeu (« devine… », « quelle tête… ») : comparer aux 0-6 vues habituelles.
 29. « Le compteur €/heure » sur un temps fort de culture populaire (GTA 6, 18 nov. 10:00, 23 s, aucun plan d'app) : #gta6 et le calcul « à vérifier » font-ils sortir du plafond de ~750 vues et partager (« le pote qui a posé son jeudi ») ? Commentaires en nombre d'heures.
 30. « Salaire loading… » avec arrêt sur image « Ton pari ? » avant la révélation (18 nov. 18:00, 23,6 s, piste 14) : complétion et durée vue Instagram contre 6 s de médiane ; commentaires en un nombre (jour).
+32. Survie · À deux, Épisode 1/2 (19 nov. 10:00, 21 s, Remotion) : la mécanique Survie tient-elle sur un 3e thème (couple), et un vrai débat 50/50 contre prorata (réponse en une lettre) fait-il plus commenter que les choix A/B précédents (0-2 commentaires) ? Épisode 2/2 promis le 20 nov.
+33. « Ding dong » vue par le judas, silhouette puis révélation (soft launch), calendrier des pompiers, réponse en un montant (19 nov. 18:00, 19,6 s) : commentaires et partages contre le plateau ; premier épisode sans plan d'app avec un rituel saisonnier.
+34. Remotion + vrais instruments (première publication le 19 nov.) : durée vue Instagram contre la médiane bl.py (~6 s).
 31. À faire cette semaine : Trial Reel hebdomadaire et carrousel photo (aucun programmé du 16 au 22 nov. à ce jour) ; Survie saison 3 (mécanique confirmée).
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
