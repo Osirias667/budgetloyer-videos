@@ -266,3 +266,114 @@ export const Compte: React.FC<PersoProps & {expr?: Expr; talk?: boolean; label?:
     </Perso>
   );
 };
+
+// ---- Sam (19 nov. 2026) ----------------------------------------------------------------------------------------
+/** Sam, la personne avec qui P1 vit (série « Survie · À deux ») : bonnet orange, veste verte, prénom neutre. */
+export const Sam: React.FC<PersoProps & {expr?: Expr; talk?: boolean; look?: number; label?: string}> = (
+  {expr = 'neutral', talk, look = 0, label, ...p},
+) => {
+  const f = useCurrentFrame();
+  const tilt = Math.sin(f / 13 + 1) * 2 + (talk ? Math.sin(f / 3) * 1.5 : 0);
+  return (
+    <Perso {...p} ratio={820 / 760} seed={31}>
+      <svg viewBox="0 0 760 820" width="100%" height="100%" style={{overflow: 'visible'}}>
+        <defs>
+          <linearGradient id="samjk" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#2FBF9B" /><stop offset="1" stopColor="#1C8C72" />
+          </linearGradient>
+          <radialGradient id="samskin" cx="0.45" cy="0.4" r="0.7">
+            <stop offset="0" stopColor="#C68B5E" /><stop offset="1" stopColor="#A86E45" />
+          </radialGradient>
+        </defs>
+        <path d="M 90 820 L 90 690 Q 90 540 250 520 L 510 520 Q 670 540 670 690 L 670 820 Z" fill="url(#samjk)" stroke={K} strokeWidth={10} />
+        <path d="M 300 520 L 380 640 L 460 520 Z" fill="#F4F1E8" stroke={K} strokeWidth={8} strokeLinejoin="round" />
+        <line x1={380} y1={640} x2={380} y2={820} stroke={K} strokeWidth={8} />
+        {label ? (
+          <g>
+            <rect x={200} y={690} width={360} height={90} rx={24} fill={K} />
+            <text x={380} y={752} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={54} fill={YEL}>{label}</text>
+          </g>
+        ) : null}
+        <g transform={`rotate(${tilt} 380 470)`}>
+          <rect x={330} y={440} width={100} height={110} rx={36} fill="#9A6440" stroke={K} strokeWidth={8} />
+          <ellipse cx={380} cy={300} rx={158} ry={172} fill="url(#samskin)" stroke={K} strokeWidth={10} />
+          {/* cheveux bouclés qui dépassent du bonnet */}
+          {[-1, 1].map((sd) => (
+            <g key={sd}>
+              <circle cx={380 + sd * 150} cy={250} r={34} fill="#2A1A14" stroke={K} strokeWidth={7} />
+              <circle cx={380 + sd * 160} cy={300} r={28} fill="#2A1A14" stroke={K} strokeWidth={7} />
+            </g>
+          ))}
+          {/* bonnet */}
+          <path d="M 214 238 Q 220 92 380 88 Q 540 92 546 238 Z" fill="#FF8A3D" stroke={K} strokeWidth={10} strokeLinejoin="round" />
+          <rect x={204} y={210} width={352} height={58} rx={26} fill="#E86A1E" stroke={K} strokeWidth={9} />
+          {[0, 1, 2, 3, 4, 5].map((i) => (
+            <line key={i} x1={240 + i * 56} y1={218} x2={240 + i * 56} y2={260} stroke="#C2560F" strokeWidth={8} strokeLinecap="round" />
+          ))}
+          <circle cx={380} cy={78} r={34} fill="#FFD640" stroke={K} strokeWidth={8} />
+          <Face cx={380 + look * 6} cy={322} s={1.5} expr={expr} talk={talk} look={look} seed={31} gap={52} />
+        </g>
+      </svg>
+    </Perso>
+  );
+};
+
+// ---- Pompier (19 nov. 2026) ------------------------------------------------------------------------------------
+/** Sapeur-pompier générique (aucun écusson réel) : casque argenté, tenue bleu marine à bandes, calendrier en main.
+ *  `silhouette` : uniquement l'ombre (vue par le judas avant la révélation). */
+export const Pompier: React.FC<PersoProps & {expr?: Expr; talk?: boolean; silhouette?: boolean; year?: string}> = (
+  {expr = 'happy', talk, silhouette, year = '2027', ...p},
+) => {
+  const f = useCurrentFrame();
+  const tilt = Math.sin(f / 12) * 1.6;
+  const S = silhouette ? '#05060F' : undefined;
+  return (
+    <Perso {...p} ratio={880 / 760} seed={41}>
+      <svg viewBox="0 0 760 880" width="100%" height="100%" style={{overflow: 'visible'}}>
+        <defs>
+          <linearGradient id="pmpcasque" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stopColor="#F2F5FA" /><stop offset="0.5" stopColor="#B9C2D0" /><stop offset="1" stopColor="#7D8899" />
+          </linearGradient>
+          <radialGradient id="pmpskin" cx="0.45" cy="0.4" r="0.7">
+            <stop offset="0" stopColor="#FFD9B5" /><stop offset="1" stopColor="#EDB98E" />
+          </radialGradient>
+        </defs>
+        {/* buste : veste bleu marine, bandes réfléchissantes */}
+        <path d="M 80 880 L 80 730 Q 80 580 250 560 L 510 560 Q 680 580 680 730 L 680 880 Z" fill={S ?? '#1E2A5A'} stroke={K} strokeWidth={10} />
+        {!silhouette ? (
+          <g>
+            <rect x={84} y={760} width={592} height={30} fill="#D8E04A" stroke={K} strokeWidth={6} />
+            <rect x={84} y={792} width={592} height={14} fill="#C8CCD4" />
+            <path d="M 300 560 L 380 650 L 460 560" fill="none" stroke="#F04242" strokeWidth={16} strokeLinejoin="round" />
+          </g>
+        ) : null}
+        {/* calendrier tenu devant */}
+        <g transform="rotate(-6 560 700)">
+          <rect x={470} y={600} width={210} height={250} rx={14} fill={S ?? 'white'} stroke={K} strokeWidth={9} />
+          {!silhouette ? (
+            <g>
+              <rect x={470} y={600} width={210} height={70} rx={14} fill="#F04242" stroke={K} strokeWidth={9} />
+              <text x={575} y={650} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={44} fill="white">{year}</text>
+              {Array.from({length: 12}, (_, i) => (
+                <rect key={i} x={492 + (i % 4) * 44} y={694 + Math.floor(i / 4) * 44} width={30} height={30} rx={5}
+                  fill={i === 10 ? '#20E388' : '#DCE2EC'} />
+              ))}
+            </g>
+          ) : null}
+          <circle cx={480} cy={740} r={40} fill={S ?? 'url(#pmpskin)'} stroke={K} strokeWidth={8} />
+        </g>
+        {/* tête + casque */}
+        <g transform={`rotate(${tilt} 380 500)`}>
+          <rect x={330} y={470} width={100} height={110} rx={36} fill={S ?? '#DDA77C'} stroke={K} strokeWidth={8} />
+          <ellipse cx={380} cy={350} rx={150} ry={160} fill={S ?? 'url(#pmpskin)'} stroke={K} strokeWidth={10} />
+          {!silhouette ? <Face cx={380} cy={372} s={1.45} expr={expr} talk={talk} seed={41} gap={50} /> : null}
+          <path d="M 196 300 Q 196 96 380 90 Q 564 96 564 300 Z" fill={S ?? 'url(#pmpcasque)'} stroke={K} strokeWidth={11} strokeLinejoin="round" />
+          <path d="M 380 92 L 380 296" stroke={S ?? '#8F9AAA'} strokeWidth={22} />
+          <rect x={176} y={282} width={408} height={42} rx={20} fill={S ?? '#5A6474'} stroke={K} strokeWidth={9} />
+          {!silhouette ? <ellipse cx={300} cy={160} rx={46} ry={22} fill="white" opacity={0.55} /> : null}
+          {!silhouette ? <rect x={250} y={296} width={260} height={16} rx={8} fill="#F04242" /> : null}
+        </g>
+      </svg>
+    </Perso>
+  );
+};

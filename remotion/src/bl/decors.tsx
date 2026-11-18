@@ -61,3 +61,48 @@ export const MoodBg: React.FC<{col: string; dark?: number}> = ({col, dark = 0.6}
     </AbsoluteFill>
   );
 };
+
+/** Entrée d'appartement vue de l'intérieur (19 nov. 2026) : mur chaud, porte avec judas, paillasson, applique. */
+export const PorteBg: React.FC<{tint?: number}> = ({tint = 0}) => {
+  const f = useCurrentFrame();
+  const glow = 0.85 + 0.08 * Math.sin(f / 9);
+  return (
+    <AbsoluteFill style={{background: 'linear-gradient(180deg,#3A2450 0%,#2B1B3E 70%,#1E1430 100%)'}}>
+      {/* lambris */}
+      {Array.from({length: 12}, (_, i) => (
+        <div key={i} style={{position: 'absolute', left: i * 92, top: 0, width: 4, height: 1920, background: 'rgba(0,0,0,0.12)'}} />
+      ))}
+      {/* porte */}
+      <div style={{position: 'absolute', left: 190, top: 170, width: 700, height: 1500, borderRadius: '24px 24px 0 0',
+        background: 'linear-gradient(90deg,#8A4E2C,#A9643A 50%,#8A4E2C)', border: '14px solid #16121F', boxSizing: 'border-box'}}>
+        <div style={{position: 'absolute', left: 60, top: 70, width: 552, height: 520, border: '10px solid rgba(0,0,0,0.25)', borderRadius: 18}} />
+        <div style={{position: 'absolute', left: 60, top: 700, width: 552, height: 660, border: '10px solid rgba(0,0,0,0.25)', borderRadius: 18}} />
+        <div style={{position: 'absolute', left: 590, top: 760, width: 46, height: 46, borderRadius: 23, background: '#FFD640',
+          border: '8px solid #16121F'}} />
+      </div>
+      {/* applique */}
+      <div style={{position: 'absolute', left: 940, top: 520, width: 90, height: 90, borderRadius: 45,
+        background: `radial-gradient(circle, rgba(255,214,64,${glow}) 0%, rgba(255,214,64,0) 70%)`}} />
+      {/* paillasson */}
+      <div style={{position: 'absolute', left: 260, top: 1690, width: 560, height: 70, borderRadius: 14, background: '#5C3A1E',
+        border: '8px solid #16121F'}} />
+      <AbsoluteFill style={{background: NAVY, opacity: tint}} />
+    </AbsoluteFill>
+  );
+};
+
+/** Vue par le judas : cercle « fish-eye » (léger bombé), le reste de l'écran dans le noir. */
+export const Judas: React.FC<{cx?: number; cy?: number; r?: number; children: React.ReactNode}> = (
+  {cx = 540, cy = 760, r = 400, children},
+) => (
+  <AbsoluteFill style={{background: '#04040A'}}>
+    <div style={{position: 'absolute', left: cx - r, top: cy - r, width: 2 * r, height: 2 * r, borderRadius: '50%',
+      overflow: 'hidden', border: '18px solid #2A2A36', boxSizing: 'border-box',
+      boxShadow: '0 0 0 10px #101018, inset 0 0 120px 40px rgba(0,0,0,0.85)'}}>
+      <div style={{position: 'absolute', left: 0, top: 0, width: 2 * r, height: 2 * r,
+        background: 'radial-gradient(circle at 50% 45%, #6E7FA8 0%, #3A4466 55%, #1A1F33 100%)'}} />
+      <div style={{position: 'absolute', left: 0, top: 0, width: 2 * r, height: 2 * r, transform: 'scale(1.08)'}}>{children}</div>
+      <div style={{position: 'absolute', inset: 0, borderRadius: '50%', boxShadow: 'inset 0 0 90px 30px rgba(0,0,0,0.8)'}} />
+    </div>
+  </AbsoluteFill>
+);

@@ -143,3 +143,35 @@ export const Card: React.FC<{x: number; y: number; w: number; h: number; col: st
 export const T: React.FC<{size: number; color?: string; weight?: number; children: React.ReactNode}> = (
   {size, color = 'white', weight = 900, children},
 ) => <span style={{...font(weight, size), color}}>{children}</span>;
+
+/** Bulle de dialogue blanche avec pointe (19 nov. 2026). `tail` : position horizontale de la pointe (0-1). */
+export const Bulle: React.FC<{x: number; y: number; w: number; size?: number; tail?: number; delay?: number; children: React.ReactNode}> = (
+  {x, y, w, size = 48, tail = 0.5, delay = 0, children},
+) => (
+  <Pop delay={delay} from={30} style={{position: 'absolute', left: x, top: y, width: w}}>
+    <div style={{position: 'relative', background: 'white', borderRadius: 34, padding: '22px 30px', border: '7px solid #16121F',
+      boxShadow: '0 10px 0 rgba(0,0,0,0.35)', textAlign: 'center', ...font(900, size), color: '#16121F', lineHeight: 1.15}}>
+      {children}
+      <div style={{position: 'absolute', left: `calc(${tail * 100}% - 22px)`, bottom: -34, width: 0, height: 0,
+        borderLeft: '22px solid transparent', borderRight: '22px solid transparent', borderTop: '34px solid #16121F'}} />
+      <div style={{position: 'absolute', left: `calc(${tail * 100}% - 14px)`, bottom: -22, width: 0, height: 0,
+        borderLeft: '14px solid transparent', borderRight: '14px solid transparent', borderTop: '22px solid white'}} />
+    </div>
+  </Pop>
+);
+
+/** Pastille ronde « oui » (coche verte) ou « non » (croix rouge), dessinée en SVG. */
+export const Check: React.FC<{ok?: boolean; size?: number}> = ({ok = true, size = 64}) => (
+  <svg width={size} height={size} viewBox="0 0 64 64" style={{flexShrink: 0}}>
+    <circle cx={32} cy={32} r={29} fill={ok ? GREEN : RED} stroke="#16121F" strokeWidth={5} />
+    {ok ? <path d="M 18 33 L 28 43 L 46 22" fill="none" stroke="#16121F" strokeWidth={8} strokeLinecap="round" strokeLinejoin="round" />
+      : <path d="M 21 21 L 43 43 M 43 21 L 21 43" stroke="white" strokeWidth={8} strokeLinecap="round" />}
+  </svg>
+);
+
+/** Nombre qui défile de `a` à `b` entre les images f0 et f1 (montants en euros). */
+export const Roll: React.FC<{a: number; b: number; f0?: number; f1?: number; dec?: number}> = ({a, b, f0 = 8, f1 = 30, dec = 0}) => {
+  const f = useCurrentFrame();
+  const p = interpolate(f, [f0, f1], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
+  return <>{eur(a + (b - a) * p, dec)}</>;
+};

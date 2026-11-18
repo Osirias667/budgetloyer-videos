@@ -4,6 +4,7 @@ import React from 'react';
 import {Composition} from 'remotion';
 import {totalFrames} from './bl/anim';
 import {GTA_DURATIONS, Gta6CompteurHeure} from './episodes/2026-11-18';
+import {A_DURATIONS, B_DURATIONS, CalendrierPompiers, SurvieADeux1} from './episodes/2026-11-19';
 import {Galerie} from './Galerie';
 
 type EpProps = {durations: number[]; audio?: string};
@@ -18,5 +19,7 @@ export const RemotionRoot: React.FC = () => (
   <>
     <Composition id="galerie" component={Galerie} fps={30} width={1080} height={1920} durationInFrames={60} />
     {ep('gta6-compteur-heure', Gta6CompteurHeure, GTA_DURATIONS)}
+    {ep('survie-a-deux-1', SurvieADeux1, A_DURATIONS)}
+    {ep('calendrier-pompiers', CalendrierPompiers, B_DURATIONS)}
   </>
 );
