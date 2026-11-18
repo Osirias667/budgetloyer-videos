@@ -3,3 +3,7 @@ preview/
 check*/
 __pycache__/
 *.tmp.mp4
+remotion/node_modules/
+remotion/public/audio/
+remotion/out/
+remotion/stills/

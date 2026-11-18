@@ -46,7 +46,7 @@ import wave
 import numpy as np
 from scipy.signal import butter, lfilter, sosfilt
 
-ENGINE_VERSION = "2.2"
+ENGINE_VERSION = "3.0"
 SR = 44100
 
 NOTES = {"C": 0, "C#": 1, "Db": 1, "D": 2, "Eb": 3, "E": 4, "F": 5, "F#": 6, "Gb": 6, "G": 7,
@@ -65,31 +65,31 @@ def mfreq(m):
 # comp (pas, durée en pas). lead : instrument de la mélodie ; density : probabilité de note.
 STYLES = {
     "lofi": dict(
-        label="Lo-fi chill (piano électrique, balais, swing)", bpm=(78, 88), scale="dorian",
+        gm={"bass": (0, 33, 100)}, label="Lo-fi chill (piano électrique, balais, swing)", bpm=(78, 88), scale="dorian",
         prog=[0, 3, 6, 4], prog_b=[5, 1, 4, 0], sevenths=True, swing=0.6,
         kick=[0, 7, 10], snare=[4, 12], hat=[2, 6, 10, 14], snare_kind="brush",
         bass=[(0, 0), (7, 0), (10, 4)], comp_inst="epiano", comp=[(0, 6), (8, 2), (11, 5)],
         lead="pluck", density=0.32, octave=5, pad=False, arp=None, energy=0.8, mood="cosy"),
     "jeu_tele": dict(
-        label="Jeu télé funky (marimba, claps, basse syncopée)", bpm=(108, 118), scale="mixolydian",
+        gm={"bass": (0, 34, 100)}, label="Jeu télé funky (marimba, claps, basse syncopée)", bpm=(108, 118), scale="mixolydian",
         prog=[0, 3, 0, 4], prog_b=[3, 4, 0, 6], sevenths=False, swing=0.54,
         kick=[0, 6, 8], snare=[4, 12], hat=[2, 6, 10, 14], snare_kind="clap",
         bass=[(0, 0), (3, 0), (6, 4), (8, 0), (11, 2), (14, 4)], comp_inst="epiano", comp=[(2, 1), (6, 1), (10, 1), (14, 1)],
         lead="marimba", density=0.5, octave=5, pad=False, arp=None, energy=1.0, mood="quiz"),
     "synthwave": dict(
-        label="Synthwave douce (nappe, arpège triangle, kick régulier)", bpm=(96, 106), scale="minor",
+        gm={"bass": (0, 38, 92), "tri": (0, 88, 80)}, label="Synthwave douce (nappe, arpège triangle, kick régulier)", bpm=(96, 106), scale="minor",
         prog=[0, 5, 2, 6], prog_b=[3, 5, 6, 4], sevenths=False, swing=0.5,
         kick=[0, 4, 8, 12], snare=[4, 12], hat=[2, 6, 10, 14], snare_kind="clap",
         bass=[(0, 0), (2, 0), (4, 0), (6, 0), (8, 0), (10, 0), (12, 0), (14, 0)], comp_inst=None, comp=[],
         lead="tri", density=0.28, octave=5, pad=True, arp="up16", energy=0.9, mood="retro"),
     "bossa": dict(
-        label="Bossa nova (guitare pincée, basse 1-5, shaker)", bpm=(124, 134), scale="major",
+        gm={"bass": (0, 32, 104)}, label="Bossa nova (guitare pincée, basse 1-5, shaker)", bpm=(124, 134), scale="major",
         prog=[1, 4, 0, 0], prog_b=[3, 2, 1, 4], sevenths=True, swing=0.5,
         kick=[0, 6, 8, 14], snare=[], hat=list(range(0, 16, 2)), snare_kind="brush",
         bass=[(0, 0), (6, 4), (8, 4), (14, 0)], comp_inst="pluck", comp=[(0, 2), (3, 2), (6, 2), (10, 2), (13, 2)],
         lead="epiano", density=0.25, octave=5, pad=False, arp=None, energy=0.75, mood="soleil"),
     "swing": dict(
-        label="Jazz swing léger (basse marchante, balais, piano)", bpm=(132, 148), scale="major",
+        gm={"epiano": (0, 0, 92), "bass": (0, 32, 106)}, label="Jazz swing léger (basse marchante, balais, piano)", bpm=(132, 148), scale="major",
         prog=[0, 5, 1, 4], prog_b=[2, 5, 1, 4], sevenths=True, swing=0.66,
         kick=[0, 8], snare=[4, 12], hat=[0, 4, 6, 8, 12, 14], snare_kind="brush",
         bass="walk", comp_inst="epiano", comp=[(6, 2), (14, 2)],
@@ -101,17 +101,32 @@ STYLES = {
         bass=[(0, 0), (4, 0), (8, 0), (12, 4)], comp_inst=None, comp=[],
         lead="tri", density=0.55, octave=5, pad=False, arp="tri8", energy=0.95, mood="jeu"),
     "house_light": dict(
-        label="House légère (kick 4 temps, basse en contretemps, nappe pompée)", bpm=(118, 124), scale="dorian",
+        gm={"bass": (0, 38, 92)}, label="House légère (kick 4 temps, basse en contretemps, nappe pompée)", bpm=(118, 124), scale="dorian",
         prog=[0, 0, 3, 3], prog_b=[5, 4, 0, 3], sevenths=True, swing=0.5,
         kick=[0, 4, 8, 12], snare=[4, 12], hat=[2, 6, 10, 14], snare_kind="clap",
         bass=[(2, 0), (6, 0), (10, 0), (14, 0)], comp_inst="epiano", comp=[(2, 1), (6, 1), (10, 1), (14, 1)],
         lead="marimba", density=0.22, octave=5, pad=True, arp=None, energy=0.95, mood="énergie", pump=True),
     "suspense": dict(
-        label="Suspense doux (pulsation, nappe, cloches)", bpm=(92, 100), scale="minor",
+        gm={"pad": (0, 49, 74), "marimba": (0, 45, 96)}, label="Suspense doux (pulsation, nappe, cloches)", bpm=(92, 100), scale="minor",
         prog=[0, 0, 5, 4], prog_b=[0, 5, 3, 4], sevenths=False, swing=0.5,
         kick=[0, 8], snare=[], hat=list(range(0, 16, 2)), snare_kind="brush",
         bass=[(0, 0), (3, 0), (6, 0), (8, 0), (11, 0), (14, 0)], comp_inst=None, comp=[],
         lead="vibes", density=0.2, octave=5, pad=True, arp="pulse", energy=0.7, mood="cliffhanger"),
+    # v3.0 (18 nov. 2026) : styles pensés pour les vrais instruments (sf2=True) ; jouables aussi en synthés doux.
+    "pop_piano": dict(
+        gm={"pluck": (0, 25, 88), "epiano": (0, 0, 100), "pad": (0, 48, 66), "bass": (0, 33, 100)},
+        label="Pop acoustique (piano, guitare, cordes, vraie batterie)", bpm=(96, 108), scale="major",
+        prog=[0, 4, 5, 3], prog_b=[3, 0, 4, 4], sevenths=False, swing=0.5,
+        kick=[0, 8, 10], snare=[4, 12], hat=[2, 6, 10, 14], snare_kind="snare",
+        bass=[(0, 0), (8, 0), (10, 4)], comp_inst="pluck", comp=[(0, 2), (4, 2), (8, 2), (12, 2)],
+        lead="epiano", density=0.3, octave=5, pad=True, arp=None, energy=0.9, mood="feel good"),
+    "pizzicato": dict(
+        gm={"marimba": (0, 45, 100), "vibes": (0, 71, 92), "pad": (0, 49, 60), "bass": (0, 45, 110)},
+        label="Orchestre malicieux (pizzicati, clarinette, cordes)", bpm=(104, 116), scale="minor",
+        prog=[0, 4, 0, 4], prog_b=[3, 4, 0, 4], sevenths=False, swing=0.5,
+        kick=[0, 8], snare=[], hat=[], snare_kind="brush",
+        bass=[(0, 0), (4, 4), (8, 0), (12, 4)], comp_inst="marimba", comp=[(2, 1), (6, 1), (10, 1), (14, 1)],
+        lead="vibes", density=0.35, octave=5, pad=True, arp=None, energy=0.8, mood="malice, enquête"),
 }
 KEYS = ["C", "D", "Eb", "E", "F", "G", "A", "Bb"]
 
@@ -295,12 +310,34 @@ INSTS = {"epiano": inst_epiano, "pluck": inst_pluck, "marimba": inst_marimba, "v
          "tri": inst_tri, "pad": inst_pad, "bass": inst_bass}
 
 
+# --- v3.0 (18 nov. 2026) : vrais instruments ------------------------------------
+# Banque GeneralUser GS (S. Christian Collins) : « You may use GeneralUser GS without restriction for your own music
+# creation, private or commercial. » Installée par npm dans remotion/node_modules/generaluser/ (paquet « generaluser »).
+# (banque, programme General MIDI, volume du canal). Jamais d'onde carrée (règle audio douce) : les « tri » deviennent
+# un ocarina ou une nappe, pas un lead carré.
+GM_DEFAULT = {"epiano": (0, 4, 92), "pluck": (0, 24, 100), "marimba": (0, 12, 100), "vibes": (0, 11, 96),
+              "tri": (0, 79, 84), "pad": (0, 89, 70), "bass": (0, 33, 104), "piano": (0, 0, 96),
+              "strings": (0, 48, 80), "pizz": (0, 45, 104), "clarinet": (0, 71, 90), "flute": (0, 73, 88),
+              "guitar": (0, 25, 96), "celesta": (0, 8, 92), "glock": (0, 9, 80)}
+
+
+def sf2_path():
+    """Chemin de la banque d'instruments (variable BL_SF2, sinon le paquet npm du dossier remotion/)."""
+    here = os.path.dirname(os.path.abspath(__file__))
+    for p in (os.environ.get("BL_SF2", ""), os.path.join(here, "remotion", "node_modules", "generaluser", "GeneralUser.sf2")):
+        if p and os.path.exists(p):
+            return p
+    raise FileNotFoundError("Banque GeneralUser introuvable : lancer `npm install` dans remotion/ (voir remotion/README.md)")
+
+
 # --- Piste ----------------------------------------------------------------------
 class Track:
     """Musique + bruitages en stéréo, même interface que SoftMix (pop, whoosh, jingle, add, end)."""
 
-    def __init__(s, total, style="lofi", key="C", bpm=None, seed=0, music=True, cuts=None, theme=None):
+    def __init__(s, total, style="lofi", key="C", bpm=None, seed=0, music=True, cuts=None, theme=None, sf2=False):
         s.total, s.music, s.seed = total, music, seed
+        s.sf2 = sf2  # v3.0 : vrais instruments échantillonnés (banque GeneralUser GS) au lieu des synthés doux
+        s.events = []  # notes et frappes enregistrées en mode sf2
         s.theme = THEMES[theme] if theme else None
         s.st = STYLES[style]
         s.style, s.key = style, key
@@ -358,6 +395,9 @@ class Track:
             return
         v = 0.85 + 0.3 * s.rng.random()  # humanisation
         at += s.rng.uniform(-0.006, 0.006)
+        if s.sf2:
+            s.events.append(("note", inst, int(m), at, l, g * v, pan))
+            return
         f = mfreq(m)
         sig = inst_pluck(f, l, v, s.rng.randint(0, 9999)) if inst == "pluck" else INSTS[inst](f, l, v)
         s._put(s.mus, sig, at, g, pan, send)
@@ -456,19 +496,17 @@ class Track:
             if not brk and not last:
                 for stp in st["kick"]:
                     at = s.t_of(bar, stp)
-                    s._put(s.mus, kick, at, 0.34)
+                    s.hit("kick", at, 0.34, sig=kick)
                     if st.get("pump"):
                         a = int(at * SR)
                         n = int(s.beat * 0.6 * SR)
                         if a + n < len(s.pump):
                             s.pump[a:a + n] = np.minimum(s.pump[a:a + n], 0.55 + 0.45 * np.linspace(0, 1, n))
                 for stp in st["snare"]:
-                    sn = drum_clap(bar * 16 + stp) if st["snare_kind"] == "clap" else drum_brush(bar * 16 + stp)
-                    s._put(s.mus, sn, s.t_of(bar, stp), 0.22, pan=0.1, send=0.25)
+                    s.hit(st["snare_kind"], s.t_of(bar, stp), 0.22, pan=0.1, send=0.25, seed=bar * 16 + stp)
                 if layer2 or st["energy"] >= 0.9:
                     for stp in st["hat"]:
-                        s._put(s.mus, drum_shaker(bar * 31 + stp), s.t_of(bar, stp), 0.12 + 0.04 * (stp % 4 == 2),
-                               pan=0.4)
+                        s.hit("shaker", s.t_of(bar, stp), 0.12 + 0.04 * (stp % 4 == 2), pan=0.4, seed=bar * 31 + stp)
             # mélodie : phrases en AABA', plus discrète pendant la respiration
             if not last and s.theme:
                 # air connu : joué tel quel en boucle, contre-chant à la tierce sur les notes longues
@@ -500,6 +538,73 @@ class Track:
             else:
                 s.note(st["lead"], s.deg(7, 0), t0, s.bar, 0.1, send=0.4)
 
+    def hit(s, kind, at, g, pan=0.0, send=0.0, seed=0, sig=None):
+        """Frappe de batterie : synthétisée (v2) ou notée pour la banque d'instruments (v3, sf2=True)."""
+        if s.sf2:
+            key = {"kick": 36, "clap": 39, "brush": 38, "snare": 38, "shaker": 70}[kind]
+            s.events.append(("drum", kind, key, at, 0.25, g, pan))
+            return
+        if sig is None:
+            sig = {"clap": drum_clap, "snare": drum_clap, "brush": drum_brush, "shaker": drum_shaker}[kind](seed)
+        s._put(s.mus, sig, at, g, pan=pan, send=send)
+
+    def _render_sf2(s):
+        """v3.0 : joue les notes enregistrées avec la banque GeneralUser GS (licence : usage libre, y compris commercial,
+        pour créer de la musique) via FluidSynth, et les place dans la piste musique."""
+        import fluidsynth
+        sf = sf2_path()
+        st = s.st
+        gm = dict(GM_DEFAULT)
+        gm.update(st.get("gm", {}))
+        fs = fluidsynth.Synth(samplerate=float(SR), gain=0.6)
+        try:
+            fs.set_reverb(roomsize=0.45, damping=0.5, width=0.9, level=0.45)
+            fs.set_chorus(nr=3, level=0.6, speed=0.3, depth=8.0, type=0)
+        except Exception:
+            pass
+        sfid = fs.sfload(sf)
+        chans, pans = {}, {}
+        for ev in s.events:
+            if ev[0] == "note" and ev[1] not in chans:
+                ch = len(chans) + (1 if len(chans) >= 9 else 0)
+                chans[ev[1]] = ch
+                pans[ev[1]] = ev[6]
+        for inst, ch in chans.items():
+            bank, prog, vol = gm[inst]
+            fs.program_select(ch, sfid, bank, prog)
+            fs.cc(ch, 7, vol)
+            fs.cc(ch, 10, int(64 + 50 * max(-1, min(1, pans[inst]))))
+            fs.cc(ch, 91, 50)
+        kit = 40 if st["snare_kind"] == "brush" else 0
+        fs.program_select(9, sfid, 128, kit)
+        fs.cc(9, 7, 100)
+        fs.cc(9, 91, 30)
+        sched = []
+        for ev in s.events:
+            kind, inst, key, at, l, g, pan = ev
+            at = max(0.0, at)
+            ch = 9 if kind == "drum" else chans[inst]
+            vel = int(max(25, min(124, 30 + 470 * g)))
+            sched.append((at, 1, ch, key, vel))
+            sched.append((at + max(0.05, l), 0, ch, key, 0))
+        sched.sort(key=lambda e: (e[0], e[1]))
+        n_total = s.mus.shape[1]
+        out = np.zeros((n_total, 2), np.float32)
+        pos = 0
+        for t, on, ch, key, vel in sched:
+            tgt = min(n_total, int(t * SR))
+            if tgt > pos:
+                out[pos:tgt] = np.asarray(fs.get_samples(tgt - pos), np.float32).reshape(-1, 2) / 32768.0
+                pos = tgt
+            if on:
+                fs.noteon(ch, key, vel)
+            else:
+                fs.noteoff(ch, key)
+        if pos < n_total:
+            out[pos:] = np.asarray(fs.get_samples(n_total - pos), np.float32).reshape(-1, 2) / 32768.0
+        fs.delete()
+        s.mus += out.T.astype(np.float64) * 2.2
+
     def fill(s, at, beats=1.0, g=0.16):
         """v2.1 (17 nov. 2026) : petit roulement doux (balais + toms ronds descendants) qui finit pile sur `at`.
 
@@ -511,9 +616,10 @@ class Track:
         t0 = at - n * s.step
         for i in range(n):
             ti = t0 + i * s.step
-            s._put(s.mus, drum_brush(9000 + i + int(at * 10)), ti, g * (0.6 + 0.4 * i / max(1, n - 1)), pan=0.2,
-                   send=0.2)
-            if i % 2 == 1:
+            s.hit("brush", ti, g * (0.6 + 0.4 * i / max(1, n - 1)), pan=0.2, send=0.2, seed=9000 + i + int(at * 10))
+            if i % 2 == 1 and s.sf2:
+                s.events.append(("drum", "tom", (50, 48, 47, 45, 43, 41)[min(5, i // 2)], ti, 0.3, g * 1.4, 0.0))
+            elif i % 2 == 1:
                 x = _x(0.18)
                 f0 = 190 - 22 * i
                 tom = np.sin(2 * np.pi * np.cumsum(f0 * (1 + 0.5 * np.exp(-x * 30))) / SR) * np.exp(-x * 16)
@@ -584,6 +690,8 @@ class Track:
         return out
 
     def end(s, path):
+        if s.sf2 and s.music and s.events:
+            s._render_sf2()
         n = int(s.total * SR)
         mus = (s.mus + s._reverb(s.rev)) * s.pump
         k = np.convolve(s.duck, np.ones(2000) / 2000, mode="same")

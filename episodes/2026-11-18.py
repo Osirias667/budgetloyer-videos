@@ -182,6 +182,26 @@ def music_a(total, path, music=True):
     m.end(path)
 
 
+def music_a3(total, path, music=True):
+    """Version Remotion (18 nov. 2026, test d'intégration) : même partition, vrais instruments (musique.py v3.0)."""
+    cuts = list(np.cumsum([0] + [d for _, d in A]))
+    m = Track(total, style="synthwave", key="C", bpm=102, seed=4681, music=music, cuts=cuts, theme="marche_turque",
+              sf2=True)
+    m.compose(layers_at=cuts[3], break_at=cuts[5], end_at=cuts[7] + 0.15)
+    for c in cuts[1:-1]:
+        m.whoosh(c)
+    for i in range(4):
+        for k in range(4):
+            m.tick(cuts[1 + i] + 0.4 + k * 0.22, 0.1)
+        m.reveal(cuts[1 + i] + 1.3, good=i >= 2)
+    m.fill(cuts[5], 1.0)
+    m.reveal(cuts[5] + 1.6, good=False)
+    for k in range(5):
+        m.pop(cuts[6] + 0.15 + k * 0.18, 0.13)
+    m.jingle(cuts[7] + 0.15)
+    m.end(path)
+
+
 # ---- B : Salaire loading… ---------------------------------------------------
 PAIE = 1600
 DAYS = [
