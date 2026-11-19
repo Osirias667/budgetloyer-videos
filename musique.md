@@ -45,3 +45,5 @@ Le moteur est `musique.py` (classe `Track`). La règle audio douce du PLAYBOOK s
 | 2026-11-18 | Salaire loading | chiptune_doux + frere_jacques | F | 119 | 2832 | v2.2 | à mesurer |
 | 2026-11-19 | Survie à deux é1 | pop_piano | E | 107 | 7706 | v3.0 (sf2) | à mesurer |
 | 2026-11-19 | Calendrier des pompiers | pizzicato + vive_le_vent | G | 106 | 5006 | v3.0 (sf2) | à mesurer |
+| 2026-11-20 | Survie à deux é2 | bossa | D | 124 | 6724 | v3.0 (sf2) | à mesurer |
+| 2026-11-20 | Secret Santa, le tirage | swing + roi_montagne | A | 139 | 6204 | v3.0 (sf2) | à mesurer |

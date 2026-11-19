@@ -82,6 +82,15 @@
 - Veille : socialpilot.co/blog/tiktok-trends (fenêtre du 17 au 25 nov. 2026) : « soft launch » (indice partiel puis révélation), avant/après « même lieu, années d'écart », réaction exagérée, « tsundere » (refus puis capitulation). Testé le 19 nov. 18:00 (silhouette dans le judas). Actu : tournée des calendriers des pompiers (Infos Yvelines, 2-4 nov. ; MoneyVox et stephanelarue.com, 16 nov. 2026) : utilisé le 19 nov.
 - Programmation du 19 nov. : aucun post existant ce jour-là avant la session. Premières vidéos publiées avec Remotion et les vrais instruments (`sf2=True`).
 
+## Analyse du 19 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : **alerte : les 3 dernières vidéos hors série retombent au niveau d'avant le 10 nov.** Échelle de panique (17 nov. 18:00) 248 vues à ~51 h (245 à 27 h : elle ne remonte pas), compteur €/heure GTA 6 (18 nov. 10:00) 270 vues, 3 j'aime à ~35 h, salaire loading (18 nov. 18:00) 205 vues, 2 j'aime à ~27 h. Au même âge, les vidéos du 10 au 16 nov. étaient déjà au-dessus de 700 (sauf deux départs lents, Survie p1 et script, remontés ensuite). En parallèle, la série Survie tient : premier appart é2 716 vues, 13 j'aime. Cause inconnue (3 cas, deux encore jeunes) : rejuger le 20-21 nov. Pistes à vérifier : visage muet + légende et compteur sans histoire décrochent dès le premier lot ; ou baisse de diffusion du compte ; les vidéos du 19 (Remotion, Survie é1 et judas) diront si la mécanique Survie résiste. Partages : toujours 1 sur tout le compte.
+- Instagram : plateau inchangé (61 à 117 vues) ; **GTA 6 = 8,3 s vues, 45 %** (2e meilleure durée vue depuis Survie p1, 10,2 s), salaire loading 4,6 s, 44 % ; échelle de panique la plus basse (4,0 s, 20,6 %). Survie premier appart é2 6,6 s, 42 %.
+- YouTube : rien de nouveau (dernières données au 15 nov. ; raclette 8 vues, heures creuses 13).
+- 5 dernières descriptions relues : format une ligne, 5 hashtags, chute filée, tenu.
+- Veille : socialpilot.co/blog/tiktok-trends (publié le 17 nov. 2026, fenêtre du 17 au 25 nov.) : « soft launch » (indice puis révélation), « même lieu, années d'écart », « tsundere » (refus puis capitulation), challenge « You're Under Arrest » ; temps forts : sortie de GTA 6 (19 nov.), Thanksgiving (États-Unis, sans écho en France). Adapté le 20 nov. en ouverture de cartes à rareté (révélation progressive). Actu : budget de Noël 478 €, prix 1er critère pour 41 % (Ankorstore, révélé par RTL le 10 nov., lu sur boursorama.com, 13 nov.) ; Black Friday 2026 : nombreux articles (LSA, toutsurmesfinances.com, economiematin.fr), non ouverts, sujet réservé à partir du 24 nov. (Black Friday déjà traité le 9 nov.).
+- 20 nov. : nouvelles règles du découvert (calendrier). Pas de vidéo « C'est aujourd'hui » : sujet traité le 10 nov., moins de 14 jours (règle des sujets). Possible après le 24 nov. sous un angle pratique, après relecture des sources.
+- Programmation du 20 nov. : aucun post existant ce jour-là avant la session.
+
 ## Ce qui marche
 - **Confirmé (4 vidéos à plus de 48 h)** : le format de publication en place depuis le 10 nov. (accroche complète dès l'image 1, 5 hashtags, description au format, audio doux) fait passer TikTok de ~260 à 740-785 vues, pour les jeux comme pour le POV d'objet en série.
 - **Piste forte, confirmée sur 2 thèmes** (fin de mois 819 vues, premier appart 806 vues + 1er partage ; Instagram 10,2 s puis 8,7 s) : histoire dont tu es le héros en 2e personne, widget « Il te reste » qui bouge, choix A/B (Survie p1) : 817 vues et 15 j'aime TikTok (record), 10,2 s et 63,6 % de durée vue Instagram (record). Diffusion plus lente au départ (436 vues à 27 h). Reprise le 16 nov. sur un nouveau thème (premier appart) pour vérifier que ce n'est pas le sujet seul.
@@ -103,6 +112,7 @@ _Rien de confirmé pour l'instant._
 - Piste : vidéo très courte (15,6 s, raclette) : 773 vues TikTok à ~35 h, au plateau ; la durée seule ne fait pas sortir du plafond.
 - « Script mot pour mot » en conversation de groupe : 729 vues TikTok à ~51 h (au plateau après un départ lent), 5,5 s et 31 % Instagram (sous la médiane), malgré son succès ailleurs (tryvolume.app). Ne pas refaire.
 - Piste : « Attente vs Réalité » ticket de caisse (courses) : 728 vues TikTok, 4,8 s Instagram, sous les deux médianes.
+- Piste (19 nov., à confirmer) : échelle de panique visage muet + légende : 248 vues TikTok à ~51 h, 4,0 s et 20,6 % Instagram, la plus basse des deux réseaux depuis le 10 nov. Ne pas refaire tel quel.
 
 - Retour du propriétaire (10 nov.) : l'audio des vidéos était trop agressif (ondes carrées, effets forts). Les vidéos du 10 nov. sont passées en version douce (`_v2`), et la règle audio est ajoutée au PLAYBOOK.
 
@@ -139,6 +149,8 @@ _Rien de confirmé pour l'instant._
 32. Survie · À deux, Épisode 1/2 (19 nov. 10:00, 21 s, Remotion) : la mécanique Survie tient-elle sur un 3e thème (couple), et un vrai débat 50/50 contre prorata (réponse en une lettre) fait-il plus commenter que les choix A/B précédents (0-2 commentaires) ? Épisode 2/2 promis le 20 nov.
 33. « Ding dong » vue par le judas, silhouette puis révélation (soft launch), calendrier des pompiers, réponse en un montant (19 nov. 18:00, 19,6 s) : commentaires et partages contre le plateau ; premier épisode sans plan d'app avec un rituel saisonnier.
 34. Remotion + vrais instruments (première publication le 19 nov.) : durée vue Instagram contre la médiane bl.py (~6 s).
+35. Survie · À deux, Épisode 2/2 (20 nov. 10:00, 19,6 s) : même imprévu pour les deux fins + comparaison en colonnes + « après les deux fins, A ou B ? » : garde-t-il plus de 90 % des vues de l'é1, et la série reste-t-elle au-dessus de ~700 vues TikTok quand les vidéos hors série retombent à 205-270 ?
+36. Format inédit : ouverture de cartes à rareté (Secret Santa, 20 nov. 18:00, 18 s) : la montée commun → légendaire avec carte qui tremble retient-elle jusqu'à la fin (durée vue Instagram > 6 s) et le destinataire « collègue qui organise le tirage » apporte-t-il des partages ? Commentaires en montant.
 31. À faire cette semaine : Trial Reel hebdomadaire et carrousel photo (aucun programmé du 16 au 22 nov. à ce jour) ; Survie saison 3 (mécanique confirmée).
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
