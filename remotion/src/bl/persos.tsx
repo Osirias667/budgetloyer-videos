@@ -377,3 +377,74 @@ export const Pompier: React.FC<PersoProps & {expr?: Expr; talk?: boolean; silhou
     </Perso>
   );
 };
+
+// ---- Collègue (20 nov. 2026) -----------------------------------------------------------------------------------
+/** Collègue de bureau générique, déclinable : coiffure, couleur du haut, peau, accessoire. Pour les sketchs au travail
+ *  (Secret Santa, pot de départ, cagnotte…). Aucun personnage réel ni protégé. */
+export type Coiffure = 'court' | 'chignon' | 'chauve' | 'boucles';
+export const Collegue: React.FC<PersoProps & {expr?: Expr; talk?: boolean; look?: number; hair?: Coiffure; hairCol?: string;
+  top?: string; skin?: [string, string]; acc?: 'lunettes' | 'cravate' | 'badge' | 'bonnet' | 'none'; seed?: number}> = (
+  {expr = 'neutral', talk, look = 0, hair = 'court', hairCol = '#3A2418', top = '#3D7BE0', skin = ['#FFD9B5', '#EDB98E'],
+    acc = 'none', seed = 51, ...p},
+) => {
+  const f = useCurrentFrame();
+  const tilt = Math.sin(f / 12 + seed) * 2 + (talk ? Math.sin(f / 3) * 1.5 : 0);
+  const id = `col${seed}`;
+  return (
+    <Perso {...p} ratio={820 / 760} seed={seed}>
+      <svg viewBox="0 0 760 820" width="100%" height="100%" style={{overflow: 'visible'}}>
+        <defs>
+          <radialGradient id={`${id}skin`} cx="0.45" cy="0.4" r="0.7">
+            <stop offset="0" stopColor={skin[0]} /><stop offset="1" stopColor={skin[1]} />
+          </radialGradient>
+        </defs>
+        <path d="M 90 820 L 90 690 Q 90 540 250 520 L 510 520 Q 670 540 670 690 L 670 820 Z" fill={top} stroke={K} strokeWidth={10} />
+        <path d="M 300 520 L 380 600 L 460 520 Z" fill="#F4F1E8" stroke={K} strokeWidth={8} strokeLinejoin="round" />
+        {acc === 'cravate' ? (
+          <path d="M 362 596 L 398 596 L 410 760 L 380 800 L 350 760 Z" fill={RED} stroke={K} strokeWidth={8} strokeLinejoin="round" />
+        ) : null}
+        {acc === 'badge' ? (
+          <g>
+            <line x1={330} y1={530} x2={300} y2={690} stroke={CYAN} strokeWidth={8} />
+            <rect x={240} y={680} width={120} height={84} rx={12} fill="white" stroke={K} strokeWidth={7} />
+            <rect x={256} y={700} width={40} height={40} rx={6} fill={CYAN} />
+          </g>
+        ) : null}
+        <g transform={`rotate(${tilt} 380 470)`}>
+          <rect x={330} y={440} width={100} height={110} rx={36} fill={skin[1]} stroke={K} strokeWidth={8} />
+          {hair === 'chignon' ? <circle cx={380} cy={110} r={66} fill={hairCol} stroke={K} strokeWidth={9} /> : null}
+          {hair === 'boucles' ? [-1, 1].map((sd) => (
+            <g key={sd}>
+              <circle cx={380 + sd * 150} cy={230} r={46} fill={hairCol} stroke={K} strokeWidth={8} />
+              <circle cx={380 + sd * 166} cy={300} r={40} fill={hairCol} stroke={K} strokeWidth={8} />
+            </g>
+          )) : null}
+          <ellipse cx={380} cy={300} rx={158} ry={172} fill={`url(#${id}skin)`} stroke={K} strokeWidth={10} />
+          {hair === 'court' ? (
+            <path d="M 224 270 Q 210 120 380 118 Q 552 120 538 270 Q 520 200 450 196 Q 380 170 300 200 Q 240 206 224 270 Z"
+              fill={hairCol} stroke={K} strokeWidth={9} strokeLinejoin="round" />
+          ) : null}
+          {hair === 'chignon' || hair === 'boucles' ? (
+            <path d="M 222 280 Q 214 128 380 124 Q 548 128 540 280 Q 470 190 380 210 Q 290 190 222 280 Z"
+              fill={hairCol} stroke={K} strokeWidth={9} strokeLinejoin="round" />
+          ) : null}
+          {hair === 'chauve' ? <ellipse cx={330} cy={170} rx={50} ry={22} fill="white" opacity={0.4} /> : null}
+          {acc === 'bonnet' ? (
+            <g>
+              <path d="M 214 230 Q 230 70 400 80 Q 520 90 560 200 L 600 150" fill={RED} stroke={K} strokeWidth={10} strokeLinejoin="round" />
+              <rect x={204} y={204} width={352} height={56} rx={26} fill="white" stroke={K} strokeWidth={9} />
+              <circle cx={606} cy={146} r={30} fill="white" stroke={K} strokeWidth={8} />
+            </g>
+          ) : null}
+          <Face cx={380 + look * 6} cy={322} s={1.5} expr={expr} talk={talk} look={look} seed={seed} gap={52} />
+          {acc === 'lunettes' ? (
+            <g fill="none" stroke={K} strokeWidth={9}>
+              <circle cx={302} cy={308} r={46} /><circle cx={458} cy={308} r={46} />
+              <line x1={348} y1={304} x2={412} y2={304} />
+            </g>
+          ) : null}
+        </g>
+      </svg>
+    </Perso>
+  );
+};

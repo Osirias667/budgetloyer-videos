@@ -106,3 +106,37 @@ export const Judas: React.FC<{cx?: number; cy?: number; r?: number; children: Re
     </div>
   </AbsoluteFill>
 );
+
+/** Open space le soir des fêtes (20 nov. 2026) : mur bleu nuit, fenêtres, guirlande lumineuse qui clignote, bureaux. */
+export const BureauBg: React.FC<{tint?: number}> = ({tint = 0}) => {
+  const f = useCurrentFrame();
+  const cols = ['#FFD640', '#E828BE', '#20E388', '#36D6F0', '#F04242'];
+  return (
+    <AbsoluteFill style={{background: 'linear-gradient(180deg,#1B2152 0%,#262D6B 62%,#3A2F5E 62%,#2A2246 100%)'}}>
+      {[0, 1, 2].map((i) => (
+        <div key={i} style={{position: 'absolute', top: 330, left: 90 + i * 330, width: 240, height: 360, borderRadius: 12,
+          background: 'linear-gradient(180deg,#0E1336,#1C2A6A)', border: '10px solid #3A4290'}}>
+          {Array.from({length: 6}, (_, k) => (
+            <div key={k} style={{position: 'absolute', left: 20 + ((k * 53 + i * 31) % 190), top: 30 + ((k * 71 + i * 17) % 290),
+              width: 6, height: 6, borderRadius: 3, background: 'white', opacity: 0.4 + 0.4 * Math.sin(f / 9 + k + i)}} />
+          ))}
+        </div>
+      ))}
+      <svg width={1080} height={200} style={{position: 'absolute', left: 0, top: 230}}>
+        <path d="M -20 30 Q 270 130 540 40 Q 810 130 1100 30" fill="none" stroke="#0E1230" strokeWidth={6} />
+        {Array.from({length: 18}, (_, i) => {
+          const t = i / 17;
+          const xx = -20 + t * 1120;
+          const seg = t < 0.5 ? t * 2 : (t - 0.5) * 2;
+          const yy = 30 + 4 * seg * (1 - seg) * 95;
+          const on = (Math.floor(f / 8) + i) % 3 !== 0;
+          const c = cols[i % cols.length];
+          return <circle key={i} cx={xx} cy={yy + 16} r={13} fill={c} opacity={on ? 1 : 0.35}
+            style={{filter: on ? `drop-shadow(0 0 10px ${c})` : undefined}} />;
+        })}
+      </svg>
+      <div style={{position: 'absolute', left: 0, right: 0, top: 1460, height: 60, background: '#5A4A8A', borderTop: '8px solid #16121F'}} />
+      <AbsoluteFill style={{background: NAVY, opacity: tint}} />
+    </AbsoluteFill>
+  );
+};

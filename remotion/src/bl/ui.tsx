@@ -175,3 +175,41 @@ export const Roll: React.FC<{a: number; b: number; f0?: number; f1?: number; dec
   const p = interpolate(f, [f0, f1], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)});
   return <>{eur(a + (b - a) * p, dec)}</>;
 };
+
+/** Carte à collectionner avec rareté (20 nov. 2026, format « ouverture de cartes »). Dos à motif BudgetLoyer jusqu'à
+ *  l'image `flipAt`, puis retournement en 10 images et halo de la couleur de rareté. `flipAt` < 0 : toujours de dos ;
+ *  0 : déjà retournée. `shake` : la carte tremble avant le retournement (suspense). */
+export const CarteRare: React.FC<{x: number; y: number; w: number; h: number; col: string; rarity: string; flipAt?: number;
+  shake?: number; children?: React.ReactNode}> = ({x, y, w, h, col, rarity, flipAt = -1, shake = 0, children}) => {
+  const f = useCurrentFrame();
+  const p = flipAt < 0 ? 0 : flipAt === 0 ? 1 : interpolate(f, [flipAt, flipAt + 10], [0, 1], {extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic)});
+  const front = p >= 0.5;
+  const sx = Math.abs(Math.cos(p * Math.PI));
+  const shk = shake && p === 0 ? Math.sin(f * 1.9) * shake : 0;
+  const glow = front ? 30 + 18 * Math.sin(f / 5) : 18 + 8 * Math.sin(f / 6);
+  const shine = ((f * 14) % (w * 3)) - w;
+  return (
+    <div style={{position: 'absolute', left: x + shk, top: y, width: w, height: h, transform: `scaleX(${Math.max(0.02, sx)}) rotate(${shk * 0.4}deg)`}}>
+      <div style={{position: 'absolute', inset: 0, borderRadius: 28, overflow: 'hidden', border: `8px solid ${col}`,
+        boxShadow: `0 0 ${glow}px ${col}, 0 12px 0 rgba(0,0,0,0.35)`,
+        background: front ? 'linear-gradient(180deg,#1A1F4A 0%,#0A0E2C 100%)'
+          : `repeating-linear-gradient(45deg, ${col}33 0 22px, #0A0E2C 22px 44px)`}}>
+        {front ? (
+          <>
+            <div style={{position: 'absolute', top: 0, left: 0, right: 0, height: 64, background: col, display: 'flex',
+              alignItems: 'center', justifyContent: 'center', ...font(900, 38), color: '#0A0E2C', letterSpacing: 2}}>{rarity}</div>
+            <div style={{position: 'absolute', top: 64, left: 0, right: 0, bottom: 0}}>{children}</div>
+          </>
+        ) : (
+          <div style={{position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <div style={{width: w * 0.42, height: w * 0.42, borderRadius: '50%', background: '#0A0E2C', border: `6px solid ${col}`,
+              display: 'flex', alignItems: 'center', justifyContent: 'center', ...font(900, w * 0.24), color: col}}>?</div>
+          </div>
+        )}
+        <div style={{position: 'absolute', top: -40, bottom: -40, left: shine, width: 60, transform: 'rotate(18deg)',
+          background: 'linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.28), rgba(255,255,255,0))'}} />
+      </div>
+    </div>
+  );
+};
