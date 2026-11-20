@@ -91,6 +91,15 @@
 - 20 nov. : nouvelles règles du découvert (calendrier). Pas de vidéo « C'est aujourd'hui » : sujet traité le 10 nov., moins de 14 jours (règle des sujets). Possible après le 24 nov. sous un angle pratique, après relecture des sources.
 - Programmation du 20 nov. : aucun post existant ce jour-là avant la session.
 
+## Analyse du 20 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : **la chute se confirme et touche aussi la série Survie** : Survie · À deux é1 (19 nov. 10:00) 229 vues, 4 j'aime à ~35 h ; calendrier des pompiers (19 nov. 18:00) 251 vues à ~27 h ; GTA 6 270 (à ~59 h, ne remonte pas) ; salaire loading 206 (à ~51 h) ; échelle de panique 338 (à ~75 h, +90 en 24 h). 5 vidéos de suite entre 206 et 338, tous formats confondus, alors que la Survie premier appart faisait encore 807 puis 716 juste avant. **Le format n'explique donc pas la chute** : l'hypothèse la plus probable devient une baisse de diffusion du compte depuis le 17 nov. au soir (cause inconnue : aucun réglage de publication n'a changé). Partages : toujours 1 sur tout le compte. Vidéos du 20 nov. pas encore dans les stats.
+- Instagram : **Remotion retient mieux** : Survie à deux é1 157 comptes atteints, 9,1 s vues, 54,2 % ; pompiers 133 comptes, 9,3 s, 54,5 % : les 2e et 3e meilleures durées vues du compte (après Survie p1, 10,2 s), contre une médiane d'environ 6 s pour les vidéos bl.py. Premier signal en faveur de Remotion + vrais instruments (2 vidéos, à confirmer).
+- YouTube : données jusqu'au 18 nov. ; GTA 6 4 vues, premier appart é2 9, raclette 11, heures creuses 17, devine le prix 82. Toujours faible.
+- 5 dernières descriptions relues : format une ligne, 5 hashtags, chute filée, tenu.
+- Veille : socialpilot.co/blog/tiktok-trends (publié le 17 nov. 2026, fenêtre 17-25 nov.) : soft launch, « même lieu, années d'écart », « tsundere » (refus puis capitulation), « You Paid Me No Mind » ; virlo.ai/trends/2026-11 (mis à jour le 20 nov. 2026, 25 534 vidéos TikTok et Instagram analysées, 76 tendances) : en tête « piggyback flip », « Nostalgic POV », « While they're out partying btw » (en hausse), transitions « loading percentage ». Adapté le 21 nov. : tsundere + horloge (« je sors pas »). Actu : marchés de Noël (Strasbourg annoncé le 27 nov. par actu-alt-plus.com, 18 nov., article rédigé avec l'IA, non retenu comme fait ; aucune grille de prix 2026 publiée selon la même page) ; épargne : 56 % des Français prévoient d'épargner autant ou plus en 2027 (-6 points), 82 % de ceux qui épargnent plus le font pour se protéger (OpinionWay pour FAIR et France Active, ess-et-societe.net, 13 nov. 2026, chapeau seulement : échantillon non lu), piste à relire avant usage.
+- Programmation du 21 nov. : aucun post existant ce jour-là avant la session.
+- À demander au propriétaire : vérifier dans TikTok Studio s'il y a un avertissement, une restriction ou une baisse de la part « Pour toi » depuis le 17 nov. (Metricool ne remonte ni la source du trafic ni la complétion).
+
 ## Ce qui marche
 - **Confirmé (4 vidéos à plus de 48 h)** : le format de publication en place depuis le 10 nov. (accroche complète dès l'image 1, 5 hashtags, description au format, audio doux) fait passer TikTok de ~260 à 740-785 vues, pour les jeux comme pour le POV d'objet en série.
 - **Piste forte, confirmée sur 2 thèmes** (fin de mois 819 vues, premier appart 806 vues + 1er partage ; Instagram 10,2 s puis 8,7 s) : histoire dont tu es le héros en 2e personne, widget « Il te reste » qui bouge, choix A/B (Survie p1) : 817 vues et 15 j'aime TikTok (record), 10,2 s et 63,6 % de durée vue Instagram (record). Diffusion plus lente au départ (436 vues à 27 h). Reprise le 16 nov. sur un nouveau thème (premier appart) pour vérifier que ce n'est pas le sujet seul.
@@ -99,6 +108,8 @@
 - Piste YouTube (1 cas) : titre en question « devine le prix » = 80 vues, contre 0 à 6 pour les autres Shorts récents. Reprendre des titres YouTube en question de jeu.
 - Jeux et défis : au niveau du plateau, pas au-dessus. Garder un jeu par jour mais varier la mécanique ; le jeu seul ne suffit plus à progresser.
 - Ancien : formats directs de 34-35 s (« 3 raisons », « où est passé ton salaire ») à 355-366 vues ; sketch « garde à vue » en tête sur Instagram.
+
+- Piste (2 vidéos, 19 nov.) : Remotion + vrais instruments = 9,1 et 9,3 s vues Instagram (54 %), contre ~6 s de médiane bl.py. Garder Remotion.
 
 ## Ce qui ne marche pas
 _Rien de confirmé pour l'instant._
@@ -112,6 +123,7 @@ _Rien de confirmé pour l'instant._
 - Piste : vidéo très courte (15,6 s, raclette) : 773 vues TikTok à ~35 h, au plateau ; la durée seule ne fait pas sortir du plafond.
 - « Script mot pour mot » en conversation de groupe : 729 vues TikTok à ~51 h (au plateau après un départ lent), 5,5 s et 31 % Instagram (sous la médiane), malgré son succès ailleurs (tryvolume.app). Ne pas refaire.
 - Piste : « Attente vs Réalité » ticket de caisse (courses) : 728 vues TikTok, 4,8 s Instagram, sous les deux médianes.
+- **Alerte TikTok (20 nov., 5 vidéos)** : depuis le 17 nov. 18:00, toutes les vidéos tombent à 206-338 vues, séries Survie comprises (à deux é1 : 229). Le format n'est pas la cause ; vidéos du 21 nov. = test (jeu « devine » et horloge, les deux mécaniques qui tenaient 750-990).
 - Piste (19 nov., à confirmer) : échelle de panique visage muet + légende : 248 vues TikTok à ~51 h, 4,0 s et 20,6 % Instagram, la plus basse des deux réseaux depuis le 10 nov. Ne pas refaire tel quel.
 
 - Retour du propriétaire (10 nov.) : l'audio des vidéos était trop agressif (ondes carrées, effets forts). Les vidéos du 10 nov. sont passées en version douce (`_v2`), et la règle audio est ajoutée au PLAYBOOK.
@@ -151,6 +163,8 @@ _Rien de confirmé pour l'instant._
 34. Remotion + vrais instruments (première publication le 19 nov.) : durée vue Instagram contre la médiane bl.py (~6 s).
 35. Survie · À deux, Épisode 2/2 (20 nov. 10:00, 19,6 s) : même imprévu pour les deux fins + comparaison en colonnes + « après les deux fins, A ou B ? » : garde-t-il plus de 90 % des vues de l'é1, et la série reste-t-elle au-dessus de ~700 vues TikTok quand les vidéos hors série retombent à 205-270 ?
 36. Format inédit : ouverture de cartes à rareté (Secret Santa, 20 nov. 18:00, 18 s) : la montée commun → légendaire avec carte qui tremble retient-elle jusqu'à la fin (durée vue Instagram > 6 s) et le destinataire « collègue qui organise le tirage » apporte-t-il des partages ? Commentaires en montant.
+37. Jeu « devine le total » au marché de Noël (21 nov. 10:00, 20,6 s) : la mécanique « devine » ramène-t-elle TikTok vers ~750 vues ? Si non, la chute vient du compte et pas du format.
+38. « Je sors pas » : refus puis capitulation à l'horloge (21 nov. 18:00, 21,6 s) : l'horloge du défi 0 € (record 990) + tsundere fait-elle commenter (réponse en une heure) et partager ?
 31. À faire cette semaine : Trial Reel hebdomadaire et carrousel photo (aucun programmé du 16 au 22 nov. à ce jour) ; Survie saison 3 (mécanique confirmée).
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
