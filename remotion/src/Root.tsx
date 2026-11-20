@@ -6,6 +6,7 @@ import {totalFrames} from './bl/anim';
 import {GTA_DURATIONS, Gta6CompteurHeure} from './episodes/2026-11-18';
 import {A_DURATIONS, B_DURATIONS, CalendrierPompiers, SurvieADeux1} from './episodes/2026-11-19';
 import {A_DURATIONS as A20, B_DURATIONS as B20, SecretSantaTirage, SurvieADeux2} from './episodes/2026-11-20';
+import {A_DURATIONS as A21, B_DURATIONS as B21, MarcheNoelTotal, SamediJeSorsPas} from './episodes/2026-11-21';
 import {Galerie} from './Galerie';
 
 type EpProps = {durations: number[]; audio?: string};
@@ -24,5 +25,7 @@ export const RemotionRoot: React.FC = () => (
     {ep('calendrier-pompiers', CalendrierPompiers, B_DURATIONS)}
     {ep('survie-a-deux-2', SurvieADeux2, A20)}
     {ep('secret-santa-tirage', SecretSantaTirage, B20)}
+    {ep('marche-noel-total', MarcheNoelTotal, A21)}
+    {ep('samedi-je-sors-pas', SamediJeSorsPas, B21)}
   </>
 );

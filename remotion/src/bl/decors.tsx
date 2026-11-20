@@ -140,3 +140,83 @@ export const BureauBg: React.FC<{tint?: number}> = ({tint = 0}) => {
     </AbsoluteFill>
   );
 };
+
+/** Marché de Noël le soir (21 nov. 2026) : chalets en bois à toits enneigés, guirlande, sapin, neige qui tombe. */
+export const MarcheNoelBg: React.FC<{tint?: number}> = ({tint = 0}) => {
+  const f = useCurrentFrame();
+  const cols = ['#FFD640', '#F04242', '#20E388', '#36D6F0'];
+  const chalet = (x: number, w: number, col: string, k: number) => (
+    <g key={k}>
+      <rect x={x} y={760} width={w} height={420} fill={col} stroke="#16121F" strokeWidth={8} />
+      {Array.from({length: Math.floor(w / 36)}, (_, i) => (
+        <line key={i} x1={x + 18 + i * 36} y1={764} x2={x + 18 + i * 36} y2={1176} stroke="rgba(0,0,0,0.18)" strokeWidth={4} />
+      ))}
+      <rect x={x + 30} y={880} width={w - 60} height={150} fill="#FFE7A8" stroke="#16121F" strokeWidth={7} opacity={0.95} />
+      <rect x={x + 18} y={1030} width={w - 36} height={34} fill="#6B3A1E" stroke="#16121F" strokeWidth={6} />
+      <path d={`M ${x - 40} 770 L ${x + w / 2} 600 L ${x + w + 40} 770 Z`} fill="#7A3B1E" stroke="#16121F" strokeWidth={8} strokeLinejoin="round" />
+      <path d={`M ${x - 40} 770 L ${x + w / 2} 600 L ${x + w + 40} 770 L ${x + w + 10} 780 Q ${x + w / 2} 700 ${x - 10} 780 Z`}
+        fill="#F4F8FF" stroke="#16121F" strokeWidth={6} strokeLinejoin="round" />
+    </g>
+  );
+  return (
+    <AbsoluteFill style={{background: 'linear-gradient(180deg,#0B1240 0%,#1E2A6E 55%,#2A3570 70%,#D8E2F2 70%,#B8C6DE 100%)'}}>
+      <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0}}>
+        {chalet(-60, 380, '#A0582C', 1)}
+        {chalet(370, 340, '#8E4A24', 2)}
+        {chalet(760, 380, '#A0582C', 3)}
+        <path d="M 1000 1340 L 1060 1340 L 1030 1180 Z" fill="#1E7A4A" />
+        <path d="M -20 610 Q 270 700 540 620 Q 810 700 1100 610" fill="none" stroke="#0E1230" strokeWidth={6} />
+        {Array.from({length: 20}, (_, i) => {
+          const t = i / 19;
+          const xx = -20 + t * 1120;
+          const seg = t < 0.5 ? t * 2 : (t - 0.5) * 2;
+          const yy = 610 + 4 * seg * (1 - seg) * 75;
+          const on = (Math.floor(f / 8) + i) % 3 !== 0;
+          const c = cols[i % cols.length];
+          return <circle key={i} cx={xx} cy={yy + 14} r={12} fill={c} opacity={on ? 1 : 0.35}
+            style={{filter: on ? `drop-shadow(0 0 10px ${c})` : undefined}} />;
+        })}
+      </svg>
+      {Array.from({length: 46}, (_, i) => {
+        const x = (rand(i + 3) * 1080 + Math.sin(f / 20 + i) * 20) % 1080;
+        const y = ((rand(i + 70) * 1920 + f * (2 + rand(i + 11) * 2.5)) % 1920);
+        const r = 5 + rand(i + 5) * 8;
+        return <div key={i} style={{position: 'absolute', left: x, top: y, width: r, height: r, borderRadius: r,
+          background: 'rgba(255,255,255,0.85)'}} />;
+      })}
+      <AbsoluteFill style={{background: NAVY, opacity: tint}} />
+    </AbsoluteFill>
+  );
+};
+
+/** Ville la nuit (21 nov. 2026) : immeubles aux fenêtres allumées, enseigne néon de bar, lune. `dawn` : lumière de jour. */
+export const SoireeBg: React.FC<{tint?: number; dawn?: boolean; sign?: boolean}> = ({tint = 0, dawn = false, sign = true}) => {
+  const f = useCurrentFrame();
+  const sky = dawn ? 'linear-gradient(180deg,#7CC6F0 0%,#BFE6FA 60%,#E8D9B8 60%,#D4C29C 100%)'
+    : 'linear-gradient(180deg,#07082A 0%,#1A1450 60%,#241B4A 60%,#151034 100%)';
+  const blds = [[-20, 520, 260], [230, 420, 220], [440, 560, 260], [690, 460, 200], [880, 600, 230]];
+  return (
+    <AbsoluteFill style={{background: sky}}>
+      {!dawn ? <div style={{position: 'absolute', left: 60, top: 200, width: 110, height: 110, borderRadius: 65,
+        background: '#FFF4C8', boxShadow: '0 0 60px #FFF4C8'}} /> : null}
+      {blds.map(([x, top, w], i) => (
+        <div key={i} style={{position: 'absolute', left: x, top, width: w, height: 1152 - top,
+          background: dawn ? '#8A92B8' : '#20204E', border: '8px solid #16121F', borderBottom: 'none'}}>
+          {Array.from({length: 18}, (_, k) => {
+            const on = dawn ? false : rand(i * 31 + k + Math.floor(f / 45)) > 0.45;
+            return <div key={k} style={{position: 'absolute', left: 22 + (k % 3) * ((w - 60) / 3), top: 30 + Math.floor(k / 3) * 90,
+              width: 34, height: 48, background: on ? '#FFD86B' : dawn ? '#C8D4F0' : '#14143A',
+              boxShadow: on ? '0 0 14px #FFD86B' : undefined}} />;
+          })}
+        </div>
+      ))}
+      <div style={{position: 'absolute', left: 0, right: 0, top: 1152, height: 12, background: '#16121F'}} />
+      {!dawn && sign ? (
+        <div style={{position: 'absolute', left: 300, top: 1040, padding: '6px 26px', borderRadius: 16, border: '6px solid #E828BE',
+          fontFamily: 'Inter', fontWeight: 900, fontSize: 44, color: '#FFB8F0',
+          opacity: Math.floor(f / 6) % 9 === 0 ? 0.4 : 1, boxShadow: '0 0 30px #E828BE', textShadow: '0 0 16px #E828BE'}}>BAR</div>
+      ) : null}
+      <AbsoluteFill style={{background: NAVY, opacity: tint}} />
+    </AbsoluteFill>
+  );
+};

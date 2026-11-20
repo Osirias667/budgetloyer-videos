@@ -213,3 +213,34 @@ export const CarteRare: React.FC<{x: number; y: number; w: number; h: number; co
     </div>
   );
 };
+
+/** Horloge numérique (21 nov. 2026) : heure en gros chiffres verts, petite mention de jour au-dessus. */
+export const Horloge: React.FC<{h: string; jour?: string; x?: number; y?: number; col?: string; delay?: number}> = (
+  {h, jour, x = 620, y = 260, col = GREEN, delay = 0},
+) => {
+  const f = useCurrentFrame();
+  const colon = Math.floor(f / 15) % 2 === 0;
+  const [hh, mm] = h.split(':');
+  return (
+    <Pop delay={delay} style={{position: 'absolute', left: x, top: y, width: 380, borderRadius: 26, background: '#0B0F22',
+      border: `6px solid ${col}`, boxShadow: `0 0 28px ${col}88`, textAlign: 'center', padding: '10px 0 14px'}}>
+      {jour ? <div style={{...font(800, 30), color: GREY, letterSpacing: 2}}>{jour}</div> : null}
+      <div style={{...font(900, 110), color: col, lineHeight: 1, textShadow: `0 0 22px ${col}`}}>
+        {hh}<span style={{opacity: colon ? 1 : 0.25}}>:</span>{mm}
+      </div>
+    </Pop>
+  );
+};
+
+/** Ticket « total » qui défile (21 nov. 2026) : grand montant dans un cadre, libellé au-dessus. */
+export const Total: React.FC<{a: number; b: number; label?: string; x?: number; y?: number; w?: number; col?: string;
+  f0?: number; f1?: number; delay?: number; unknown?: boolean}> = (
+  {a, b, label = 'TOTAL', x = 90, y = 1180, w = 900, col = YEL, f0 = 10, f1 = 30, delay = 0, unknown = false},
+) => (
+  <Pop delay={delay} style={{position: 'absolute', left: x, top: y, width: w, height: 190, borderRadius: 28,
+    background: 'rgba(10,14,44,0.94)', border: `6px solid ${col}`, boxShadow: `0 0 26px ${col}88`, display: 'flex',
+    alignItems: 'center', justifyContent: 'space-between', padding: '0 48px', boxSizing: 'border-box'}}>
+    <span style={{...font(900, 54), color: col}}>{label}</span>
+    <span style={{...font(900, 104), color: 'white'}}>{unknown ? '? €' : <Roll a={a} b={b} f0={f0} f1={f1} />}</span>
+  </Pop>
+);
