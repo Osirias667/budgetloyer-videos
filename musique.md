@@ -49,3 +49,5 @@ Le moteur est `musique.py` (classe `Track`). La règle audio douce du PLAYBOOK s
 | 2026-11-20 | Secret Santa, le tirage | swing + roi_montagne | A | 139 | 6204 | v3.0 (sf2) | à mesurer |
 | 2026-11-21 | Marché de Noël, devine le total | lofi | Eb | 92 | 6267 | v3.0 (sf2) | à mesurer |
 | 2026-11-21 | Samedi soir, je sors pas | house_light + marche_turque | Bb | 123 | 3845 | v3.0 (sf2) | à mesurer |
+| 2026-11-22 | Défi des 5 dimanches | chiptune_doux + ode_joie | E | 122 | 3837 | v3.0 (sf2) | à mesurer |
+| 2026-11-22 | L'addition arrive | synthwave | F | 105 | 8952 | v3.0 (sf2) | à mesurer |
