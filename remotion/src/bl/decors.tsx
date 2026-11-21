@@ -220,3 +220,35 @@ export const SoireeBg: React.FC<{tint?: number; dawn?: boolean; sign?: boolean}>
     </AbsoluteFill>
   );
 };
+
+/** Restaurant le soir (22 nov. 2026) : mur brique chaud, suspensions qui oscillent, grande table en bois au premier plan. */
+export const RestoBg: React.FC<{tint?: number}> = ({tint = 0}) => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{background: 'linear-gradient(180deg,#5A2318 0%,#7A3422 70%,#3A1A12 100%)'}}>
+      <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0}}>
+        {Array.from({length: 22}, (_, r) => Array.from({length: 7}, (_, c) => (
+          <rect key={`${r}-${c}`} x={(r % 2) * -80 + c * 170} y={r * 60} width={160} height={52} rx={6}
+            fill={rand(r * 7 + c) > 0.5 ? '#8A3D28' : '#7E3624'} opacity={0.75} />
+        )))}
+        {[200, 540, 880].map((x, i) => {
+          const sw = Math.sin(f / 22 + i) * 4;
+          return (
+            <g key={x} transform={`rotate(${sw} ${x} 0)`}>
+              <line x1={x} y1={0} x2={x} y2={150} stroke="#16121F" strokeWidth={6} />
+              <path d={`M ${x - 80} 220 Q ${x} 110 ${x + 80} 220 Z`} fill="#20E388" stroke="#16121F" strokeWidth={7} />
+              <ellipse cx={x} cy={232} rx={46} ry={20} fill="#FFF2B0" style={{filter: 'drop-shadow(0 0 30px #FFE27A)'}} />
+            </g>
+          );
+        })}
+        <rect x={-20} y={1180} width={1120} height={760} fill="#A8693A" stroke="#16121F" strokeWidth={10} />
+        {Array.from({length: 6}, (_, i) => (
+          <line key={i} x1={0} y1={1240 + i * 110} x2={1080} y2={1240 + i * 110} stroke="#8A5228" strokeWidth={6} />
+        ))}
+      </svg>
+      <div style={{position: 'absolute', left: 0, right: 0, top: 0, height: 900,
+        background: 'radial-gradient(ellipse at 50% 15%, rgba(255,220,140,0.25), rgba(0,0,0,0) 60%)'}} />
+      <AbsoluteFill style={{background: NAVY, opacity: tint}} />
+    </AbsoluteFill>
+  );
+};

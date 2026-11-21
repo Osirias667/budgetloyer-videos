@@ -448,3 +448,66 @@ export const Collegue: React.FC<PersoProps & {expr?: Expr; talk?: boolean; look?
     </Perso>
   );
 };
+
+// ---- Le Bocal (22 nov. 2026) -----------------------------------------------------------------------------------
+/** Bocal d'épargne en verre, avec un visage : pièces qui montent selon `level` (0-1), étiquette du montant.
+ *  `drop` : image où 3 pièces tombent dedans (−1 : aucune). Objet générique, aucun personnage protégé. */
+export const Bocal: React.FC<PersoProps & {expr?: Expr; talk?: boolean; level?: number; label?: string; drop?: number;
+  look?: number}> = ({expr = 'happy', talk, level = 0, label, drop = -1, look = 0, ...p}) => {
+  const f = useCurrentFrame();
+  const lv = Math.max(0, Math.min(1, level));
+  const top = 300, bottom = 900;
+  const surf = bottom - 20 - lv * (bottom - top - 60);
+  const rows = Math.round(lv * 14);
+  return (
+    <Perso {...p} ratio={1000 / 760} seed={61}>
+      <svg viewBox="0 0 760 1000" width="100%" height="100%" style={{overflow: 'visible'}}>
+        <defs>
+          <linearGradient id="bocalglass" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stopColor="#BFEFFF" stopOpacity={0.55} /><stop offset="0.5" stopColor="#E8FAFF" stopOpacity={0.3} />
+            <stop offset="1" stopColor="#9FDDF2" stopOpacity={0.55} />
+          </linearGradient>
+          <clipPath id="bocalclip"><rect x={130} y={top} width={500} height={bottom - top} rx={90} /></clipPath>
+        </defs>
+        {/* pièces */}
+        <g clipPath="url(#bocalclip)">
+          {lv > 0 ? <rect x={120} y={surf} width={520} height={bottom - surf + 20} fill="#E8A92A" /> : null}
+          {Array.from({length: rows}, (_, r) => Array.from({length: 6}, (_, c) => {
+            const cx = 170 + c * 84 + (r % 2) * 40;
+            const cy = bottom - 40 - r * ((bottom - top - 60) / 14);
+            return <ellipse key={`${r}-${c}`} cx={cx} cy={cy} rx={40} ry={16} fill="#FFD640" stroke="#B87A10" strokeWidth={5} />;
+          }))}
+        </g>
+        {/* verre */}
+        <rect x={130} y={top} width={500} height={bottom - top} rx={90} fill="url(#bocalglass)" stroke={K} strokeWidth={12} />
+        <path d="M 180 380 Q 170 560 186 760" fill="none" stroke="white" strokeWidth={18} strokeLinecap="round" opacity={0.7} />
+        {/* col et couvercle */}
+        <rect x={190} y={230} width={380} height={86} rx={22} fill="#20E388" stroke={K} strokeWidth={10} />
+        <rect x={210} y={250} width={340} height={18} rx={9} fill="#7FF5BE" />
+        <rect x={330} y={190} width={100} height={44} rx={10} fill={K} />
+        {/* visage */}
+        <Face cx={380 + look * 6} cy={460} s={1.45} expr={expr} talk={talk} look={look} seed={61} gap={60} />
+        {/* étiquette */}
+        {label ? (
+          <g>
+            <rect x={200} y={600} width={360} height={120} rx={26} fill="white" stroke={K} strokeWidth={9} />
+            <text x={380} y={683} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={label.length > 6 ? 66 : 76}
+              fill={K}>{label}</text>
+          </g>
+        ) : null}
+        {/* pièces qui tombent */}
+        {drop >= 0 ? [0, 1, 2].map((i) => {
+          const t = (f - drop - i * 4) / 14;
+          if (t < 0 || t > 1) return null;
+          const y = -120 + t * (surf + 140);
+          return (
+            <g key={i} transform={`translate(${330 + i * 50} ${y}) rotate(${t * 300 + i * 40})`}>
+              <circle r={42} fill="#FFD640" stroke="#B87A10" strokeWidth={7} />
+              <text y={18} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={50} fill="#B87A10">€</text>
+            </g>
+          );
+        }) : null}
+      </svg>
+    </Perso>
+  );
+};

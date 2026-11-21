@@ -244,3 +244,58 @@ export const Total: React.FC<{a: number; b: number; label?: string; x?: number; 
     <span style={{...font(900, 104), color: 'white'}}>{unknown ? '? €' : <Roll a={a} b={b} f0={f0} f1={f1} />}</span>
   </Pop>
 );
+
+/** Feuille de calendrier (22 nov. 2026) : bandeau rouge avec le jour de la semaine, grand numéro, mois. */
+export const Feuille: React.FC<{jour: string; num: string; mois: string; x: number; y: number; w?: number; col?: string; delay?: number}> = (
+  {jour, num, mois, x, y, w = 260, col = RED, delay = 0},
+) => (
+  <Pop delay={delay} style={{position: 'absolute', left: x, top: y, width: w, borderRadius: 24, overflow: 'hidden', background: 'white',
+    border: '7px solid #16121F', boxShadow: '0 10px 0 rgba(0,0,0,0.35)', textAlign: 'center'}}>
+    <div style={{background: col, ...font(900, w * 0.15), color: 'white', padding: '6px 0'}}>{jour}</div>
+    <div style={{...font(900, w * 0.42), color: '#16121F', lineHeight: 1.05}}>{num}</div>
+    <div style={{...font(800, w * 0.13), color: '#16121F', paddingBottom: 10}}>{mois}</div>
+  </Pop>
+);
+
+/** Rangée de cases qui se remplissent (22 nov. 2026, mécanisme « liste vide qui se remplit ») : `filled` cases pleines,
+ *  la case `filled - 1` s'allume à l'image `at`. */
+export const Cases: React.FC<{items: {top: string; val: string}[]; filled: number; y: number; at?: number; col?: string}> = (
+  {items, filled, y, at = 0, col = GREEN},
+) => {
+  const f = useCurrentFrame();
+  const n = items.length;
+  const w = 152, gap = 12;
+  const x0 = (1080 - (n * w + (n - 1) * gap)) / 2;
+  return (
+    <>
+      {items.map((it, i) => {
+        const on = i < filled && (i < filled - 1 || f >= at);
+        const just = i === filled - 1 && at > 0;
+        const k = just ? interpolate(f - at, [0, 4, 10], [1, 1.18, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}) : 1;
+        return (
+          <div key={i} style={{position: 'absolute', left: x0 + i * (w + gap), top: y, width: w, height: 150, borderRadius: 22,
+            boxSizing: 'border-box', border: `6px solid ${on ? col : '#3A4060'}`, background: on ? 'rgba(10,14,44,0.95)' : 'rgba(10,14,44,0.7)',
+            boxShadow: on ? `0 0 22px ${col}88` : undefined, textAlign: 'center', transform: `scale(${k})`}}>
+            <div style={{...font(800, 28), color: GREY, marginTop: 14}}>{it.top}</div>
+            <div style={{...font(900, 54), color: on ? col : '#5A6080', marginTop: 8}}>{on ? it.val : '?'}</div>
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+/** Addition de restaurant (22 nov. 2026) : petit ticket blanc posé en biais, montant en gros. */
+export const Addition: React.FC<{total: string; sub?: string; x?: number; y?: number; w?: number; delay?: number; rot?: number}> = (
+  {total, sub, x = 340, y = 600, w = 400, delay = 0, rot = -4},
+) => (
+  <Pop delay={delay} style={{position: 'absolute', left: x, top: y, width: w}}>
+    <div style={{transform: `rotate(${rot}deg)`, background: '#FFFDF4', border: '7px solid #16121F', borderRadius: 14,
+      boxShadow: '0 12px 0 rgba(0,0,0,0.35)', padding: '18px 26px 24px', textAlign: 'center'}}>
+      <div style={{...font(900, 36), color: '#16121F', letterSpacing: 4}}>ADDITION</div>
+      <div style={{borderTop: '4px dashed #16121F', margin: '10px 0'}} />
+      {sub ? <div style={{...font(700, 30), color: '#555'}}>{sub}</div> : null}
+      <div style={{...font(900, 92), color: RED, lineHeight: 1.1}}>{total}</div>
+    </div>
+  </Pop>
+);
