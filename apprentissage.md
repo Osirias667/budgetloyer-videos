@@ -109,6 +109,15 @@
 - Programmation du 22 nov. : aucun post existant ce jour-là avant la session. Pas de Trial Reel ni de carrousel cette semaine (le prompt de la session prévoit 6 posts) : reporté à la semaine du 23 nov.
 - Piste à soumettre au propriétaire (non testée, réglage du PLAYBOOK) : tous les posts TikTok portent `commercialContentOwnBrand: true` (mention « contenu de marque »), qui peut limiter la diffusion ; il était déjà actif avant la chute, donc peu probable comme cause unique. Toujours à vérifier dans TikTok Studio : avertissement, restriction ou baisse de la part « Pour toi » depuis le 17 nov.
 
+## Analyse du 22 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : **la chute continue, 8e et 9e vidéos sous 345 vues** : marché de Noël « devine le total » (21 nov. 10:00) 253 vues, 2 j'aime à ~35 h ; « je sors pas » (21 nov. 18:00) **195 vues**, 3 j'aime à ~27 h, la plus basse depuis le 9 nov. Le test du 21 nov. est donc négatif : les deux mécaniques qui tenaient 750-990 vues (devine, horloge) restent dans la zone basse. **Le format n'est pas la cause ; la baisse de diffusion du compte depuis le 17 nov. au soir se confirme** (9 vidéos, tous formats). Secret Santa (20 nov. 18:00) est publié (statut PUBLISHED) mais absent des stats TikTok de Metricool. Partages : toujours 1 sur tout le compte. Vidéos du 22 nov. pas encore dans les stats.
+- Instagram : **Remotion confirmé sur 6 vidéos** : je sors pas 131 comptes, **9,6 s, 62,1 %** (2e meilleure rétention du compte après Survie p1, 10,2 s, 63,6 %) ; Secret Santa **186 comptes atteints** (record de portée depuis le 10 nov.), 9,1 s, 56 % ; marché de Noël 138 comptes, 7,2 s, 55,7 % ; médiane Remotion ≈ 9 s contre ≈ 6 s pour bl.py. Le premier commentaire échoue toujours (statut ERROR sur tous les Reels, Reels publiés).
+- YouTube : rien de nouveau (données jusqu'au 19 nov. ; couple é1 7 vues, pompiers 4).
+- 5 dernières descriptions relues : format une ligne, 5 hashtags, chute filée, tenu.
+- Veille : virlo.ai/trending-on-tiktok-this-week (mis à jour le 22 nov. 2026, semaine du 16 au 22) : nouveaux formats « POV: you're the villain but… » (+250 %), « In this town everybody goes out partying except me », « He wanna pay full price » (+631 %) ; l'accroche POV a le meilleur taux de réussite (32,9 % de 50 416 TikTok au-dessus du score viral 18) ; accroches « controverse » en hausse (24 %). socialpilot.co/blog/tiktok-trends (17 nov., fenêtre 17-25 nov.) inchangé. Adapté le 23 nov. 10:00 (POV de Monsieur Découvert). Actu Black Friday (vendredi 27 nov., Cyber Monday le 30) : seuls 46 % des Français font confiance aux remises affichées (BCG, communiqué daté du 11 nov. 2026, description de la page ; enquête de septembre, 1 006 Français : chiffres détaillés à relire sur la page avant usage) ; règle du prix de référence (« le prix le plus bas affiché […] durant les 30 jours précédant la promotion », valable en ligne et en magasin ; gonfler un prix juste avant = pratique commerciale trompeuse), budget déclaré 151 € pour le week-end (Shopify / Sapio Research, 2 000 Français) : mediaterranee.com, 28 oct. 2026, mis à jour le 7 nov. **Sujet réservé au 24-27 nov.** (« vraie ou fausse promo ? », jeu à 3 prix barrés avec historique sur 30 jours).
+- Programmation du 23 nov. : aucun post existant ce jour-là avant la session. Pas de Trial Reel ni de carrousel programmés (le prompt prévoit 6 posts) : toujours à faire cette semaine.
+- Choix du 23 nov. : 1 format inédit (POV du méchant) + 1 mécanique qui a le mieux marché (Survie, 4e saison, sur le mot-clé « budget étudiant »).
+
 ## Ce qui marche
 - **Confirmé (4 vidéos à plus de 48 h)** : le format de publication en place depuis le 10 nov. (accroche complète dès l'image 1, 5 hashtags, description au format, audio doux) fait passer TikTok de ~260 à 740-785 vues, pour les jeux comme pour le POV d'objet en série.
 - **Piste forte, confirmée sur 2 thèmes** (fin de mois 819 vues, premier appart 806 vues + 1er partage ; Instagram 10,2 s puis 8,7 s) : histoire dont tu es le héros en 2e personne, widget « Il te reste » qui bouge, choix A/B (Survie p1) : 817 vues et 15 j'aime TikTok (record), 10,2 s et 63,6 % de durée vue Instagram (record). Diffusion plus lente au départ (436 vues à 27 h). Reprise le 16 nov. sur un nouveau thème (premier appart) pour vérifier que ce n'est pas le sujet seul.
@@ -118,7 +127,7 @@
 - Jeux et défis : au niveau du plateau, pas au-dessus. Garder un jeu par jour mais varier la mécanique ; le jeu seul ne suffit plus à progresser.
 - Ancien : formats directs de 34-35 s (« 3 raisons », « où est passé ton salaire ») à 355-366 vues ; sketch « garde à vue » en tête sur Instagram.
 
-- Piste (2 vidéos, 19 nov.) : Remotion + vrais instruments = 9,1 et 9,3 s vues Instagram (54 %), contre ~6 s de médiane bl.py. Garder Remotion.
+- **Confirmé (6 vidéos, 19-21 nov.)** : Remotion + vrais instruments = 7,2 à 9,6 s vues Instagram (médiane ≈ 9 s, 54-62 %), contre ~6 s de médiane bl.py ; record de portée Instagram (Secret Santa, 186 comptes). Garder Remotion.
 
 ## Ce qui ne marche pas
 _Rien de confirmé pour l'instant._
@@ -132,6 +141,7 @@ _Rien de confirmé pour l'instant._
 - Piste : vidéo très courte (15,6 s, raclette) : 773 vues TikTok à ~35 h, au plateau ; la durée seule ne fait pas sortir du plafond.
 - « Script mot pour mot » en conversation de groupe : 729 vues TikTok à ~51 h (au plateau après un départ lent), 5,5 s et 31 % Instagram (sous la médiane), malgré son succès ailleurs (tryvolume.app). Ne pas refaire.
 - Piste : « Attente vs Réalité » ticket de caisse (courses) : 728 vues TikTok, 4,8 s Instagram, sous les deux médianes.
+- **Confirmé le 22 nov. (9 vidéos)** : la chute TikTok est indépendante du format (devine et horloge, mécaniques qui tenaient 750-990, font 253 et 195). Ne plus chercher la cause dans le format ; vérification à faire côté compte (TikTok Studio).
 - **Alerte TikTok (20 nov., 5 vidéos)** : depuis le 17 nov. 18:00, toutes les vidéos tombent à 206-338 vues, séries Survie comprises (à deux é1 : 229). Le format n'est pas la cause ; vidéos du 21 nov. = test (jeu « devine » et horloge, les deux mécaniques qui tenaient 750-990).
 - Piste (19 nov., à confirmer) : échelle de panique visage muet + légende : 248 vues TikTok à ~51 h, 4,0 s et 20,6 % Instagram, la plus basse des deux réseaux depuis le 10 nov. Ne pas refaire tel quel.
 
@@ -176,6 +186,8 @@ _Rien de confirmé pour l'instant._
 38. « Je sors pas » : refus puis capitulation à l'horloge (21 nov. 18:00, 21,6 s) : l'horloge du défi 0 € (record 990) + tsundere fait-elle commenter (réponse en une heure) et partager ?
 39. Défi des 5 dimanches (22 nov. 10:00, 23,4 s) : défi à démarrer le jour même + résultat d'abord (bocal plein dès l'image 1) + cases qui se remplissent + réponse en un mot (niveau) : TikTok au-dessus de la zone 206-340 ? commentaires « facile / normal / boss » ?
 40. Format inédit : « Tous les groupes de potes quand l'addition arrive » (22 nov. 18:00, 19,8 s), 5 profils + n°6 caché = toi, tag demandé : partages et commentaires en un chiffre contre 0-2 habituels.
+41. Format inédit de la semaine (23 nov. 10:00, 20,6 s) : « POV : tu es Monsieur Découvert », POV du méchant récurrent, 4 pièges, n°4 caché, retournement « …sauf que » : vues TikTok contre la zone 195-340, durée vue Instagram > 9 s, commentaires en un chiffre.
+42. Survie · Étudiant é1 (23 nov. 18:00, 18,4 s) : 4e saison de Survie sur le mot-clé « budget étudiant » (nouveau public) : vues TikTok et durée vue Instagram contre les autres saisons ; é2 promis le 24 nov.
 31. À faire cette semaine : Trial Reel hebdomadaire et carrousel photo (aucun programmé du 16 au 22 nov. à ce jour) ; Survie saison 3 (mécanique confirmée).
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
