@@ -252,3 +252,70 @@ export const RestoBg: React.FC<{tint?: number}> = ({tint = 0}) => {
     </AbsoluteFill>
   );
 };
+
+/** Chambre d'étudiant (23 nov. 2026, série « Survie · Étudiant ») : mur bleu nuit, fenêtre étoilée, étagère de livres,
+ *  bureau avec lampe et pile de cours. Tout le haut reste calme pour le texte. */
+export const ChambreBg: React.FC<{tint?: number}> = ({tint = 0}) => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{background: 'linear-gradient(180deg,#1B2350 0%,#27306A 60%,#1B2350 100%)'}}>
+      <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0}}>
+        {/* fenêtre */}
+        <rect x={-20} y={560} width={250} height={380} rx={10} fill="#0B1030" stroke="#16121F" strokeWidth={10} />
+        {Array.from({length: 9}, (_, i) => (
+          <circle key={i} cx={20 + rand(i + 3) * 190} cy={600 + rand(i + 11) * 300} r={3 + rand(i) * 3} fill="#FFF6C8"
+            opacity={0.5 + 0.5 * Math.sin(f / 9 + i)} />
+        ))}
+        <line x1={105} y1={560} x2={105} y2={940} stroke="#16121F" strokeWidth={8} />
+        {/* étagère */}
+        <rect x={830} y={640} width={280} height={18} fill="#8A5A34" stroke="#16121F" strokeWidth={6} />
+        {[0, 1, 2, 3, 4].map((i) => (
+          <rect key={i} x={850 + i * 44} y={520 + (i % 2) * 18} width={36} height={120 - (i % 2) * 18} rx={4}
+            fill={['#E85D5D', '#36D6F0', '#FFD640', '#20E388', '#B07CFF'][i]} stroke="#16121F" strokeWidth={5} />
+        ))}
+        {/* bureau */}
+        <rect x={-20} y={1330} width={1120} height={40} fill="#B07A4A" stroke="#16121F" strokeWidth={9} />
+        <rect x={-20} y={1370} width={1120} height={600} fill="#8A5A34" />
+        {/* lampe */}
+        <path d="M 900 1330 L 900 1180 L 960 1120" fill="none" stroke="#16121F" strokeWidth={12} strokeLinecap="round" />
+        <path d="M 920 1080 L 1010 1110 L 990 1170 Z" fill="#FFD640" stroke="#16121F" strokeWidth={7} strokeLinejoin="round" />
+        {/* pile de cours */}
+        {[0, 1, 2].map((i) => (
+          <rect key={i} x={60 + i * 6} y={1300 - i * 26} width={220} height={26} rx={4}
+            fill={['#F4F1E8', '#E85D5D', '#36D6F0'][i]} stroke="#16121F" strokeWidth={5} />
+        ))}
+      </svg>
+      <div style={{position: 'absolute', left: 600, top: 900, width: 700, height: 700, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(255,214,64,0.16) 0%, rgba(0,0,0,0) 65%)'}} />
+      <AbsoluteFill style={{background: NAVY, opacity: tint}} />
+    </AbsoluteFill>
+  );
+};
+
+/** Repaire de Monsieur Découvert (23 nov. 2026, format « POV du méchant ») : mur rouge sombre, tableau de liège avec
+ *  fiches et fils rouges, ampoule qui se balance. */
+export const PlanBg: React.FC<{tint?: number}> = ({tint = 0}) => {
+  const f = useCurrentFrame();
+  const sw = Math.sin(f / 18) * 5;
+  const pins = [[260, 700], [520, 640], [800, 720], [360, 920], [700, 940]];
+  return (
+    <AbsoluteFill style={{background: 'linear-gradient(180deg,#2A0A14 0%,#40101E 55%,#1C060E 100%)'}}>
+      <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0}}>
+        <rect x={150} y={560} width={780} height={480} rx={14} fill="#A8743E" stroke="#16121F" strokeWidth={12} opacity={0.55} />
+        {pins.map(([x, y], i) => (
+          <g key={i} opacity={0.6}>
+            <rect x={x - 62} y={y - 44} width={124} height={88} fill="#F4F1E8" stroke="#16121F" strokeWidth={4}
+              transform={`rotate(${(rand(i + 5) - 0.5) * 14} ${x} ${y})`} />
+            <circle cx={x} cy={y - 38} r={10} fill="#F04242" stroke="#16121F" strokeWidth={3} />
+          </g>
+        ))}
+        <polyline points={pins.map(([x, y]) => `${x},${y - 38}`).join(' ')} fill="none" stroke="#F04242" strokeWidth={5} opacity={0.6} />
+        <g transform={`rotate(${sw} 540 0)`}>
+          <line x1={540} y1={0} x2={540} y2={130} stroke="#16121F" strokeWidth={5} />
+          <circle cx={540} cy={150} r={26} fill="#FFE9A0" style={{filter: 'drop-shadow(0 0 40px #FFD640)'}} />
+        </g>
+      </svg>
+      <AbsoluteFill style={{background: NAVY, opacity: tint}} />
+    </AbsoluteFill>
+  );
+};

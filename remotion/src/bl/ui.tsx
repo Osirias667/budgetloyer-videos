@@ -299,3 +299,47 @@ export const Addition: React.FC<{total: string; sub?: string; x?: number; y?: nu
     </div>
   </Pop>
 );
+
+/** Compteur de jeu de la série « Survie » (23 nov. 2026) : « IL TE RESTE » qui défile, jours restants et repère par jour.
+ *  Élément de jeu, pas un écran de l'app (règle 11). */
+export const HudSurvie: React.FC<{a: number; b: number; jours: number; parJour: number; y?: number; delay?: number; col?: string}> = (
+  {a, b, jours, parJour, y = 260, delay = 0, col = GREEN},
+) => (
+  <Pop delay={delay} style={{position: 'absolute', left: 110, top: y, width: 860, height: 190, borderRadius: 30,
+    background: 'rgba(10,14,44,0.93)', border: `6px solid ${col}`, boxShadow: `0 0 28px ${col}77`, boxSizing: 'border-box',
+    display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0 40px'}}>
+    <div>
+      <div style={{...font(900, 34), color: col, letterSpacing: 2}}>IL TE RESTE</div>
+      <div style={{...font(900, 96), color: 'white', lineHeight: 1.05}}><Roll a={a} b={b} /></div>
+    </div>
+    <div style={{textAlign: 'right'}}>
+      <div style={{...font(900, 50), color: YEL}}>{jours} jours</div>
+      <div style={{...font(800, 40), color: 'white', marginTop: 8}}>{eur(parJour)}<span style={{color: GREY}}>/jour</span></div>
+    </div>
+  </Pop>
+);
+
+/** Option de choix A / B (23 nov. 2026). `pick` : l'option choisie s'allume à l'image `at`, l'autre s'éteint ;
+ *  sans `pick`, les deux restent allumées (choix laissé au public). */
+export const Option: React.FC<{x: number; y: number; w: number; h: number; letter: string; title: string; sub: string; col: string;
+  state?: 'on' | 'pick' | 'off'; at?: number; delay?: number}> = (
+  {x, y, w, h, letter, title, sub, col, state = 'on', at = 0, delay = 0},
+) => {
+  const f = useCurrentFrame();
+  const done = f >= at;
+  const dim = state === 'off' && done;
+  const lit = state === 'pick' && done;
+  const k = lit ? interpolate(f - at, [0, 4, 10], [1, 1.08, 1], {extrapolateRight: 'clamp'}) : 1;
+  return (
+    <Pop delay={delay} style={{position: 'absolute', left: x, top: y, width: w, height: h}}>
+      <div style={{width: '100%', height: '100%', borderRadius: 26, boxSizing: 'border-box', padding: '18px 24px',
+        background: 'rgba(10,14,44,0.93)', border: `6px solid ${dim ? '#3A4060' : col}`, opacity: dim ? 0.45 : 1,
+        boxShadow: lit ? `0 0 40px ${col}` : `0 0 16px ${col}55`, transform: `scale(${k})`, textAlign: 'center', position: 'relative'}}>
+        <div style={{...font(900, 44), color: dim ? GREY : col}}>{letter}</div>
+        <div style={{...font(900, 44), color: 'white', lineHeight: 1.1, marginTop: 4}}>{title}</div>
+        <div style={{...font(700, 32), color: GREY, marginTop: 6, lineHeight: 1.15}}>{sub}</div>
+        {lit ? <div style={{position: 'absolute', top: -30, right: -20}}><Check size={72} /></div> : null}
+      </div>
+    </Pop>
+  );
+};

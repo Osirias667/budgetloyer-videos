@@ -8,6 +8,7 @@ import {A_DURATIONS, B_DURATIONS, CalendrierPompiers, SurvieADeux1} from './epis
 import {A_DURATIONS as A20, B_DURATIONS as B20, SecretSantaTirage, SurvieADeux2} from './episodes/2026-11-20';
 import {A_DURATIONS as A21, B_DURATIONS as B21, MarcheNoelTotal, SamediJeSorsPas} from './episodes/2026-11-21';
 import {A_DURATIONS as A22, B_DURATIONS as B22, AdditionArrive, DefiCinqDimanches} from './episodes/2026-11-22';
+import {A_DURATIONS as A23, B_DURATIONS as B23, PovDecouvert, SurvieEtudiant1} from './episodes/2026-11-23';
 import {Galerie} from './Galerie';
 
 type EpProps = {durations: number[]; audio?: string};
@@ -30,5 +31,7 @@ export const RemotionRoot: React.FC = () => (
     {ep('samedi-je-sors-pas', SamediJeSorsPas, B21)}
     {ep('defi-cinq-dimanches', DefiCinqDimanches, A22)}
     {ep('addition-arrive', AdditionArrive, B22)}
+    {ep('pov-decouvert', PovDecouvert, A23)}
+    {ep('survie-etudiant-1', SurvieEtudiant1, B23)}
   </>
 );
