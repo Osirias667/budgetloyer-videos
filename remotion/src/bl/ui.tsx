@@ -343,3 +343,86 @@ export const Option: React.FC<{x: number; y: number; w: number; h: number; lette
     </Pop>
   );
 };
+
+/** Étiquette de prix (24 nov. 2026, « vraie ou fausse promo ? ») : carton blanc percé, produit, badge de réduction,
+ *  prix barré et nouveau prix. `verdict` : tampon VRAIE / FAUSSE posé dessus à l'image `at`. */
+export const Etiquette: React.FC<{x: number; y: number; w?: number; num?: number; produit: string; avant: number; apres: number;
+  pct: number; rot?: number; delay?: number; verdict?: 'vraie' | 'fausse'; at?: number; dim?: boolean}> = (
+  {x, y, w = 300, num, produit, avant, apres, pct, rot = 0, delay = 0, verdict, at = 0, dim = false},
+) => {
+  const f = useCurrentFrame();
+  const s = w / 300;
+  const stamp = verdict && f >= at;
+  const k = stamp ? interpolate(f - at, [0, 5, 10], [1.8, 0.92, 1], {extrapolateRight: 'clamp'}) : 1;
+  return (
+    <Pop delay={delay} style={{position: 'absolute', left: x, top: y, width: w}}>
+      <div style={{transform: `rotate(${rot}deg)`, opacity: dim ? 0.45 : 1, position: 'relative'}}>
+        <div style={{background: '#FFFDF4', border: `${7 * s}px solid #16121F`, borderRadius: 22 * s, padding: `${44 * s}px ${18 * s}px ${20 * s}px`,
+          textAlign: 'center', boxShadow: '0 12px 0 rgba(0,0,0,0.35)', position: 'relative'}}>
+          <div style={{position: 'absolute', left: '50%', top: 12 * s, width: 22 * s, height: 22 * s, marginLeft: -11 * s, borderRadius: '50%',
+            background: '#1E1236', border: `${5 * s}px solid #16121F`}} />
+          {num ? <div style={{position: 'absolute', left: 14 * s, top: 8 * s, ...font(900, 34 * s), color: '#16121F'}}>{num}</div> : null}
+          <div style={{...font(800, 34 * s), color: '#16121F', lineHeight: 1.1}}>{produit}</div>
+          <div style={{...font(700, 38 * s), color: '#7A7A86', textDecoration: 'line-through', textDecorationThickness: 4 * s,
+            marginTop: 8 * s}}>{eur(avant, 0)}</div>
+          <div style={{...font(900, 74 * s), color: RED, lineHeight: 1.05}}>{eur(apres, 0)}</div>
+          <div style={{position: 'absolute', right: -22 * s, top: -26 * s, background: RED, color: 'white', ...font(900, 38 * s),
+            padding: `${6 * s}px ${14 * s}px`, borderRadius: 16 * s, border: `${5 * s}px solid #16121F`, transform: 'rotate(8deg)'}}>
+            -{pct}&nbsp;%</div>
+        </div>
+        {stamp ? (
+          <div style={{position: 'absolute', left: 0, right: 0, top: '42%', display: 'flex', justifyContent: 'center'}}>
+            <div style={{transform: `rotate(-12deg) scale(${k})`, background: verdict === 'vraie' ? GREEN : RED,
+              color: verdict === 'vraie' ? '#0A0E2C' : 'white', ...font(900, 48 * s), padding: `${4 * s}px ${20 * s}px`,
+              borderRadius: 14 * s, border: `${6 * s}px solid white`, boxShadow: '0 0 24px rgba(0,0,0,0.5)'}}>
+              {verdict === 'vraie' ? 'VRAIE' : 'FAUSSE'}</div>
+          </div>
+        ) : null}
+      </div>
+    </Pop>
+  );
+};
+
+/** Courbe du prix sur les 30 jours avant la promo (24 nov. 2026) : la ligne se trace de f0 à f1, puis le prix le plus
+ *  bas des 30 jours (le prix de référence) s'affiche en pointillés à partir de `lowAt`. `prices` : 31 valeurs, de J-30
+ *  à J-1, puis le prix promo (dernier point, en rouge). */
+export const CourbePrix: React.FC<{prices: number[]; y: number; f0?: number; f1?: number; lowAt?: number; col?: string;
+  lowLabel?: string}> = (
+  {prices, y, f0 = 4, f1 = 34, lowAt = 38, col = '#36D6F0', lowLabel},
+) => {
+  const f = useCurrentFrame();
+  const W = 900, H = 400, padL = 30, padR = 30, padT = 60, padB = 70;
+  const before = prices.slice(0, -1);
+  const lo = Math.min(...prices), hi = Math.max(...prices);
+  const span = Math.max(1, hi - lo);
+  const px = (i: number) => padL + (i / (prices.length - 1)) * (W - padL - padR);
+  const py = (v: number) => padT + (1 - (v - (lo - span * 0.15)) / (span * 1.3)) * (H - padT - padB);
+  const p = interpolate(f, [f0, f1], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.inOut(Easing.cubic)});
+  const n = Math.max(1, Math.floor(p * (prices.length - 1)));
+  const pts = prices.slice(0, n + 1).map((v, i) => `${px(i)},${py(v)}`).join(' ');
+  const ref = Math.min(...before);
+  const showLow = f >= lowAt;
+  const lk = showLow ? interpolate(f - lowAt, [0, 8], [0, 1], {extrapolateRight: 'clamp'}) : 0;
+  const last = prices.length - 1;
+  return (
+    <Pop style={{position: 'absolute', left: 90, top: y, width: W, height: H}}>
+      <div style={{position: 'absolute', inset: 0, borderRadius: 28, background: 'rgba(10,14,44,0.94)', border: `6px solid ${col}`,
+        boxShadow: `0 0 26px ${col}66`}} />
+      <div style={{position: 'absolute', left: 30, top: 12, ...font(900, 32), color: col, letterSpacing: 1}}>PRIX SUR 30 JOURS</div>
+      <svg width={W} height={H} style={{position: 'absolute', left: 0, top: 0}}>
+        <line x1={padL} x2={W - padR} y1={H - padB + 10} y2={H - padB + 10} stroke="#3A4060" strokeWidth={4} />
+        <polyline points={pts} fill="none" stroke="white" strokeWidth={9} strokeLinejoin="round" strokeLinecap="round" />
+        {showLow ? (
+          <line x1={padL} x2={padL + (W - padL - padR) * lk} y1={py(ref)} y2={py(ref)} stroke={YEL} strokeWidth={7} strokeDasharray="18 12" />
+        ) : null}
+        {n >= last ? <circle cx={px(last)} cy={py(prices[last])} r={16} fill={RED} stroke="white" strokeWidth={5} /> : null}
+      </svg>
+      <div style={{position: 'absolute', left: 30, top: H - 56, ...font(700, 28), color: GREY}}>il y a 30 jours</div>
+      <div style={{position: 'absolute', right: 30, top: H - 56, ...font(800, 28), color: RED}}>Black Friday</div>
+      {showLow && lowLabel ? (
+        <div style={{position: 'absolute', left: 0, right: 0, top: H + 18, textAlign: 'center', opacity: lk, ...font(900, 44), color: YEL}}>
+          {lowLabel}</div>
+      ) : null}
+    </Pop>
+  );
+};

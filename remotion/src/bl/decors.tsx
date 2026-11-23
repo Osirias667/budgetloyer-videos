@@ -319,3 +319,42 @@ export const PlanBg: React.FC<{tint?: number}> = ({tint = 0}) => {
     </AbsoluteFill>
   );
 };
+
+/** Rayon de magasin un soir de promos (24 nov. 2026, Black Friday « vraie ou fausse promo ? ») : mur sombre, étagères,
+ *  guirlande de fanions et néon « PROMO » générique qui clignote doucement. Aucune enseigne réelle. */
+export const VitrineBg: React.FC<{tint?: number}> = ({tint = 0}) => {
+  const f = useCurrentFrame();
+  const glow = 0.75 + 0.25 * Math.sin(f / 7);
+  return (
+    <AbsoluteFill style={{background: 'linear-gradient(180deg,#120A22 0%,#1E1236 60%,#0E0818 100%)'}}>
+      <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0}}>
+        {/* fanions */}
+        <path d="M -20 70 Q 540 150 1100 70" fill="none" stroke="#16121F" strokeWidth={5} />
+        {Array.from({length: 12}, (_, i) => {
+          const x = 20 + i * 92;
+          const y = 70 + 80 * Math.sin((x / 1080) * Math.PI) * 0.95;
+          return <path key={i} d={`M ${x} ${y} L ${x + 56} ${y + 4} L ${x + 30} ${y + 62} Z`}
+            fill={['#F04242', '#FFD640', '#E828BE', '#36D6F0'][i % 4]} stroke="#16121F" strokeWidth={4} opacity={0.85} />;
+        })}
+        {/* étagères */}
+        {[1060, 1290].map((y, r) => (
+          <g key={y}>
+            <rect x={-20} y={y} width={1120} height={22} fill="#4A3A6A" stroke="#16121F" strokeWidth={6} />
+            {Array.from({length: 7}, (_, i) => (
+              <rect key={i} x={30 + i * 150 + rand(i + r * 9) * 20} y={y - 70 - rand(i + 4 + r) * 40} width={90}
+                height={70 + rand(i + 4 + r) * 40} rx={10} fill={['#2E2650', '#3A2E60', '#28224A'][(i + r) % 3]}
+                stroke="#16121F" strokeWidth={5} />
+            ))}
+          </g>
+        ))}
+        <rect x={-20} y={1500} width={1120} height={440} fill="#0B0714" />
+      </svg>
+      {/* néon générique */}
+      <div style={{position: 'absolute', right: 60, top: 1560, transform: 'rotate(-6deg)', fontFamily: 'Inter', fontWeight: 900,
+        fontSize: 64, color: '#FFB0EC', opacity: 0.25 + 0.2 * glow, textShadow: `0 0 ${24 * glow}px #E828BE`, letterSpacing: 6}}>PROMO</div>
+      <div style={{position: 'absolute', left: 140, top: 500, width: 800, height: 800, borderRadius: '50%',
+        background: 'radial-gradient(circle, rgba(232,40,190,0.16) 0%, rgba(0,0,0,0) 65%)'}} />
+      <AbsoluteFill style={{background: NAVY, opacity: tint}} />
+    </AbsoluteFill>
+  );
+};
