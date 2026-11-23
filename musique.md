@@ -53,3 +53,5 @@ Le moteur est `musique.py` (classe `Track`). La règle audio douce du PLAYBOOK s
 | 2026-11-22 | L'addition arrive | synthwave | F | 105 | 8952 | v3.0 (sf2) | à mesurer |
 | 2026-11-23 | POV Monsieur Découvert | suspense + roi_montagne | C | 99 | 9342 | v3.0 (sf2) | à mesurer |
 | 2026-11-23 | Survie étudiant é1 | jeu_tele | G | 118 | 6061 | v3.0 (sf2) | à mesurer |
+| 2026-11-24 | Survie étudiant é2 | pop_piano | A | 96 | 4094 | v3.0 (sf2) | à mesurer |
+| 2026-11-24 | Black Friday, vraie ou fausse promo | bossa + marche_turque | Eb | 132 | 9368 | v3.0 (sf2) | à mesurer |

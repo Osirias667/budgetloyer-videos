@@ -118,6 +118,14 @@
 - Programmation du 23 nov. : aucun post existant ce jour-là avant la session. Pas de Trial Reel ni de carrousel programmés (le prompt prévoit 6 posts) : toujours à faire cette semaine.
 - Choix du 23 nov. : 1 format inédit (POV du méchant) + 1 mécanique qui a le mieux marché (Survie, 4e saison, sur le mot-clé « budget étudiant »).
 
+## Analyse du 23 novembre 2026 (20:45, 14 derniers jours)
+- TikTok : **correction importante : deux vidéos « tombées » sont reparties en 2e vague tardive.** Calendrier des pompiers (19 nov. 18:00) : 267 vues à ~51 h, **823 vues à ~4,5 jours** (2e score du compte après le défi 0 €, 991) ; Secret Santa (20 nov. 18:00), absent des stats jusqu'au 22 nov., **713 vues**. Les autres vidéos depuis le 17 nov. restent basses : échelle de panique 340, GTA 6 272, à deux é1 234 et é2 257, salaire loading 210, marché de Noël 257, je sors pas 198, défi des 5 dimanches 219 (~35 h), l'addition 243 (~27 h). Les vidéos du 23 nov. ne sont pas encore dans les stats. Lecture : la baisse n'est pas une restriction du compte (deux vidéos ont dépassé 700) ; TikTok relance plus tard certaines vidéos, et ce sont deux **rituels de saison connus de tous** (pompiers, Secret Santa), publiés à 18:00. Ne plus juger une vidéo TikTok avant 4-5 jours. Partages : toujours 1 sur tout le compte.
+- Instagram : plateau de portée (105-157 vues, 117-186 comptes) ; durées vues Remotion toujours hautes : l'addition 9,3 s (43 %), je sors pas 9,6 s (62 %), pompiers 9,3 s, Secret Santa 9,1 s ; défi des 5 dimanches plus bas (6,7 s, 45 %), Survie à deux é2 6,6 s.
+- YouTube : rien de nouveau (couple é1 15 vues, é2 1, Secret Santa 3, pompiers 7 ; seul devine le prix du 11 nov. reste à 82).
+- 5 dernières descriptions relues : format une ligne, 5 hashtags, chute filée, tenu.
+- Veille : virlo.ai/trending-on-tiktok-this-week (mis à jour le 23 nov. 2026, semaine en cours, échantillon encore faible) : accroches POV 32,9 %, curiosité/mystère 31,8 %, phrase choc 31,8 %, situation à laquelle on s'identifie 31,2 %, controverse 24,1 % (en hausse) ; socialpilot.co/blog/tiktok-trends (17 nov., fenêtre 17-25 nov.) inchangé. Actu Black Friday (vendredi 27 nov., Cyber Monday le 30) : 46 % des Français font confiance aux remises affichées, 74 % comptent participer, 283 € prévus en moyenne, 51 % réduisent les achats non essentiels (BCG, 1 006 Français, septembre 2026, communiqué du 4 nov. ; chiffres hors 46 % issus d'un résumé de page, à relire avant usage) ; règle du prix de référence sur 30 jours (mediaterranee.com, 28 oct., mis à jour le 7 nov.) : utilisés le 24 nov. (« vraie ou fausse promo ? »). Page info.gouv.fr sur les fausses promos non lisible.
+- Programmation du 24 nov. : aucun post existant ce jour-là avant la session. Pas de Trial Reel ni de carrousel (le prompt prévoit 6 posts) : à proposer au propriétaire comme créneau en plus.
+
 ## Ce qui marche
 - **Confirmé (4 vidéos à plus de 48 h)** : le format de publication en place depuis le 10 nov. (accroche complète dès l'image 1, 5 hashtags, description au format, audio doux) fait passer TikTok de ~260 à 740-785 vues, pour les jeux comme pour le POV d'objet en série.
 - **Piste forte, confirmée sur 2 thèmes** (fin de mois 819 vues, premier appart 806 vues + 1er partage ; Instagram 10,2 s puis 8,7 s) : histoire dont tu es le héros en 2e personne, widget « Il te reste » qui bouge, choix A/B (Survie p1) : 817 vues et 15 j'aime TikTok (record), 10,2 s et 63,6 % de durée vue Instagram (record). Diffusion plus lente au départ (436 vues à 27 h). Reprise le 16 nov. sur un nouveau thème (premier appart) pour vérifier que ce n'est pas le sujet seul.
@@ -126,6 +134,9 @@
 - Piste YouTube (1 cas) : titre en question « devine le prix » = 80 vues, contre 0 à 6 pour les autres Shorts récents. Reprendre des titres YouTube en question de jeu.
 - Jeux et défis : au niveau du plateau, pas au-dessus. Garder un jeu par jour mais varier la mécanique ; le jeu seul ne suffit plus à progresser.
 - Ancien : formats directs de 34-35 s (« 3 raisons », « où est passé ton salaire ») à 355-366 vues ; sketch « garde à vue » en tête sur Instagram.
+
+- **Piste forte (2 cas, 23 nov.)** : rituels de saison connus de tous (calendrier des pompiers 823 vues, Secret Santa 713) = les deux meilleures vidéos TikTok depuis le 17 nov., après une 2e vague à 3-4 jours. Prioriser les temps forts partagés par tout le monde (Black Friday, calendrier de l'Avent, sapin, repas de Noël, cadeaux).
+- TikTok relance tard : ne juger une vidéo qu'à 4-5 jours (pompiers : 267 à 51 h, 823 à 4,5 j).
 
 - **Confirmé (6 vidéos, 19-21 nov.)** : Remotion + vrais instruments = 7,2 à 9,6 s vues Instagram (médiane ≈ 9 s, 54-62 %), contre ~6 s de médiane bl.py ; record de portée Instagram (Secret Santa, 186 comptes). Garder Remotion.
 
@@ -141,6 +152,7 @@ _Rien de confirmé pour l'instant._
 - Piste : vidéo très courte (15,6 s, raclette) : 773 vues TikTok à ~35 h, au plateau ; la durée seule ne fait pas sortir du plafond.
 - « Script mot pour mot » en conversation de groupe : 729 vues TikTok à ~51 h (au plateau après un départ lent), 5,5 s et 31 % Instagram (sous la médiane), malgré son succès ailleurs (tryvolume.app). Ne pas refaire.
 - Piste : « Attente vs Réalité » ticket de caisse (courses) : 728 vues TikTok, 4,8 s Instagram, sous les deux médianes.
+- Corrigé le 23 nov. : la « chute » n'est pas une restriction du compte (pompiers et Secret Santa remontés au-dessus de 700 après 3-4 jours). Elle reste réelle pour les autres vidéos (198-340).
 - **Confirmé le 22 nov. (9 vidéos)** : la chute TikTok est indépendante du format (devine et horloge, mécaniques qui tenaient 750-990, font 253 et 195). Ne plus chercher la cause dans le format ; vérification à faire côté compte (TikTok Studio).
 - **Alerte TikTok (20 nov., 5 vidéos)** : depuis le 17 nov. 18:00, toutes les vidéos tombent à 206-338 vues, séries Survie comprises (à deux é1 : 229). Le format n'est pas la cause ; vidéos du 21 nov. = test (jeu « devine » et horloge, les deux mécaniques qui tenaient 750-990).
 - Piste (19 nov., à confirmer) : échelle de panique visage muet + légende : 248 vues TikTok à ~51 h, 4,0 s et 20,6 % Instagram, la plus basse des deux réseaux depuis le 10 nov. Ne pas refaire tel quel.
@@ -188,6 +200,9 @@ _Rien de confirmé pour l'instant._
 40. Format inédit : « Tous les groupes de potes quand l'addition arrive » (22 nov. 18:00, 19,8 s), 5 profils + n°6 caché = toi, tag demandé : partages et commentaires en un chiffre contre 0-2 habituels.
 41. Format inédit de la semaine (23 nov. 10:00, 20,6 s) : « POV : tu es Monsieur Découvert », POV du méchant récurrent, 4 pièges, n°4 caché, retournement « …sauf que » : vues TikTok contre la zone 195-340, durée vue Instagram > 9 s, commentaires en un chiffre.
 42. Survie · Étudiant é1 (23 nov. 18:00, 18,4 s) : 4e saison de Survie sur le mot-clé « budget étudiant » (nouveau public) : vues TikTok et durée vue Instagram contre les autres saisons ; é2 promis le 24 nov.
+43. Survie · Étudiant é2 (24 nov. 10:00, 18,8 s) : garde-t-il 90 % du public de l'é1 ? commentaires A/B.
+44. Format inédit : « vraie ou fausse promo ? » avec courbe de prix sur 30 jours qui se trace après le pari (Black Friday, 24 nov. 18:00, 22 s) : un rituel de saison + jeu utile dépasse-t-il la médiane (~265 TikTok) et apporte-t-il des partages ?
+45. Temps forts de saison à suivre : calendrier de l'Avent (1er déc.), sapin, repas de Noël, cadeaux, Cyber Monday (30 nov.).
 31. À faire cette semaine : Trial Reel hebdomadaire et carrousel photo (aucun programmé du 16 au 22 nov. à ce jour) ; Survie saison 3 (mécanique confirmée).
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.
 
@@ -239,6 +254,14 @@ _Rien de confirmé pour l'instant._
 - Nouveaux éléments dans `bl.py` (12 nov.) : `carte_perso`, `billet_perso` (objets parlants génériques, visage commun `_face`), `bg_ring` (ring de match).
 
 ## Bilans hebdomadaires
+### Semaine du 16 au 22 novembre 2026 (bilan du lundi 23)
+- TikTok : **médiane d'environ 265 vues sur 14 vidéos** (198 à 823), contre 753 la semaine précédente : division par près de 3. Les 3 vidéos du 16-17 nov. au matin tiennent encore 717-809 ; à partir du 17 nov. au soir, toutes tombent sous 345, sauf deux rituels de saison repartis en 2e vague (pompiers 823, Secret Santa 713). Partages : 1 sur la semaine (premier appart é1). Cause de la baisse générale toujours inconnue (Metricool ne remonte ni la part « Pour toi » ni la complétion).
+- Instagram : **médiane de durée vue en hausse, ≈ 7,7 s** (4,0 à 9,6 s) contre 5,8 s ; la portée reste au plateau (≈ 105-157 vues), record de comptes atteints : Secret Santa (186). Remotion + vrais instruments (depuis le 19 nov.) : 7 vidéos sur 8 au-dessus de 6,5 s.
+- YouTube : toujours quasi nul (0 à 15 vues).
+- Ce qui a marché : Remotion pour la rétention Instagram ; rituels de saison sur TikTok (2e vague tardive) ; mécanique Survie sur Instagram (8,8-9,0 s pour les é1).
+- Ce qui n'a pas marché : script mot pour mot, échelle de panique (visage muet), formats sans temps fort partagé (salaire loading, je sors pas, défi des 5 dimanches) : 198-340 TikTok.
+- Changement décidé pour la semaine du 23 au 29 : une vidéo par jour sur un temps fort de saison connu de tous (Black Friday le 24, puis calendrier de l'Avent / début décembre), l'autre sur une mécanique qui retient (Survie, POV) ; ne juger TikTok qu'à 4-5 jours ; garder Remotion. À demander au propriétaire : relevé TikTok Studio (part « Pour toi », avertissement éventuel) et accord pour ajouter le Trial Reel et le carrousel hebdomadaires en plus des 6 posts.
+
 ### Semaine du 9 au 15 novembre 2026 (bilan du lundi 16)
 - TikTok : **médiane de 753 vues sur 14 vidéos** (257 à 817), contre 250 la semaine précédente : x3. Record : Survie fin de mois p1 (817). Mais 12 vidéos sur 14 entre 688 et 817 : plafond de diffusion autour de 750, quel que soit le format (jeu, POV d'objet, série, ticket, classement, gag de 15 s). **0 partage sur toute la semaine.**
 - Instagram : médiane de 106 vues (14 à 121) et 5,8 s de durée vue moyenne ; meilleure rétention : Survie p1 (10,2 s, 63,6 %), puis thermostat p1 (8,2 s). Les séries en 2e personne ou POV retiennent le mieux.
