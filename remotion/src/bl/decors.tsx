@@ -358,3 +358,48 @@ export const VitrineBg: React.FC<{tint?: number}> = ({tint = 0}) => {
     </AbsoluteFill>
   );
 };
+
+/** Salon de Noël (25 nov. 2026) : mur bordeaux, fenêtre où la neige tombe, guirlande lumineuse qui clignote, parquet.
+ *  Le haut reste calme pour le texte. */
+export const SalonNoelBg: React.FC<{tint?: number}> = ({tint = 0}) => {
+  const f = useCurrentFrame();
+  const bulbs = ['#FFD640', '#F04242', '#36D6F0', '#20E388'];
+  return (
+    <AbsoluteFill style={{background: 'linear-gradient(180deg,#3A1430 0%,#5A1E3E 58%,#3A1430 100%)'}}>
+      <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0}}>
+        {/* fenêtre et neige */}
+        <rect x={360} y={600} width={360} height={420} rx={14} fill="#0E1640" stroke="#16121F" strokeWidth={12} />
+        {Array.from({length: 16}, (_, i) => {
+          const y = 610 + ((f * (1.6 + rand(i) * 1.4) + rand(i + 9) * 400) % 400);
+          const x = 375 + rand(i + 2) * 330 + Math.sin(f / 12 + i) * 8;
+          return <circle key={i} cx={x} cy={y} r={4 + rand(i + 4) * 4} fill="white" opacity={0.85} />;
+        })}
+        <line x1={540} y1={600} x2={540} y2={1020} stroke="#16121F" strokeWidth={10} />
+        <line x1={360} y1={810} x2={720} y2={810} stroke="#16121F" strokeWidth={10} />
+        <rect x={340} y={1010} width={400} height={26} rx={6} fill="#E9D6B8" stroke="#16121F" strokeWidth={7} />
+        {/* guirlande */}
+        <path d="M -20 560 Q 270 640 540 560 Q 810 640 1100 560" fill="none" stroke="#16121F" strokeWidth={5} />
+        {Array.from({length: 13}, (_, i) => {
+          const x = -10 + i * 90;
+          const t = (x + 20) / 560;
+          const y = 560 + Math.sin(Math.PI * (t % 1)) * 58 + 18;
+          const on = Math.floor(f / 8 + i) % 3 !== 0;
+          const c = bulbs[i % 4];
+          return (
+            <g key={i}>
+              <circle cx={x} cy={y} r={30} fill={c} opacity={on ? 0.25 : 0} />
+              <ellipse cx={x} cy={y} rx={11} ry={16} fill={c} opacity={on ? 1 : 0.35} stroke="#16121F" strokeWidth={4} />
+            </g>
+          );
+        })}
+        {/* parquet */}
+        <rect x={-20} y={1360} width={1120} height={600} fill="#7A4A2A" />
+        {[0, 1, 2, 3, 4].map((i) => (
+          <line key={i} x1={-20} y1={1420 + i * 110} x2={1100} y2={1420 + i * 110} stroke="#5E3820" strokeWidth={6} />
+        ))}
+        <rect x={-20} y={1340} width={1120} height={26} fill="#4A2A18" />
+      </svg>
+      <AbsoluteFill style={{background: NAVY, opacity: tint}} />
+    </AbsoluteFill>
+  );
+};

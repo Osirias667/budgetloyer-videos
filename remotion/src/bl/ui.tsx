@@ -426,3 +426,82 @@ export const CourbePrix: React.FC<{prices: number[]; y: number; f0?: number; f1?
     </Pop>
   );
 };
+
+/** Chronomètre de speedrun (25 nov. 2026) : passe de `s0` à `s1` secondes entre les images f0 et f1, format 00:00.0.
+ *  `label` au-dessus (ex. « RUN · LISTE DE NOËL »). Élément de jeu, pas un écran de l'app. */
+export const Chrono: React.FC<{s0: number; s1: number; f0?: number; f1?: number; y?: number; col?: string; label?: string;
+  done?: boolean}> = ({s0, s1, f0 = 0, f1 = 60, y = 250, col = GREEN, label, done = false}) => {
+  const f = useCurrentFrame();
+  const s = interpolate(f, [f0, f1], [s0, s1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const mm = Math.floor(s / 60), ss = Math.floor(s % 60), d = Math.floor((s * 10) % 10);
+  const txt = `${String(mm).padStart(2, '0')}:${String(ss).padStart(2, '0')}.${d}`;
+  const blink = done && Math.floor(f / 6) % 2 === 0;
+  return (
+    <div style={{position: 'absolute', top: y, left: 0, right: 0, display: 'flex', justifyContent: 'center'}}>
+      <div style={{background: 'rgba(10,14,44,0.94)', border: `6px solid ${col}`, borderRadius: 26, padding: '8px 40px 12px',
+        boxShadow: `0 0 30px ${col}88`, textAlign: 'center'}}>
+        {label ? <div style={{...font(900, 30), color: col, letterSpacing: 3}}>{label}</div> : null}
+        <div style={{...font(900, 104), fontVariantNumeric: 'tabular-nums', color: 'white',
+          lineHeight: 1.05, opacity: blink ? 0.45 : 1, letterSpacing: 2}}>{txt}</div>
+      </div>
+    </div>
+  );
+};
+
+/** Liste de « splits » de speedrun (25 nov. 2026) : chaque ligne (prénom, montant) apparaît à l'image `at[i]` ;
+ *  `bad` : ligne rouge (oubli). Total en bas qui défile si `total` est donné. */
+export const Splits: React.FC<{rows: {name: string; val: string; bad?: boolean}[]; at: number[]; y: number;
+  total?: {a: number; b: number; f0: number; f1: number; col?: string}; rowH?: number}> = ({rows, at, y, total, rowH = 74}) => {
+  const f = useCurrentFrame();
+  return (
+    <div style={{position: 'absolute', left: 110, top: y, width: 860, borderRadius: 26, boxSizing: 'border-box',
+      background: 'rgba(10,14,44,0.92)', border: '5px solid #3A4070', padding: '14px 34px'}}>
+      {rows.map((r, i) => {
+        const on = f >= (at[i] ?? 0);
+        const k = on ? interpolate(f - (at[i] ?? 0), [0, 5], [0, 1], {extrapolateRight: 'clamp'}) : 0;
+        const c = r.bad ? RED : 'white';
+        return (
+          <div key={i} style={{height: rowH, display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            borderBottom: i < rows.length - 1 ? '2px solid #2A3060' : 'none', opacity: on ? k : 0.18,
+            transform: `translateX(${(1 - k) * -40}px)`}}>
+            <span style={{...font(800, 46), color: on ? c : GREY}}>{on ? r.name : '…'}</span>
+            <span style={{...font(900, 50), color: on ? (r.bad ? RED : YEL) : GREY}}>{on ? r.val : '? €'}</span>
+          </div>
+        );
+      })}
+      {total ? (
+        <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 10, paddingTop: 10,
+          borderTop: `4px solid ${total.col ?? GREEN}`}}>
+          <span style={{...font(900, 50), color: total.col ?? GREEN, letterSpacing: 2}}>TOTAL</span>
+          <span style={{...font(900, 72), color: 'white'}}><Roll a={total.a} b={total.b} f0={total.f0} f1={total.f1} /></span>
+        </div>
+      ) : null}
+    </div>
+  );
+};
+
+/** Tableau de score d'un match en rounds (25 nov. 2026) : deux noms, deux scores ; `hit` : côté qui marque (pulse). */
+export const Score: React.FC<{left: string; right: string; a: number; b: number; y?: number; colL?: string; colR?: string;
+  hit?: 'L' | 'R'; at?: number}> = ({left, right, a, b, y = 250, colL = GREEN, colR = '#36D6F0', hit, at = 0}) => {
+  const f = useCurrentFrame();
+  const pulse = (side: 'L' | 'R') => (hit === side && f >= at ? interpolate(f - at, [0, 5, 12], [1, 1.35, 1],
+    {extrapolateRight: 'clamp'}) : 1);
+  const shownA = hit === 'L' && f < at ? a - 1 : a;
+  const shownB = hit === 'R' && f < at ? b - 1 : b;
+  const box = (name: string, v: number, c: string, side: 'L' | 'R') => (
+    <div style={{width: 330, textAlign: 'center'}}>
+      <div style={{...font(900, 38), color: c, letterSpacing: 1}}>{name}</div>
+      <div style={{...font(900, 110), color: 'white', lineHeight: 1, transform: `scale(${pulse(side)})`,
+        textShadow: `0 0 30px ${c}`}}>{v}</div>
+    </div>
+  );
+  return (
+    <div style={{position: 'absolute', top: y, left: 110, width: 860, height: 190, borderRadius: 30, boxSizing: 'border-box',
+      background: 'rgba(10,14,44,0.93)', border: '5px solid #3A4070', display: 'flex', alignItems: 'center',
+      justifyContent: 'space-between', padding: '0 20px'}}>
+      {box(left, shownA, colL, 'L')}
+      <div style={{...font(900, 60), color: YEL}}>–</div>
+      {box(right, shownB, colR, 'R')}
+    </div>
+  );
+};

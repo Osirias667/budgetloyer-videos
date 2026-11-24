@@ -511,3 +511,97 @@ export const Bocal: React.FC<PersoProps & {expr?: Expr; talk?: boolean; level?: 
     </Perso>
   );
 };
+
+// ---- Les Sapins (25 nov. 2026) ---------------------------------------------------------------------------------
+/** Sapin de Noël avec un visage. `kind="naturel"` : vert profond, branches irrégulières, bûche en pied, aiguilles qui
+ *  tombent si `needles` ; `kind="plastique"` : vert vif uniforme, coutures droites, posé dans son carton « SAPIN ».
+ *  `label` : pastille de prix accrochée. Objets génériques, aucun personnage protégé. */
+export const Sapin: React.FC<PersoProps & {kind?: 'naturel' | 'plastique'; expr?: Expr; talk?: boolean; look?: number;
+  needles?: boolean; label?: string}> = ({kind = 'naturel', expr = 'happy', talk, look = 0, needles = false, label, ...p}) => {
+  const f = useCurrentFrame();
+  const nat = kind === 'naturel';
+  const dark = nat ? '#14703E' : '#2FB868';
+  const mid = nat ? '#1E8F4E' : '#3FCB7A';
+  const lite = nat ? '#34B062' : '#7FE5A6';
+  const tier = (y0: number, y1: number, half: number, i: number) => {
+    if (!nat) {
+      return <path key={i} d={`M 300 ${y0} L ${300 + half} ${y1} L ${300 - half} ${y1} Z`} fill={mid} stroke={K} strokeWidth={10}
+        strokeLinejoin="round" />;
+    }
+    const pts: string[] = [`300 ${y0}`];
+    const n = 5;
+    for (let k = 1; k <= n; k++) {
+      const t = k / n;
+      pts.push(`${300 + half * t + (k % 2 ? 22 : -6)} ${y0 + (y1 - y0) * t + (k % 2 ? -14 : 0)}`);
+    }
+    for (let k = n; k >= 1; k--) {
+      const t = k / n;
+      pts.push(`${300 - half * t - (k % 2 ? 22 : -6)} ${y0 + (y1 - y0) * t + (k % 2 ? -14 : 0)}`);
+    }
+    return <path key={i} d={`M ${pts.join(' L ')} Z`} fill={mid} stroke={K} strokeWidth={10} strokeLinejoin="round" />;
+  };
+  const balls = [[230, 330, RED], [370, 300, YEL], [190, 560, CYAN], [420, 600, RED], [300, 700, YEL], [470, 450, CYAN]];
+  return (
+    <Perso {...p} ratio={1000 / 600} seed={nat ? 71 : 73}>
+      <svg viewBox="0 0 600 1000" width="100%" height="100%" style={{overflow: 'visible'}}>
+        {/* pied */}
+        {nat ? (
+          <g>
+            <rect x={262} y={740} width={76} height={90} fill="#7A4A26" stroke={K} strokeWidth={9} />
+            <ellipse cx={300} cy={850} rx={150} ry={46} fill="#9B6234" stroke={K} strokeWidth={10} />
+            <ellipse cx={300} cy={840} rx={110} ry={26} fill="#C88B52" />
+          </g>
+        ) : (
+          <g>
+            <rect x={286} y={740} width={28} height={70} fill="#4A4A55" stroke={K} strokeWidth={7} />
+            <rect x={110} y={790} width={380} height={190} rx={8} fill="#C9935A" stroke={K} strokeWidth={10} />
+            <path d="M 110 790 L 70 730 L 250 730 L 290 790" fill="#B37E48" stroke={K} strokeWidth={9} strokeLinejoin="round" />
+            <path d="M 490 790 L 530 730 L 350 730 L 310 790" fill="#B37E48" stroke={K} strokeWidth={9} strokeLinejoin="round" />
+            <text x={300} y={915} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={70} fill={K}>SAPIN</text>
+          </g>
+        )}
+        {/* étages */}
+        {tier(250, 770, 270, 0)}
+        {tier(150, 560, 210, 1)}
+        {tier(60, 360, 150, 2)}
+        {nat ? [0, 1, 2, 3, 4, 5].map((i) => (
+          <path key={i} d={`M ${170 + i * 52} ${420 + (i % 3) * 110} l 18 -24 l 18 24`} fill="none" stroke={lite} strokeWidth={7}
+            strokeLinecap="round" />
+        )) : [0, 1, 2].map((i) => (
+          <line key={i} x1={300} y1={[90, 190, 290][i]} x2={300} y2={[350, 550, 760][i]} stroke={dark} strokeWidth={6} />
+        ))}
+        {/* boules */}
+        {balls.map(([x, y, c], i) => (
+          <g key={i}>
+            <circle cx={x as number} cy={y as number} r={24} fill={c as string} stroke={K} strokeWidth={6} />
+            <circle cx={(x as number) - 8} cy={(y as number) - 8} r={6} fill="white" opacity={0.7} />
+          </g>
+        ))}
+        {/* étoile */}
+        <g transform={`translate(300 48) rotate(${Math.sin(f / 10) * 8})`}>
+          <path d="M 0 -62 L 17 -20 L 62 -18 L 27 10 L 39 55 L 0 30 L -39 55 L -27 10 L -62 -18 L -17 -20 Z" fill={YEL}
+            stroke={K} strokeWidth={8} strokeLinejoin="round" />
+        </g>
+        {/* visage */}
+        <Face cx={300 + look * 6} cy={440} s={1.25} expr={expr} talk={talk} look={look} seed={nat ? 71 : 73} gap={58} />
+        {/* étiquette de prix */}
+        {label ? (
+          <g transform="rotate(-8 300 640)">
+            <line x1={240} y1={560} x2={210} y2={610} stroke={K} strokeWidth={5} />
+            <rect x={110} y={600} width={380} height={110} rx={20} fill="white" stroke={K} strokeWidth={9} />
+            <text x={300} y={680} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={label.length > 7 ? 64 : 74}
+              fill={K}>{label}</text>
+          </g>
+        ) : null}
+        {/* aiguilles qui tombent */}
+        {needles ? Array.from({length: 10}, (_, i) => {
+          const t = ((f + i * 9) % 40) / 40;
+          const x = 140 + rand(i + 5) * 320 + Math.sin(f / 6 + i) * 14;
+          const y = 380 + t * 470;
+          return <line key={i} x1={x} y1={y} x2={x + 14} y2={y + 20} stroke="#6E8F3A" strokeWidth={6} strokeLinecap="round"
+            opacity={1 - t * 0.6} />;
+        }) : null}
+      </svg>
+    </Perso>
+  );
+};
