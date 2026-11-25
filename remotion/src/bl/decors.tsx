@@ -403,3 +403,74 @@ export const SalonNoelBg: React.FC<{tint?: number}> = ({tint = 0}) => {
     </AbsoluteFill>
   );
 };
+
+/** Façade de maison la nuit (26 nov. 2026, « les guirlandes de ton père ») : toit, balcon, fenêtre avec un sapin.
+ *  `mode` : 'off' (rien d'allumé), 'led' (petites LED froides qui scintillent), 'ampoules' (grosses ampoules
+ *  chaudes à fort halo), 'jardin' (ampoules + projecteurs dont les faisceaux balaient). Le haut reste calme pour le texte. */
+export const FacadeBg: React.FC<{tint?: number; mode?: 'off' | 'led' | 'ampoules' | 'jardin'}> = ({tint = 0, mode = 'led'}) => {
+  const f = useCurrentFrame();
+  const big = mode === 'ampoules' || mode === 'jardin';
+  const cols = ['#FFD640', '#F04242', '#36D6F0', '#20E388', '#FF9A3D'];
+  const line = (x0: number, y0: number, x1: number, y1: number, sag: number, n: number, key: string) => (
+    <g key={key}>
+      <path d={`M ${x0} ${y0} Q ${(x0 + x1) / 2} ${(y0 + y1) / 2 + sag} ${x1} ${y1}`} fill="none" stroke="#0B0B14" strokeWidth={4} />
+      {mode === 'off' ? null : Array.from({length: n}, (_, i) => {
+        const t = (i + 0.5) / n;
+        const x = (1 - t) * (1 - t) * x0 + 2 * (1 - t) * t * (x0 + x1) / 2 + t * t * x1;
+        const y = (1 - t) * (1 - t) * y0 + 2 * (1 - t) * t * ((y0 + y1) / 2 + sag) + t * t * y1;
+        const c = big ? cols[(i + key.length) % 5] : (i % 2 ? '#E8F6FF' : '#9FE8FF');
+        const tw = 0.6 + 0.4 * Math.sin(f / (big ? 9 : 4) + i * 1.7);
+        return (
+          <g key={i}>
+            <circle cx={x} cy={y} r={big ? 34 : 14} fill={c} opacity={(big ? 0.35 : 0.25) * tw} />
+            <circle cx={x} cy={y} r={big ? 11 : 5} fill={c} opacity={0.6 + 0.4 * tw} />
+          </g>
+        );
+      })}
+    </g>
+  );
+  return (
+    <AbsoluteFill style={{background: 'linear-gradient(180deg,#070A22 0%,#141A46 55%,#1C1F3A 100%)'}}>
+      <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0}}>
+        {Array.from({length: 26}, (_, i) => (
+          <circle key={i} cx={rand(i + 40) * 1080} cy={60 + rand(i + 70) * 440} r={1.5 + rand(i) * 2.5} fill="white"
+            opacity={0.3 + 0.5 * Math.abs(Math.sin(f / 20 + i))} />
+        ))}
+        {/* maison */}
+        <path d="M 120 760 L 540 520 L 960 760 Z" fill="#3A2A3A" stroke="#0B0B14" strokeWidth={12} strokeLinejoin="round" />
+        <rect x={160} y={760} width={760} height={620} fill="#5B4A62" stroke="#0B0B14" strokeWidth={12} />
+        {/* fenêtre avec sapin */}
+        <rect x={210} y={820} width={250} height={250} rx={10} fill={mode === 'off' ? '#1A2050' : '#F7C66A'} stroke="#0B0B14" strokeWidth={10} />
+        <path d="M 335 850 L 395 1050 L 275 1050 Z" fill="#1E8F4E" stroke="#0B0B14" strokeWidth={6} />
+        <line x1={335} y1={820} x2={335} y2={1070} stroke="#0B0B14" strokeWidth={7} />
+        {/* porte */}
+        <rect x={600} y={1110} width={170} height={270} rx={12} fill="#2C1E26" stroke="#0B0B14" strokeWidth={10} />
+        <circle cx={745} cy={1250} r={10} fill="#FFD640" />
+        <circle cx={685} cy={1180} r={46} fill="none" stroke="#20B868" strokeWidth={16} />
+        {/* balcon */}
+        <rect x={560} y={1010} width={300} height={16} fill="#0B0B14" />
+        {[0, 1, 2, 3, 4, 5, 6].map((i) => <line key={i} x1={570 + i * 46} y1={1026} x2={570 + i * 46} y2={1090} stroke="#0B0B14" strokeWidth={8} />)}
+        <rect x={560} y={1086} width={300} height={10} fill="#0B0B14" />
+        <rect x={600} y={830} width={220} height={170} rx={8} fill={mode === 'off' ? '#1A2050' : '#E9B85E'} stroke="#0B0B14" strokeWidth={10} />
+        {/* guirlandes */}
+        {line(120, 762, 540, 524, 40, big ? 9 : 18, 'toitg')}
+        {line(540, 524, 960, 762, 40, big ? 9 : 18, 'toitd')}
+        {line(560, 1012, 860, 1012, 40, big ? 6 : 12, 'bal')}
+        {line(200, 1090, 470, 1090, 30, big ? 5 : 10, 'fen')}
+        {/* jardin */}
+        <rect x={-20} y={1380} width={1120} height={560} fill="#0F2A1E" />
+        {mode === 'jardin' ? [180, 900].map((x, i) => {
+          const a = Math.sin(f / 18 + i * 2) * 14;
+          return (
+            <g key={i}>
+              <path d={`M ${x} 1400 L ${x - 160} 700 L ${x + 160} 700 Z`} fill="#FFF3B0" opacity={0.16}
+                transform={`rotate(${a} ${x} 1400)`} />
+              <rect x={x - 34} y={1392} width={68} height={40} rx={8} fill="#2A2A33" stroke="#0B0B14" strokeWidth={6} />
+            </g>
+          );
+        }) : null}
+      </svg>
+      <AbsoluteFill style={{background: NAVY, opacity: tint}} />
+    </AbsoluteFill>
+  );
+};

@@ -605,3 +605,104 @@ export const Sapin: React.FC<PersoProps & {kind?: 'naturel' | 'plastique'; expr?
     </Perso>
   );
 };
+
+// ---- Le Calendrier de l'Avent (26 nov. 2026) -------------------------------------------------------------------
+/** Calendrier de l'Avent avec un visage : boîte rouge, 24 portes numérotées (dans le désordre, comme les vrais).
+ *  `opened` : nombre de portes ouvertes (0-24, peut être fractionnaire pour animer) ; une porte ouverte montre un
+ *  chocolat, sauf si `eaten` (case vide). `label` : pastille de prix. Objet générique, aucune marque. */
+const ORDRE_AVENT = [7, 19, 3, 14, 22, 10, 1, 16, 5, 24, 12, 8, 20, 2, 17, 11, 23, 6, 13, 4, 21, 9, 15, 18];
+export const Calendrier: React.FC<PersoProps & {expr?: Expr; talk?: boolean; look?: number; opened?: number; eaten?: boolean;
+  label?: string}> = ({expr = 'happy', talk, look = 0, opened = 0, eaten = false, label, ...p}) => {
+  const f = useCurrentFrame();
+  return (
+    <Perso {...p} ratio={900 / 640} seed={83}>
+      <svg viewBox="0 0 640 900" width="100%" height="100%" style={{overflow: 'visible'}}>
+        <rect x={20} y={20} width={600} height={860} rx={36} fill="#C8263A" stroke={K} strokeWidth={12} />
+        <rect x={44} y={44} width={552} height={200} rx={24} fill="#A11A2C" />
+        {/* houx */}
+        <g transform="translate(560 70)">
+          <ellipse cx={-18} cy={0} rx={26} ry={12} fill={GREEN} stroke={K} strokeWidth={5} transform="rotate(-30)" />
+          <ellipse cx={18} cy={0} rx={26} ry={12} fill={GREEN} stroke={K} strokeWidth={5} transform="rotate(30)" />
+          <circle cx={0} cy={8} r={10} fill={RED} stroke={K} strokeWidth={4} />
+        </g>
+        <Face cx={320 + look * 6} cy={140} s={1.05} expr={expr} talk={talk} look={look} seed={83} gap={70} />
+        {ORDRE_AVENT.map((n, i) => {
+          const c = i % 4, r = Math.floor(i / 4);
+          const x = 58 + c * 134, y = 268 + r * 100;
+          const k = Math.max(0, Math.min(1, opened - (n - 1)));
+          const open = k > 0;
+          return (
+            <g key={n}>
+              <rect x={x} y={y} width={120} height={86} rx={12} fill="#2A0E16" stroke={K} strokeWidth={6} />
+              {open && !eaten ? (
+                <g>
+                  <rect x={x + 34} y={y + 22} width={52} height={42} rx={8} fill="#6B3A1E" stroke={K} strokeWidth={4} />
+                  <line x1={x + 60} y1={y + 24} x2={x + 60} y2={y + 62} stroke="#8E5530" strokeWidth={4} />
+                </g>
+              ) : null}
+              {/* porte qui pivote vers la gauche */}
+              <g transform={`translate(${x} ${y}) scale(${1 - 0.85 * k} 1)`}>
+                <rect x={0} y={0} width={120} height={86} rx={12} fill={(n + Math.floor(f / 40)) % 5 === 0 ? '#FFE27A' : YEL}
+                  stroke={K} strokeWidth={6} />
+                {k < 0.5 ? (
+                  <text x={60} y={62} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={50} fill={K}>{n}</text>
+                ) : null}
+              </g>
+            </g>
+          );
+        })}
+        {label ? (
+          <g transform="rotate(-6 320 860)">
+            <rect x={150} y={800} width={340} height={104} rx={20} fill="white" stroke={K} strokeWidth={9} />
+            <text x={320} y={876} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={68} fill={K}>{label}</text>
+          </g>
+        ) : null}
+      </svg>
+    </Perso>
+  );
+};
+
+// ---- Le Père Noël gonflable (26 nov. 2026) ---------------------------------------------------------------------
+/** Décoration gonflable de jardin (Père Noël générique, folklore) : se balance, ventilateur qui tourne au pied,
+ *  `glow` : halo quand il est allumé. Aucun personnage protégé. */
+export const Gonflable: React.FC<PersoProps & {expr?: Expr; talk?: boolean; glow?: boolean}> = (
+  {expr = 'happy', talk, glow = true, ...p},
+) => {
+  const f = useCurrentFrame();
+  const sway = Math.sin(f / 9) * 5;
+  return (
+    <Perso {...p} ratio={1000 / 600} seed={89} bob={1.6}>
+      <svg viewBox="0 0 600 1000" width="100%" height="100%" style={{overflow: 'visible'}}>
+        {glow ? <ellipse cx={300} cy={520} rx={330} ry={480} fill={YEL} opacity={0.12 + 0.05 * Math.sin(f / 4)} /> : null}
+        {/* ventilateur */}
+        <rect x={230} y={900} width={140} height={70} rx={14} fill="#4A4A55" stroke={K} strokeWidth={8} />
+        <g transform={`translate(300 935) rotate(${f * 40})`}>
+          <line x1={-24} y1={0} x2={24} y2={0} stroke={GREY_K} strokeWidth={8} />
+          <line x1={0} y1={-24} x2={0} y2={24} stroke={GREY_K} strokeWidth={8} />
+        </g>
+        <path d="M 370 950 Q 470 980 560 940" fill="none" stroke={K} strokeWidth={6} />
+        <g transform={`rotate(${sway} 300 900)`}>
+          {/* corps */}
+          <ellipse cx={300} cy={650} rx={230} ry={270} fill="#E02D3C" stroke={K} strokeWidth={12} />
+          <rect x={80} y={640} width={440} height={56} rx={20} fill={K} />
+          <rect x={262} y={636} width={76} height={64} rx={10} fill={YEL} stroke={K} strokeWidth={6} />
+          {/* bras */}
+          <ellipse cx={70} cy={560} rx={70} ry={120} fill="#E02D3C" stroke={K} strokeWidth={10} transform="rotate(25 70 560)" />
+          <ellipse cx={530} cy={560} rx={70} ry={120} fill="#E02D3C" stroke={K} strokeWidth={10} transform="rotate(-25 530 560)" />
+          <circle cx={40} cy={660} r={40} fill="white" stroke={K} strokeWidth={8} />
+          <circle cx={560} cy={660} r={40} fill="white" stroke={K} strokeWidth={8} />
+          {/* tête */}
+          <circle cx={300} cy={300} r={170} fill="#FFD9B5" stroke={K} strokeWidth={12} />
+          <path d="M 140 330 Q 160 520 300 540 Q 440 520 460 330 Q 400 400 300 392 Q 200 400 140 330 Z" fill="white" stroke={K}
+            strokeWidth={10} strokeLinejoin="round" />
+          <path d="M 130 230 Q 170 40 330 50 Q 470 70 520 170 L 560 120" fill="#E02D3C" stroke={K} strokeWidth={12}
+            strokeLinejoin="round" />
+          <rect x={120} y={200} width={360} height={66} rx={30} fill="white" stroke={K} strokeWidth={10} />
+          <circle cx={566} cy={112} r={36} fill="white" stroke={K} strokeWidth={9} />
+          <Face cx={300} cy={300} s={1.25} expr={expr} talk={talk} seed={89} gap={58} />
+        </g>
+      </svg>
+    </Perso>
+  );
+};
+const GREY_K = '#9AA0B0';
