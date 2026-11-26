@@ -706,3 +706,95 @@ export const Gonflable: React.FC<PersoProps & {expr?: Expr; talk?: boolean; glow
   );
 };
 const GREY_K = '#9AA0B0';
+
+// ---- Le Pull de Noël (27 nov. 2026) -------------------------------------------------------------------------------
+/** Pull de Noël tricoté (motif générique : losanges, flocons, sapin) qui parle ; les manches bougent.
+ *  `cozy` : petites vapeurs de chaleur au-dessus. Aucun personnage protégé. */
+export const Pull: React.FC<PersoProps & {expr?: Expr; talk?: boolean; look?: number; cozy?: boolean; label?: string}> = (
+  {expr = 'happy', talk, look = 0, cozy = false, label, ...p},
+) => {
+  const f = useCurrentFrame();
+  const arm = Math.sin(f / 8) * 6 + (talk ? Math.sin(f / 3) * 4 : 0);
+  const R = '#C8263A', D = '#8E1426', W = '#F4F1EA';
+  return (
+    <Perso {...p} ratio={720 / 760} seed={97}>
+      <svg viewBox="0 0 760 720" width="100%" height="100%" style={{overflow: 'visible'}}>
+        {cozy ? [0, 1, 2].map((i) => {
+          const t = ((f + i * 14) % 42) / 42;
+          return <path key={i} d={`M ${300 + i * 80} ${70 - t * 70} q 18 -22 0 -44 q -18 -22 0 -44`} fill="none" stroke="white"
+            strokeWidth={10} strokeLinecap="round" opacity={0.6 * (1 - t)} />;
+        }) : null}
+        {/* manches */}
+        <g transform={`rotate(${-arm} 170 200)`}>
+          <path d="M 170 170 L 40 470 L 140 510 L 230 300 Z" fill={R} stroke={K} strokeWidth={10} strokeLinejoin="round" />
+          <rect x={30} y={455} width={120} height={50} rx={14} fill={D} stroke={K} strokeWidth={8} transform="rotate(22 90 480)" />
+        </g>
+        <g transform={`rotate(${arm} 590 200)`}>
+          <path d="M 590 170 L 720 470 L 620 510 L 530 300 Z" fill={R} stroke={K} strokeWidth={10} strokeLinejoin="round" />
+          <rect x={610} y={455} width={120} height={50} rx={14} fill={D} stroke={K} strokeWidth={8} transform="rotate(-22 670 480)" />
+        </g>
+        {/* corps */}
+        <path d="M 170 150 Q 260 110 300 110 Q 380 160 460 110 Q 500 110 590 150 L 600 660 Q 380 690 160 660 Z" fill={R}
+          stroke={K} strokeWidth={12} strokeLinejoin="round" />
+        <rect x={160} y={620} width={440} height={60} rx={16} fill={D} stroke={K} strokeWidth={9} />
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => <line key={i} x1={185 + i * 40} y1={628} x2={185 + i * 40} y2={672}
+          stroke={K} strokeWidth={4} opacity={0.5} />)}
+        <path d="M 300 110 Q 380 170 460 110 L 450 135 Q 380 195 310 135 Z" fill={D} stroke={K} strokeWidth={8} />
+        {/* bandes de motif */}
+        <rect x={165} y={200} width={430} height={56} fill={W} stroke={K} strokeWidth={5} />
+        {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => <path key={i} d={`M ${185 + i * 54} 228 l 18 -18 l 18 18 l -18 18 Z`} fill={GREEN} />)}
+        <rect x={165} y={540} width={430} height={56} fill={W} stroke={K} strokeWidth={5} />
+        {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => <path key={i} d={`M ${185 + i * 54} 568 l 18 -18 l 18 18 l -18 18 Z`} fill={R} />)}
+        {/* flocons */}
+        {[[220, 300], [540, 300], [230, 500], [530, 500]].map(([x, y], i) => (
+          <g key={i} stroke={W} strokeWidth={7} strokeLinecap="round">
+            <line x1={x - 22} y1={y} x2={x + 22} y2={y} /><line x1={x} y1={y - 22} x2={x} y2={y + 22} />
+            <line x1={x - 16} y1={y - 16} x2={x + 16} y2={y + 16} /><line x1={x - 16} y1={y + 16} x2={x + 16} y2={y - 16} />
+          </g>
+        ))}
+        <Face cx={380} cy={400} s={1.35} expr={expr} talk={talk} look={look} seed={97} gap={52} />
+        {label ? <text x={380} y={760} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={64} fill={YEL}
+          stroke={K} strokeWidth={10} paintOrder="stroke">{label}</text> : null}
+      </svg>
+    </Perso>
+  );
+};
+
+// ---- Le Radiateur (27 nov. 2026) ---------------------------------------------------------------------------------
+/** Radiateur à ailettes qui parle. `heat` (0-1) : rougeoie et ondule de chaleur ; `frost` : givré (éteint). */
+export const Radiateur: React.FC<PersoProps & {expr?: Expr; talk?: boolean; look?: number; heat?: number; frost?: boolean;
+  label?: string}> = ({expr = 'cool', talk, look = 0, heat = 0.6, frost = false, label, ...p}) => {
+  const f = useCurrentFrame();
+  const body = frost ? '#CFE6F2' : heat > 0.7 ? '#F2A08A' : '#E8ECF2';
+  const fins = 6;
+  return (
+    <Perso {...p} ratio={760 / 760} seed={101} bob={0.6}>
+      <svg viewBox="0 0 760 760" width="100%" height="100%" style={{overflow: 'visible'}}>
+        {heat > 0 && !frost ? [0, 1, 2, 3].map((i) => {
+          const t = ((f + i * 10) % 40) / 40;
+          return <path key={i} d={`M ${170 + i * 140} ${130 - t * 90} q 22 -24 0 -48 q -22 -24 0 -48`} fill="none" stroke={RED}
+            strokeWidth={10} strokeLinecap="round" opacity={heat * 0.8 * (1 - t)} />;
+        }) : null}
+        {heat > 0 && !frost ? <ellipse cx={380} cy={420} rx={360} ry={300} fill={RED} opacity={heat * 0.18} /> : null}
+        {/* pieds */}
+        <rect x={140} y={660} width={50} height={80} rx={10} fill="#9AA0B0" stroke={K} strokeWidth={8} />
+        <rect x={570} y={660} width={50} height={80} rx={10} fill="#9AA0B0" stroke={K} strokeWidth={8} />
+        {/* ailettes */}
+        {Array.from({length: fins}, (_, i) => (
+          <rect key={i} x={100 + i * 95} y={150} width={85} height={540} rx={40} fill={body} stroke={K} strokeWidth={10} />
+        ))}
+        <rect x={90} y={200} width={580} height={40} rx={14} fill={body} stroke={K} strokeWidth={8} />
+        <rect x={90} y={600} width={580} height={40} rx={14} fill={body} stroke={K} strokeWidth={8} />
+        {frost ? [0, 1, 2, 3, 4].map((i) => <path key={i} d={`M ${120 + i * 120} 150 l 14 34 l 14 -34`} fill="white" stroke={K}
+          strokeWidth={4} />) : null}
+        {/* robinet thermostatique */}
+        <rect x={660} y={560} width={60} height={110} rx={20} fill="white" stroke={K} strokeWidth={8} />
+        <text x={690} y={630} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={40} fill={K}>{frost ? '0' : heat > 0.7 ? '5' : '3'}</text>
+        <rect x={210} y={300} width={340} height={250} rx={40} fill="white" opacity={0.85} stroke={K} strokeWidth={8} />
+        <Face cx={380} cy={410} s={1.3} expr={expr} talk={talk} look={look} seed={101} gap={60} />
+        {label ? <text x={380} y={800} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={64} fill={YEL}
+          stroke={K} strokeWidth={10} paintOrder="stroke">{label}</text> : null}
+      </svg>
+    </Perso>
+  );
+};

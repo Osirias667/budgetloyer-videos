@@ -474,3 +474,30 @@ export const FacadeBg: React.FC<{tint?: number; mode?: 'off' | 'led' | 'ampoules
     </AbsoluteFill>
   );
 };
+
+/** Réveillon (27 nov. 2026) : le salon de Noël avec une grande table dressée au premier plan (nappe bordeaux, bougies,
+ *  assiettes). Le haut reste calme pour le texte ; la table occupe y≈1180-1500. */
+export const ReveillonBg: React.FC<{tint?: number; empty?: boolean}> = ({tint = 0, empty = false}) => {
+  const f = useCurrentFrame();
+  return (
+    <AbsoluteFill>
+      <SalonNoelBg tint={tint} />
+      <svg width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0}}>
+        <rect x={-20} y={1200} width={1120} height={300} fill="#7E1424" stroke="#16121F" strokeWidth={8} />
+        <path d="M -20 1200 L 1100 1200 L 1100 1240 Q 540 1270 -20 1240 Z" fill="#F3EEE2" stroke="#16121F" strokeWidth={6} />
+        {[150, 400, 680, 930].map((x, i) => (
+          <g key={i}>
+            <ellipse cx={x} cy={1340} rx={92} ry={34} fill="white" stroke="#16121F" strokeWidth={6} />
+            <ellipse cx={x} cy={1340} rx={58} ry={20} fill={empty ? '#EDE6D6' : '#E8B04A'} stroke="#16121F" strokeWidth={4} />
+          </g>
+        ))}
+        {[275, 805].map((x, i) => (
+          <g key={i}>
+            <rect x={x - 12} y={1250} width={24} height={70} rx={6} fill="white" stroke="#16121F" strokeWidth={5} />
+            <ellipse cx={x} cy={1238 + Math.sin(f / 4 + i) * 2} rx={10} ry={18} fill="#FFD640" stroke="#16121F" strokeWidth={4} />
+          </g>
+        ))}
+      </svg>
+    </AbsoluteFill>
+  );
+};

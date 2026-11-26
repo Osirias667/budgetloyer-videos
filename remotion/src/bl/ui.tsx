@@ -451,8 +451,15 @@ export const Chrono: React.FC<{s0: number; s1: number; f0?: number; f1?: number;
 /** Liste de « splits » de speedrun (25 nov. 2026) : chaque ligne (prénom, montant) apparaît à l'image `at[i]` ;
  *  `bad` : ligne rouge (oubli). Total en bas qui défile si `total` est donné. */
 export const Splits: React.FC<{rows: {name: string; val: string; bad?: boolean}[]; at: number[]; y: number;
-  total?: {a: number; b: number; f0: number; f1: number; col?: string}; rowH?: number}> = ({rows, at, y, total, rowH = 74}) => {
+  total?: {a: number; b: number; f0: number; f1: number; col?: string; steps?: number[]}; rowH?: number; dim?: number}> = (
+  {rows, at, y, total, rowH = 74, dim = 0.18},
+) => {
   const f = useCurrentFrame();
+  // `total.steps` (27 nov. 2026) : le total suit les lignes affichées (somme des montants visibles, avec un court défilement).
+  const stepTotal = total?.steps ? total.steps.reduce((acc, v, i) => {
+    const t0 = at[i] ?? 0;
+    return acc + v * interpolate(f, [t0, t0 + 6], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  }, 0) : null;
   return (
     <div style={{position: 'absolute', left: 110, top: y, width: 860, borderRadius: 26, boxSizing: 'border-box',
       background: 'rgba(10,14,44,0.92)', border: '5px solid #3A4070', padding: '14px 34px'}}>
@@ -462,7 +469,7 @@ export const Splits: React.FC<{rows: {name: string; val: string; bad?: boolean}[
         const c = r.bad ? RED : 'white';
         return (
           <div key={i} style={{height: rowH, display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-            borderBottom: i < rows.length - 1 ? '2px solid #2A3060' : 'none', opacity: on ? k : 0.18,
+            borderBottom: i < rows.length - 1 ? '2px solid #2A3060' : 'none', opacity: on ? k : dim,
             transform: `translateX(${(1 - k) * -40}px)`}}>
             <span style={{...font(800, 46), color: on ? c : GREY}}>{on ? r.name : '…'}</span>
             <span style={{...font(900, 50), color: on ? (r.bad ? RED : YEL) : GREY}}>{on ? r.val : '? €'}</span>
@@ -473,7 +480,8 @@ export const Splits: React.FC<{rows: {name: string; val: string; bad?: boolean}[
         <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 10, paddingTop: 10,
           borderTop: `4px solid ${total.col ?? GREEN}`}}>
           <span style={{...font(900, 50), color: total.col ?? GREEN, letterSpacing: 2}}>TOTAL</span>
-          <span style={{...font(900, 72), color: 'white'}}><Roll a={total.a} b={total.b} f0={total.f0} f1={total.f1} /></span>
+          <span style={{...font(900, 72), color: 'white'}}>{stepTotal !== null ? eur(stepTotal, 0)
+            : <Roll a={total.a} b={total.b} f0={total.f0} f1={total.f1} />}</span>
         </div>
       ) : null}
     </div>
