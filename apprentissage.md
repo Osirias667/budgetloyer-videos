@@ -143,6 +143,17 @@
 - Programmation du 26 nov. : aucun post existant ce jour-là avant la session. Pas de Trial Reel ni de carrousel (le prompt prévoit 6 posts) : toujours à proposer au propriétaire.
 - Choix du 26 nov. : deux vidéos avec personnages sur des rituels de saison (piste forte des 2e vagues), dont l'histoire à 18:00 ; plus aucun jeu sans personnage.
 
+## Analyse du 26 novembre 2026 (20:45, 14 derniers jours)
+- **Instagram : premier Reel qui sort du plateau. « Sapin de Noël · Le match » (25 nov. 10:00, 18,4 s) : 1 058 vues, 1 316 comptes atteints, 9,6 s vues, 51,5 %** (record du compte, environ 9 fois le plateau de 105-157 vues ; 1 j'aime, 1 commentaire). Le speedrun du même jour reste au plateau (113 vues, 132 comptes, 6,9 s, 41,6 %). Vraie ou fausse promo : 58 vues, 3,0 s, 20 % (le plus bas depuis le 17 nov.). Un seul cas : le format « match d'objets à choix de camp » (comparaison + controverse, personnages-objets, score) est la piste n°1 à vérifier ; 2e match programmé le 27 nov. 10:00 (chauffage).
+- TikTok : pas de 2e vague depuis hier. Sapin 242 vues (~1,5 j), speedrun 220 (~1 j), promo 225 (~2 j), Survie étudiant é1 249 et é2 249, POV Monsieur Découvert 229 ; restent hautes : pompiers 827, à deux é1 718, Secret Santa 715, je sors pas 711. Vidéos du 26 nov. pas encore dans les stats. Partages : toujours 1 sur tout le compte ; commentaires : 0 depuis le 17 nov.
+- YouTube : données jusqu'au 22 nov. ; défi des 5 dimanches 9 vues, le reste 0 à 5 ; toujours quasi nul (seul devine le prix du 11 nov. au-dessus de 20).
+- 5 dernières descriptions relues (25 nov. speedrun et sapin, 24 nov. promo et étudiant é2, 23 nov. étudiant é1) : format une ligne, 5 hashtags, chute filée, tenu.
+- Veille : tryvolume.app/working/money (mesuré le 25 nov. 2026, 685 posts, 322 comptes) : en tête « Empty list fills in as you talk » (10 comptes, 14x), « On-screen scoreboard fills in as you talk » (8 comptes, 15x), « Countdown that saves the best for last » (11 comptes, 10x), « Holiday project built under a dollar cap » (5 comptes, 9x) ; tryvolume.app/working (mesuré le 26 nov.) : partout, le résultat montré avant le processus. postdom.com/blog/tiktok-trends (mis à jour le 26 nov., semaine du 23 au 29) : « Day 1 vs later », « Expectation vs reality », « POV », « This is your sign » ; rien sur l'argent. Adapté le 27 nov. 18:00 (réveillon : liste qui se remplit).
+- Actu : prix repère du gaz +5,8 % au 1er déc. (194,90 → 206,26 €/MWh), ≈ 16 € de plus sur la facture de décembre pour les offres indexées (CRE, via choisir.com, 26 nov. ; wizbii, 23 nov.) : utilisé le 27 nov. Aussi (wizbii, 23 nov., une seule source lue) : Smic +1,6 % au 1er déc. (≈ +24 € net/mois) ; prime de Noël versée à partir du 15 déc. (152,45 € pour une personne seule au RSA) ; chèque énergie à réclamer avant le 31 déc. (choisir.com) : pistes pour décembre, à recouper. Ouest-France non lisible.
+- Black Friday (27 nov.) : non repris (traité le 24 nov., moins de 14 jours).
+- Programmation du 27 nov. : aucun post existant ce jour-là avant la session. Pas de Trial Reel ni de carrousel (le prompt prévoit 6 posts) : toujours à proposer au propriétaire.
+- Choix du 27 nov. : 1 vidéo applique ce qui vient de marcher (match d'objets, 2e essai pour séparer format et sujet) ; 1 vidéo teste un mécanisme jamais utilisé tel quel (liste vide qui se remplit, n°1 de la niche argent) avec le profil des 2e vagues TikTok (personnages, rituel, 18:00).
+
 ## Ce qui marche
 - **Confirmé (4 vidéos à plus de 48 h)** : le format de publication en place depuis le 10 nov. (accroche complète dès l'image 1, 5 hashtags, description au format, audio doux) fait passer TikTok de ~260 à 740-785 vues, pour les jeux comme pour le POV d'objet en série.
 - **Piste forte, confirmée sur 2 thèmes** (fin de mois 819 vues, premier appart 806 vues + 1er partage ; Instagram 10,2 s puis 8,7 s) : histoire dont tu es le héros en 2e personne, widget « Il te reste » qui bouge, choix A/B (Survie p1) : 817 vues et 15 j'aime TikTok (record), 10,2 s et 63,6 % de durée vue Instagram (record). Diffusion plus lente au départ (436 vues à 27 h). Reprise le 16 nov. sur un nouveau thème (premier appart) pour vérifier que ce n'est pas le sujet seul.
@@ -155,6 +166,8 @@
 - **Piste forte (2 cas, 23 nov.)** : rituels de saison connus de tous (calendrier des pompiers 823 vues, Secret Santa 713) = les deux meilleures vidéos TikTok depuis le 17 nov., après une 2e vague à 3-4 jours. Prioriser les temps forts partagés par tout le monde (Black Friday, calendrier de l'Avent, sapin, repas de Noël, cadeaux).
 - TikTok relance tard : ne juger une vidéo qu'à 4-5 jours (pompiers : 267 à 51 h, 823 à 4,5 j ; je sors pas : 195 à 27 h, 711 à 3 j ; à deux é1 : 234 puis 718).
 - **Piste (4 cas, 24 nov.)** : les vidéos qui repartent en 2e vague ont un personnage et une histoire (pompier, cartes, P1, couple) ; les formats sans personnage (échelle, compteur, barre) et les épisodes 2 restent bas. Garder au moins un personnage qui vit une histoire dans chaque vidéo.
+
+- **Piste n°1 (1 cas, 26 nov.)** : « match » d'objets en 3 rounds avec score et choix de camp (sapin naturel contre plastique) = 1 058 vues et 1 316 comptes Instagram, 9 fois le plateau, 9,6 s vues. 2e essai le 27 nov. (pull contre radiateur) ; si ça se confirme, un match par semaine au moins.
 
 - **Confirmé (6 vidéos, 19-21 nov.)** : Remotion + vrais instruments = 7,2 à 9,6 s vues Instagram (médiane ≈ 9 s, 54-62 %), contre ~6 s de médiane bl.py ; record de portée Instagram (Secret Santa, 186 comptes). Garder Remotion.
 
@@ -224,6 +237,8 @@ _Rien de confirmé pour l'instant._
 48. Guirlandes de ton père (26 nov. 10:00, 18,2 s) : jeu A/B/C avec twist « les 3 sont bonnes » + personnage (ton père) + destinataire « envoie ça à ton père » : commentaires en une lettre, partages, vues TikTok à 4-5 jours.
 49. Calendrier de l'Avent, le coloc a tout ouvert (26 nov. 18:00, 18,4 s) : histoire avec personnages (coloc, calendrier qui parle) sur un rituel connu, résultat d'abord + retour en arrière, à 18:00 : vues TikTok à 4-5 jours contre ~250 de médiane, commentaires « 1 ou 24 ».
 47. Défi « speedrun » : chrono + splits (liste de Noël, 25 nov. 18:00, 19,6 s) : commentaires en un nombre (total), vues à 4-5 jours ; si ça marche, décliner (speedrun courses, speedrun valise).
+50. 2e match d'objets (pull contre radiateur, 27 nov. 10:00, 18,2 s) sur une actu de moins de 7 jours : Instagram au-dessus de 300 vues et 9 s comme le sapin ? Si oui, c'est le format ; sinon, le sujet sapin.
+51. Liste vide qui se remplit en direct (réveillon chez toi, 27 nov. 18:00, 18,8 s) + personnages + rituel + 18:00 : vues TikTok à 4-5 jours contre ~250, commentaires en un mot.
 45. Temps forts de saison à suivre : calendrier de l'Avent (1er déc.), sapin, repas de Noël, cadeaux, Cyber Monday (30 nov.).
 31. À faire cette semaine : Trial Reel hebdomadaire et carrousel photo (aucun programmé du 16 au 22 nov. à ce jour) ; Survie saison 3 (mécanique confirmée).
 9. « Message minuscule » qui grossit pour retenir l'attention (startups.co.uk, 2 nov. 2026), adapté dans la scène 23:59 du défi horloge.

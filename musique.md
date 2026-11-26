@@ -59,3 +59,5 @@ Le moteur est `musique.py` (classe `Track`). La règle audio douce du PLAYBOOK s
 | 2026-11-25 | Speedrun liste de Noël | swing + vive_le_vent | Bb | 145 | 7740 | v3.0 (sf2) | à mesurer |
 | 2026-11-26 | Guirlandes de ton père, devine la facture | house_light | E | 122 | 9936 | v3.0 (sf2) | à mesurer |
 | 2026-11-26 | Calendrier de l'Avent, le coloc a tout ouvert | pizzicato + frere_jacques | C | 114 | 5255 | v3.0 (sf2) | à mesurer |
+| 2026-11-27 | Chauffage, le match pull contre radiateur | chiptune_doux + marche_turque | G | 125 | 3074 | v3.0 (sf2) | à mesurer |
+| 2026-11-27 | Réveillon, cette année c'est chez toi | suspense | A | 100 | 5211 | v3.0 (sf2) | à mesurer |
