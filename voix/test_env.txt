@@ -1,0 +1,5 @@
+Test environnement voix ElevenLabs — 2026-11-27 12:39:58 UTC
+VOIX_MOTEUR : absente
+ELEVENLABS_API_KEY présente : non
+Code HTTP /v1/user/subscription : 401
+detail.message : Neither authorization header nor xi-api-key received, please provide one.
