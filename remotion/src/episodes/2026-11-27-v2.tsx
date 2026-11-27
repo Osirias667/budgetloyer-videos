@@ -44,7 +44,7 @@ const Hook: React.FC = () => {
         <SalleFond />
         <Layer d={1}>
           <Hero dim={false}><P1 x={560} y={760} w={420} expr="worry" look={-1} /></Hero>
-          <Hero rim="#FF9A9A"><Decouvert x={210} y={900} w={250} expr="happy" talk={f > 6 && f < 60} label="" /></Hero>
+          <Hero rim="#FF9A9A"><Decouvert x={210} y={900} w={250} expr="happy" talk={f > 6 && f < 122} label="" /></Hero>
         </Layer>
         <SalleAvant />
         <Scrim />
@@ -152,7 +152,7 @@ const Bilan: React.FC = () => {
         <Pillar x={130} base={900} h={70} col={C.cyan} dark={C.cyanD} label="LES 5 INVITÉS" value="15 €" delay={4} />
         <Pillar x={560} base={900} h={480} col={C.red} dark={C.redD} label="TOI" value="205 €" delay={12} />
       </Layer>
-      <Layer d={1}><Hero speak={false}><Decouvert x={300} y={1010} w={230} expr="happy" talk label="" delay={l2 - 10} /></Hero></Layer>
+      <Layer d={1}><Hero speak={false}><Decouvert x={250} y={1000} w={230} expr="happy" talk label="" /></Hero></Layer>
       <SalleAvant full />
       <Layer d={0.12}>
         <Sequence from={30} layout="none">

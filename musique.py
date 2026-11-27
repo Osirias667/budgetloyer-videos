@@ -669,7 +669,7 @@ class Track:
         s.duck[a:a + n] = np.minimum(s.duck[a:a + n], np.linspace(1, 0.12, n))
         s.duck[a + n:b] = np.minimum(s.duck[a + n:b], 0.12)
 
-    def voice(s, path, at, g=1.0, pan=0.0, duck=0.22):
+    def voice(s, path, at, g=1.0, pan=0.0, duck=0.15):
         """v3.1 : ajoute une réplique (wav de voix.py) à `at` s ; la musique baisse dessous (ducking doux).
         La voix n'est pas filtrée à 3,5 kHz comme la musique, pour rester intelligible. Renvoie sa durée."""
         raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", path, "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
@@ -720,7 +720,7 @@ class Track:
         if np.any(s.vox):  # v3.1 : la voix passe devant (musique déjà baissée par le ducking)
             vx = s.vox[:, :n]
             vx = vx / (np.max(np.abs(vx)) + 1e-9) * 0.85
-            mix = mix * 0.55 + vx
+            mix = mix * 0.4 + vx
             mix = np.tanh(mix * 1.1) / np.tanh(1.1) * 0.8
         fade = int(0.35 * SR)
         mix[:, -fade:] *= np.linspace(1, 0, fade)
