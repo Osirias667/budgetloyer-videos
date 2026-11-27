@@ -32,19 +32,24 @@ URLS = {
 # Plus de transposition (effet robot) : chaque voix est un mélange de styles Kokoro autour de la voix française
 # `ff_siwis` (phonétique toujours française ; les styles étrangers donnent un timbre et un léger accent propres au
 # personnage, ce que le propriétaire accepte : « tu peux être original même sur les accents »).
-# `eleven` : identifiant de voix ElevenLabs utilisé à la place si ELEVENLABS_API_KEY est défini (voix premium).
+# `eleven` : voix ElevenLabs retenues par le propriétaire le 27 nov. 2026 (casting du réveillon) : Monsieur Découvert
+# = Gronk (grave, comique), P1 = Julien (voix cartoon), Mamie = Grandma Clo, Tata = Valy (accent du Sud),
+# Tonton = Félix (québécois), cousin = David (ivoirien), frère = Léon ; Sam et objets = Philippine (jeune, dynamique).
+# Voie normale : le connecteur ElevenLabs (outil creative_generate_speech, modèle eleven_v4, 1 prise), fichier
+# téléchargé depuis elevenlabsusercontent.com et rangé à `chemin_eleven(perso, texte)` : `dire()` le prend alors
+# en priorité. Sinon API directe (clé), sinon repli Kokoro.
 PERSOS = {
-    "narrateur": dict(mix=[("ff_siwis", 1.0)], speed=1.05, eleven="XB0fDUnXU5powFXDhCwa"),
-    "decouvert": dict(mix=[("ff_siwis", 0.4), ("am_onyx", 0.6)], speed=1.0, eleven="JBFqnCBsd6RMkjVDRZzb"),
-    "p1": dict(mix=[("ff_siwis", 0.5), ("bm_lewis", 0.5)], speed=1.1, eleven="N2lVS1w4EtoT3dr4eOWO"),
-    "tata": dict(mix=[("ff_siwis", 0.6), ("pf_dora", 0.4)], speed=1.1, eleven="XrExE9yKIg1WjnnlVkGX"),
-    "mamie": dict(mix=[("ff_siwis", 0.6), ("if_sara", 0.4)], speed=0.9, eleven="pFZP5JQG7iQjIQuC4Bf"),
-    "tonton": dict(mix=[("ff_siwis", 0.4), ("em_santa", 0.6)], speed=1.0, eleven="pqHfZKP75CvOlQylNhV4"),
-    "cousin": dict(mix=[("ff_siwis", 0.5), ("em_alex", 0.5)], speed=1.12, eleven="nPczCjzI2devNBz1zQrb"),
-    "frere": dict(mix=[("ff_siwis", 0.4), ("pm_alex", 0.6)], speed=1.08, eleven="onwK4e9ZLuTAKqWW03F9"),
-    "sam": dict(mix=[("ff_siwis", 0.7), ("af_heart", 0.3)], speed=1.08, eleven="XrExE9yKIg1WjnnlVkGX"),
-    "objet": dict(mix=[("ff_siwis", 0.6), ("af_sky", 0.4)], speed=1.12, eleven="XB0fDUnXU5powFXDhCwa"),
-    "objet_grave": dict(mix=[("ff_siwis", 0.5), ("im_nicola", 0.5)], speed=1.02, eleven="onwK4e9ZLuTAKqWW03F9"),
+    "narrateur": dict(mix=[("ff_siwis", 1.0)], speed=1.05, eleven="Pu9MMuPx0BqjFaVxHf8W"),
+    "decouvert": dict(mix=[("ff_siwis", 0.4), ("am_onyx", 0.6)], speed=1.0, eleven="Pu9MMuPx0BqjFaVxHf8W"),
+    "p1": dict(mix=[("ff_siwis", 0.5), ("bm_lewis", 0.5)], speed=1.1, eleven="papd083UqIoSWdSkh3fG"),
+    "tata": dict(mix=[("ff_siwis", 0.6), ("pf_dora", 0.4)], speed=1.1, eleven="JgQlYGzpXIS8wtMbmdFv"),
+    "mamie": dict(mix=[("ff_siwis", 0.6), ("if_sara", 0.4)], speed=0.9, eleven="EMuO6fFLrXKOryHzij6K"),
+    "tonton": dict(mix=[("ff_siwis", 0.4), ("em_santa", 0.6)], speed=1.0, eleven="RBhYSNMNu6b2CGZ9Fn1M"),
+    "cousin": dict(mix=[("ff_siwis", 0.5), ("em_alex", 0.5)], speed=1.12, eleven="qGwq3bbZd3aOEpsBcuc6"),
+    "frere": dict(mix=[("ff_siwis", 0.4), ("pm_alex", 0.6)], speed=1.08, eleven="5hs4q0PzlPQREPpq7uQ9"),
+    "sam": dict(mix=[("ff_siwis", 0.7), ("af_heart", 0.3)], speed=1.08, eleven="Yx2a8qp2EqI9c5i8MzBo"),
+    "objet": dict(mix=[("ff_siwis", 0.6), ("af_sky", 0.4)], speed=1.12, eleven="Yx2a8qp2EqI9c5i8MzBo"),
+    "objet_grave": dict(mix=[("ff_siwis", 0.5), ("im_nicola", 0.5)], speed=1.02, eleven="Pu9MMuPx0BqjFaVxHf8W"),
 }
 
 _K = None
@@ -101,6 +106,14 @@ def duree(path):
     return float(out.strip())
 
 
+def chemin_eleven(perso, texte):
+    """Où ranger le mp3 ElevenLabs généré par le connecteur pour cette réplique (dire() le reprend en priorité)."""
+    key = hashlib.sha1(f"{perso}|{texte}".encode()).hexdigest()[:14]
+    d = os.path.join(CACHE, "eleven")
+    os.makedirs(d, exist_ok=True)
+    return os.path.join(d, f"{perso}_{key}.mp3")
+
+
 def dire(perso, texte, out_dir=CACHE):
     """Génère (ou reprend du cache) la réplique `texte` dite par `perso`. Renvoie (chemin_wav, durée_s).
     Lève une erreur si la voix sort vide (contrôle ajouté après la voix muette de Mamie, 27 nov. 2026)."""
@@ -112,6 +125,15 @@ def dire(perso, texte, out_dir=CACHE):
     key = hashlib.sha1(f"{moteur}|{perso}|{texte}|{sorted(p.items())}".encode()).hexdigest()[:14]
     os.makedirs(out_dir, exist_ok=True)
     dst = os.path.join(out_dir, f"{perso}_{key}.wav")
+    ext = chemin_eleven(perso, texte)
+    if os.path.exists(ext):  # prise ElevenLabs (connecteur) déposée pour cette réplique : prioritaire
+        moteur = "connecteur"
+        dst = os.path.join(out_dir, f"{perso}_{hashlib.sha1(('c|' + ext).encode()).hexdigest()[:14]}.wav")
+    if not os.path.exists(dst) and moteur == "connecteur":
+        subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", ext, "-af",
+                        "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.03,areverse,"
+                        "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.06,areverse,"
+                        "highpass=f=70,loudnorm=I=-18:TP=-3", "-ar", "44100", "-ac", "1", dst], check=True)
     if not os.path.exists(dst):
         raw = dst + ".raw.wav"
         ok = False
