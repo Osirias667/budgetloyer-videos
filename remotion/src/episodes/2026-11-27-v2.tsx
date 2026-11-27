@@ -76,7 +76,7 @@ const Invites: React.FC = () => {
   const G = GUESTS[Math.max(0, who)];
   const punch = at.map((a) => ({f: a, z: 1.06})).flatMap((k, i) => [{f: k.f - 6, z: 1.0 + (i % 2) * 0.02, x: (i % 2 ? 20 : -20)}, k]);
   return (
-    <Cam keys={[{f: 0, z: 1.0}, ...punch]}>
+    <Cam keys={[{f: 0, z: 1.0}, ...punch].filter((k, i, arr) => i === 0 || k.f > arr[i - 1].f)}>
       <SalleFond />
       <Layer d={1}>
         <Sequence from={Math.max(0, at[Math.max(0, who)] - 6)} key={who} layout="none">

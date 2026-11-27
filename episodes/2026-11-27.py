@@ -96,14 +96,17 @@ def music_b(total, path, music=True):
 
 
 # ---- B2 : même histoire, nouvelle DA 2.5D + voix off de personnages (27 nov. 2026) ----------------------------
+# Voix ElevenLabs (connecteur) depuis le 27 nov. 15:50, expressions régionales légères à la demande du propriétaire :
+# « té » (Provence), « pas de trouble » (Québec), « ya fohi » (« pas de problème », Côte d'Ivoire).
 # Chaque scène : liste de répliques (personnage, texte dit, texte affiché). Les durées de scène découlent des voix.
 from voix import dire  # noqa: E402
 
 B2_SCRIPT = [
     ("hook", [("decouvert", "Cette année, le réveillon, c'est chez toi.", None),
               ("decouvert", "Et tout le monde apporte un truc.", "Et tout le monde « apporte un truc ».")]),
-    ("invites", [("tata", "Moi, j'apporte le pain !", None), ("tonton", "Je m'occupe du vin.", "Je m'occupe du vin."),
-                 ("cousin", "Moi, les glaçons.", None), ("mamie", "Moi ? Ma bonne humeur !", None),
+    ("invites", [("tata", "Oh, moi j'apporte le pain, té !", None),
+                 ("tonton", "Pas de trouble, je m'occupe du vin !", None),
+                 ("cousin", "Moi, les glaçons. Ya fohi !", None), ("mamie", "Moi ? Ma bonne humeur !", None),
                  ("frere", "Je fais la playlist.", None)]),
     ("total_inv", [("decouvert", "Total des invités : quinze euros.", "Total des invités : 15 €.")]),
     ("hote", [("decouvert", "Et toi ? L'apéro, l'entrée, le plat, les fromages, la bûche, la déco… et le vrai vin.", None),
@@ -113,7 +116,7 @@ B2_SCRIPT = [
     ("twist", [("mamie", "C'était parfait ! L'an prochain… on refait chez toi !", None), ("p1", "Hein ?!", None)]),
     ("fin", [("decouvert", "Et toi, t'es plutôt pain, glaçons, playlist… ou celui qui reçoit ?", None)]),
 ]
-PRE, GAP, POST = 0.25, 0.18, 0.35
+PRE, GAP, POST = 0.2, 0.12, 0.3
 B2, B2_LINES, B2_WAVS = [], [], []
 _t = 0.0
 for _name, _lines in B2_SCRIPT:

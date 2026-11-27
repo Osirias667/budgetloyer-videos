@@ -133,7 +133,7 @@ def dire(perso, texte, out_dir=CACHE):
         subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-i", ext, "-af",
                         "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.03,areverse,"
                         "silenceremove=start_periods=1:start_threshold=-45dB:start_silence=0.06,areverse,"
-                        "highpass=f=70,loudnorm=I=-18:TP=-3", "-ar", "44100", "-ac", "1", dst], check=True)
+                        "highpass=f=70,atempo=1.12,loudnorm=I=-18:TP=-3", "-ar", "44100", "-ac", "1", dst], check=True)
     if not os.path.exists(dst):
         raw = dst + ".raw.wav"
         ok = False
