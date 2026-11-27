@@ -798,3 +798,75 @@ export const Radiateur: React.FC<PersoProps & {expr?: Expr; talk?: boolean; look
     </Perso>
   );
 };
+
+// ---- La Tomate (28 nov. 2026) ------------------------------------------------------------------------------------
+/** Tomate qui parle (produits frais) : corps rouge brillant, feuilles vertes qui frémissent. `label` sous elle. */
+export const Tomate: React.FC<PersoProps & {expr?: Expr; talk?: boolean; look?: number; label?: string}> = (
+  {expr = 'happy', talk, look = 0, label, ...p},
+) => {
+  const f = useCurrentFrame();
+  const leaf = Math.sin(f / 6) * 5 + (talk ? Math.sin(f / 2.5) * 4 : 0);
+  return (
+    <Perso {...p} ratio={720 / 760} seed={113} bob={1.2}>
+      <svg viewBox="0 0 760 720" width="100%" height="100%" style={{overflow: 'visible'}}>
+        <defs>
+          <radialGradient id="tomate" cx="0.38" cy="0.32" r="0.8">
+            <stop offset="0" stopColor="#FF7A6A" /><stop offset="0.55" stopColor="#E8323A" /><stop offset="1" stopColor="#A8142A" />
+          </radialGradient>
+        </defs>
+        <path d="M 380 160 C 140 150 70 330 90 450 C 115 620 260 700 380 700 C 500 700 645 620 670 450 C 690 330 620 150 380 160 Z"
+          fill="url(#tomate)" stroke={K} strokeWidth={12} />
+        <path d="M 250 210 Q 200 260 190 330" fill="none" stroke="white" strokeWidth={22} strokeLinecap="round" opacity={0.45} />
+        <path d="M 300 175 Q 380 210 460 175" fill="none" stroke="#8E1426" strokeWidth={8} opacity={0.5} />
+        <g transform={`rotate(${leaf} 380 165)`}>
+          {[-150, -75, 0, 75, 150].map((a, i) => (
+            <path key={i} d="M 380 165 Q 400 110 380 40 Q 360 110 380 165 Z" transform={`rotate(${a * 0.55} 380 165)`}
+              fill={i % 2 ? '#2FA84A' : '#3CC25A'} stroke={K} strokeWidth={8} strokeLinejoin="round" />
+          ))}
+          <rect x={366} y={60} width={28} height={110} rx={12} fill="#2A8A3A" stroke={K} strokeWidth={8} />
+        </g>
+        <Face cx={380 + look * 6} cy={430} s={1.4} expr={expr} talk={talk} look={look} seed={113} gap={60} />
+        {label ? <text x={380} y={790} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={64} fill={YEL}
+          stroke={K} strokeWidth={10} paintOrder="stroke">{label}</text> : null}
+      </svg>
+    </Perso>
+  );
+};
+
+// ---- La Télé (28 nov. 2026) --------------------------------------------------------------------------------------
+/** Télé générique (produits manufacturés), sans marque : écran qui porte le visage, antennes qui oscillent. */
+export const Tele: React.FC<PersoProps & {expr?: Expr; talk?: boolean; look?: number; label?: string}> = (
+  {expr = 'cool', talk, look = 0, label, ...p},
+) => {
+  const f = useCurrentFrame();
+  const ant = Math.sin(f / 9) * 6;
+  const scan = (f * 6) % 380;
+  return (
+    <Perso {...p} ratio={760 / 760} seed={127} bob={0.8}>
+      <svg viewBox="0 0 760 760" width="100%" height="100%" style={{overflow: 'visible'}}>
+        <defs>
+          <linearGradient id="teleEcran" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor="#7FF0FF" /><stop offset="1" stopColor="#3AA8E0" /></linearGradient>
+        </defs>
+        <g transform={`rotate(${ant} 380 190)`}>
+          <line x1={380} y1={190} x2={250} y2={40} stroke={K} strokeWidth={12} strokeLinecap="round" />
+          <circle cx={250} cy={40} r={18} fill={RED} stroke={K} strokeWidth={7} />
+        </g>
+        <g transform={`rotate(${-ant} 380 190)`}>
+          <line x1={380} y1={190} x2={520} y2={50} stroke={K} strokeWidth={12} strokeLinecap="round" />
+          <circle cx={520} cy={50} r={18} fill={YEL} stroke={K} strokeWidth={7} />
+        </g>
+        <line x1={250} y1={640} x2={200} y2={740} stroke={K} strokeWidth={18} strokeLinecap="round" />
+        <line x1={510} y1={640} x2={560} y2={740} stroke={K} strokeWidth={18} strokeLinecap="round" />
+        <rect x={70} y={180} width={620} height={470} rx={60} fill="#3D4A6E" stroke={K} strokeWidth={12} />
+        <rect x={110} y={220} width={460} height={390} rx={46} fill="url(#teleEcran)" stroke={K} strokeWidth={10} />
+        <rect x={110} y={220 + scan} width={460} height={14} fill="white" opacity={0.18} />
+        <circle cx={630} cy={290} r={24} fill={GREEN} stroke={K} strokeWidth={7} />
+        <circle cx={630} cy={370} r={24} fill={YEL} stroke={K} strokeWidth={7} />
+        {[0, 1, 2, 3].map((i) => <line key={i} x1={608} y1={450 + i * 34} x2={652} y2={450 + i * 34} stroke={K} strokeWidth={8} strokeLinecap="round" />)}
+        <Face cx={340 + look * 6} cy={400} s={1.25} expr={expr} talk={talk} look={look} seed={127} gap={58} blush={false} />
+        {label ? <text x={380} y={820} textAnchor="middle" fontFamily="Inter" fontWeight={900} fontSize={64} fill={YEL}
+          stroke={K} strokeWidth={10} paintOrder="stroke">{label}</text> : null}
+      </svg>
+    </Perso>
+  );
+};

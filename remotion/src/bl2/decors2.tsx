@@ -182,3 +182,245 @@ export const Pillar: React.FC<{x: number; base: number; h: number; w?: number; c
     </div>
   );
 };
+
+// ======== 28 nov. 2026 : plateau télé (podium), salon de nuit, horloge, jauge ===================================
+
+/** Plateau de jeu télé en couches : fond violet, écran géant en arc, faisceaux de projecteurs qui balaient,
+ *  public en bokeh. `title` : texte de l'écran du fond. */
+export const PlateauFond: React.FC<{title?: string; beams?: string[]}> = ({title = 'PODIUM', beams = [C.yel, C.cyan, C.red, C.green]}) => {
+  const f = useCurrentFrame();
+  return (
+    <>
+      <Layer d={0.12}>
+        <AbsoluteFill style={{background: 'radial-gradient(1200px 900px at 540px 520px, #4A2A9A 0%, #24124E 45%, #0E0624 100%)'}} />
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+          {/* écran en arc */}
+          <path d="M 120 760 L 120 420 Q 540 250 960 420 L 960 760 Z" fill="#120A30" stroke="#6B55E0" strokeWidth="14" />
+          {Array.from({length: 18}, (_, i) => Array.from({length: 7}, (__, j) => {
+            const on = (Math.sin(f / 6 + i * 0.7 + j * 1.3) + 1) / 2;
+            return <circle key={`${i}-${j}`} cx={170 + i * 44} cy={470 + j * 42} r={9} fill={beams[(i + j) % beams.length]} opacity={0.12 + on * 0.25} />;
+          }))}
+          <text x={540} y={640} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize={88} fill="white" opacity={0.16}>{title}</text>
+        </svg>
+      </Layer>
+      <Layer d={0.3}>
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, mixBlendMode: 'screen'}}>
+          <defs>
+            {beams.map((c, i) => (
+              <linearGradient key={i} id={`beam${i}`} x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stopColor={c} stopOpacity="0.55" /><stop offset="1" stopColor={c} stopOpacity="0" />
+              </linearGradient>
+            ))}
+          </defs>
+          {beams.map((_, i) => {
+            const x = 140 + i * 270;
+            const a = Math.sin(f / (22 + i * 4) + i * 1.7) * 18;
+            return <path key={i} d={`M ${x} 60 L ${x - 170} 1500 L ${x + 170} 1500 Z`} fill={`url(#beam${i})`}
+              transform={`rotate(${a} ${x} 60)`} opacity={0.6} />;
+          })}
+          {beams.map((c, i) => <circle key={`l${i}`} cx={140 + i * 270} cy={60} r={34} fill={c} opacity={0.9} />)}
+        </svg>
+      </Layer>
+      <Layer d={0.6}>
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+          <path d="M -300 1160 L 1380 1160 L 1600 1920 L -520 1920 Z" fill="#1A0E3A" />
+          <ellipse cx={540} cy={1230} rx={620} ry={110} fill="#6B55E0" opacity={0.25} />
+          {Array.from({length: 12}, (_, i) => <line key={i} x1={-300 + i * 150} y1={1160} x2={-520 + i * 190} y2={1920}
+            stroke="#2C1A5E" strokeWidth={5} />)}
+          <path d="M -300 1160 L 1380 1160" stroke="#8C78FF" strokeWidth={8} opacity={0.7} />
+        </svg>
+      </Layer>
+    </>
+  );
+};
+
+/** Avant-scène du plateau : rampe lumineuse et public flou au premier plan. */
+export const PlateauAvant: React.FC = () => {
+  const f = useCurrentFrame();
+  return (
+    <>
+      <Layer d={1.2}>
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+          <rect x={-100} y={1560} width={1280} height={60} fill="#0E0624" />
+          {Array.from({length: 16}, (_, i) => <circle key={i} cx={-40 + i * 75} cy={1590} r={12}
+            fill={[C.yel, C.cyan, C.red, C.green][i % 4]} opacity={0.5 + 0.5 * Math.abs(Math.sin(f / 5 + i))} />)}
+        </svg>
+      </Layer>
+      <Layer d={1.5} blur={10}>
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+          {Array.from({length: 9}, (_, i) => <ellipse key={i} cx={60 + i * 125} cy={1830 + Math.sin(f / 9 + i) * 8} rx={70} ry={90}
+            fill="#0A0418" />)}
+        </svg>
+        <Bokeh n={6} seed={33} y0={1620} y1={1900} size={[40, 90]} blur={3} opacity={0.4} />
+      </Layer>
+    </>
+  );
+};
+
+/** Podium à 3 marches (2 · 1 · 3) en relief. `lit` : marches allumées (1, 2, 3) ; `q` : « ? » sur les marches éteintes. */
+export const Podium: React.FC<{y?: number; lit?: number[]; q?: boolean}> = ({y = 1180, lit = [], q = true}) => {
+  const f = useCurrentFrame();
+  const steps = [
+    {n: 2, x: 120, w: 280, h: 220, col: '#C9D3E0', dark: '#8A96A8'},
+    {n: 1, x: 400, w: 280, h: 320, col: C.yel, dark: C.yelD},
+    {n: 3, x: 680, w: 280, h: 160, col: '#E0975A', dark: '#9A5A2A'},
+  ];
+  return (
+    <svg width={1080} height={1920} style={{position: 'absolute', inset: 0, overflow: 'visible'}}>
+      {steps.map((s) => {
+        const on = lit.includes(s.n);
+        const top = y - s.h;
+        return (
+          <g key={s.n}>
+            {on ? <ellipse cx={s.x + s.w / 2} cy={top} rx={s.w * 0.7} ry={40} fill={s.col} opacity={0.25 + 0.1 * Math.sin(f / 4)} /> : null}
+            <path d={`M ${s.x} ${top} L ${s.x + 30} ${top - 34} L ${s.x + s.w + 30} ${top - 34} L ${s.x + s.w} ${top} Z`}
+              fill={on ? 'white' : '#4A3A7A'} opacity={on ? 0.85 : 1} stroke={K} strokeWidth={6} />
+            <rect x={s.x} y={top} width={s.w} height={s.h} fill={on ? s.col : '#3A2A6A'} stroke={K} strokeWidth={6} />
+            <path d={`M ${s.x + s.w} ${top} L ${s.x + s.w + 30} ${top - 34} L ${s.x + s.w + 30} ${y - 34} L ${s.x + s.w} ${y} Z`}
+              fill={on ? s.dark : '#2A1A52'} stroke={K} strokeWidth={6} />
+            <text x={s.x + s.w / 2} y={top + Math.min(130, s.h - 20)} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800}
+              fontSize={110} fill={on ? 'white' : '#6A5AA0'} stroke={K} strokeWidth={on ? 8 : 0} paintOrder="stroke">{s.n}</text>
+            {!on && q ? <text x={s.x + s.w / 2} y={top - 70} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize={120}
+              fill="white" opacity={0.75 + 0.25 * Math.sin(f / 5 + s.n)} stroke={K} strokeWidth={8} paintOrder="stroke">?</text> : null}
+          </g>
+        );
+      })}
+    </svg>
+  );
+};
+
+/** Médaille (or, argent, bronze) qui tombe et se balance, avec un texte (ex. « +19,2 % »). */
+export const Medaille: React.FC<{x: number; y: number; rank: 1 | 2 | 3; txt: string; delay?: number; size?: number}> = (
+  {x, y, rank, txt, delay = 0, size = 1},
+) => {
+  const f = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const instant = useInstant();
+  const s = instant ? 1 : spring({frame: f - delay, fps, config: {damping: 8, stiffness: 120}});
+  const col = rank === 1 ? [C.yel, C.yelD] : rank === 2 ? ['#E6ECF4', '#8A96A8'] : ['#E8A060', '#9A5A2A'];
+  const sw = Math.sin((f - delay) / 7) * 6 * Math.max(0, 1 - (f - delay) / 120);
+  return (
+    <div style={{position: 'absolute', left: x - 120 * size, top: y - (1 - s) * 500, width: 240 * size, opacity: Math.min(1, s * 2),
+      transform: `rotate(${sw}deg)`, transformOrigin: '50% 0%'}}>
+      <svg viewBox="0 0 240 330" width="100%" style={{overflow: 'visible'}}>
+        <path d="M 70 0 L 110 120 L 130 120 L 170 0 Z" fill={rank === 1 ? C.red : rank === 2 ? C.cyan : C.violet} stroke={K} strokeWidth={6} />
+        <circle cx={120} cy={210} r={100} fill={col[0]} stroke={K} strokeWidth={8} />
+        <circle cx={120} cy={210} r={76} fill="none" stroke={col[1]} strokeWidth={8} />
+        <text x={120} y={240} textAnchor="middle" fontFamily={DISPLAY} fontWeight={800} fontSize={90} fill={col[1]}>{rank}</text>
+      </svg>
+      <div style={{textAlign: 'center', marginTop: -6 * size, fontFamily: DISPLAY, fontWeight: 800, fontSize: 64 * size, color: 'white',
+        textShadow: `0 4px 0 ${K}, 0 0 20px ${col[0]}`}}>{txt}</div>
+    </div>
+  );
+};
+
+/** Salon de nuit en couches : fenêtre sur la ville (lumières qui scintillent), lampe chaude, étagère, cadre. */
+export const AppartFond: React.FC<{tint?: string}> = ({tint = '#1A1446'}) => {
+  const f = useCurrentFrame();
+  return (
+    <>
+      <Layer d={0.15}>
+        <AbsoluteFill style={{background: `linear-gradient(180deg, ${tint} 0%, #2A1E5A 55%, #3A2456 100%)`}} />
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+          <rect x={420} y={420} width={520} height={620} rx={18} fill="#0A1240" stroke="#120C2A" strokeWidth={22} />
+          {Array.from({length: 9}, (_, i) => {
+            const h = 120 + rand(i + 40) * 300;
+            return <g key={i}>
+              <rect x={432 + i * 58} y={1030 - h} width={52} height={h} fill="#141C54" />
+              {Array.from({length: Math.floor(h / 40)}, (__, j) => <rect key={j} x={442 + i * 58 + (j % 2) * 18} y={1040 - h + j * 36} width={12} height={16}
+                fill={C.yel} opacity={rand(i * 9 + j) > 0.45 ? 0.45 + 0.4 * Math.sin(f / 15 + i + j) : 0.06} />)}
+            </g>;
+          })}
+          <circle cx={830} cy={520} r={40} fill="#FFF3C8" opacity={0.9} />
+          <path d="M 680 420 L 680 1040 M 420 730 L 940 730" stroke="#120C2A" strokeWidth={16} />
+          <rect x={400} y={1030} width={560} height={30} rx={8} fill="#E8D2B0" stroke="#120C2A" strokeWidth={8} />
+          {/* étagère + cadre */}
+          <rect x={60} y={600} width={260} height={22} rx={6} fill="#8A5A3A" stroke="#120C2A" strokeWidth={6} />
+          <rect x={80} y={520} width={50} height={80} rx={6} fill={C.cyan} stroke="#120C2A" strokeWidth={5} />
+          <rect x={140} y={500} width={40} height={100} rx={6} fill={C.red} stroke="#120C2A" strokeWidth={5} />
+          <circle cx={250} cy={560} r={36} fill="#3CC25A" stroke="#120C2A" strokeWidth={5} />
+          <rect x={70} y={330} width={200} height={140} rx={10} fill="#F3D9A8" stroke="#6A3A1A" strokeWidth={12} />
+          <path d="M 90 450 L 150 380 L 190 420 L 220 390 L 250 450 Z" fill="#5A8CFF" />
+        </svg>
+      </Layer>
+      <Layer d={0.45}>
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+          {/* lampe sur pied */}
+          <circle cx={150} cy={820} r={170} fill="#FFC870" opacity={0.16 + 0.03 * Math.sin(f / 9)} />
+          <path d="M 90 760 L 210 760 L 180 860 L 120 860 Z" fill="#FFE2A0" stroke="#120C2A" strokeWidth={8} />
+          <line x1={150} y1={860} x2={150} y2={1180} stroke="#120C2A" strokeWidth={12} />
+        </svg>
+      </Layer>
+      <Layer d={0.6}>
+        <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+          <path d="M -200 1180 L 1280 1180 L 1500 1920 L -420 1920 Z" fill="#4A2E3A" />
+          <path d="M -200 1180 L 1280 1180" stroke="#24141E" strokeWidth={14} />
+          <ellipse cx={540} cy={1400} rx={460} ry={120} fill="#7A3A5A" opacity={0.5} />
+        </svg>
+      </Layer>
+    </>
+  );
+};
+
+/** Premier plan du salon : dossier de canapé flou + bokeh chaud. */
+export const AppartAvant: React.FC = () => (
+  <>
+    <Layer d={1.2}>
+      <svg width={1080} height={1920} style={{position: 'absolute', inset: 0}}>
+        <path d="M -60 1560 Q 540 1500 1140 1560 L 1140 1920 L -60 1920 Z" fill="#5A3A8A" stroke={K} strokeWidth={8} />
+        <path d="M -60 1560 Q 540 1500 1140 1560" fill="none" stroke="#7A5AB0" strokeWidth={14} />
+        <rect x={40} y={1590} width={200} height={130} rx={40} fill="#E0812A" stroke={K} strokeWidth={8} transform="rotate(-8 140 1650)" />
+      </svg>
+    </Layer>
+    <Layer d={1.5} blur={12}>
+      <Bokeh n={6} seed={51} y0={1650} y1={1900} size={[50, 110]} blur={4} opacity={0.45} colors={[C.warm, C.yel, C.red]} />
+    </Layer>
+  </>
+);
+
+/** Panneau horloge : jour + heure (gros chiffres) et chrono écoulé (« +21 h »). Les chiffres basculent à chaque
+ *  changement de valeur. */
+export const Horloge2: React.FC<{day: string; time: string; since: string; y?: number; col?: string}> = (
+  {day, time, since, y = 150, col = C.cyan},
+) => {
+  const f = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const instant = useInstant();
+  const s = instant ? 1 : spring({frame: f, fps, config: {damping: 11, stiffness: 160}});
+  return (
+    <div style={{position: 'absolute', top: y, left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: 18,
+      transform: `scale(${0.7 + 0.3 * s})`, opacity: Math.min(1, s * 2)}}>
+      <div style={{background: 'rgba(10,8,28,0.85)', border: `4px solid ${col}`, borderRadius: 24, padding: '8px 26px 2px',
+        boxShadow: `0 0 30px ${col}66, 0 10px 0 rgba(0,0,0,0.4)`, textAlign: 'center'}}>
+        <div style={{fontFamily: DISPLAY, fontWeight: 800, fontSize: 34, color: col, letterSpacing: 2, lineHeight: 1}}>{day}</div>
+        <div style={{fontFamily: DISPLAY, fontWeight: 800, fontSize: 92, color: 'white', lineHeight: 1, textShadow: `0 0 18px ${col}`}}>{time}</div>
+      </div>
+      <div style={{alignSelf: 'center', background: C.red, color: 'white', fontFamily: DISPLAY, fontWeight: 800, fontSize: 52,
+        padding: '6px 22px 0', borderRadius: 20, boxShadow: `0 6px 0 ${C.redD}`, transform: `rotate(4deg)`}}>{since}</div>
+    </div>
+  );
+};
+
+/** Jauge horizontale « par jour jusqu'à la paie » : barre qui se vide de `from` à `to` (en euros) entre `a` et `b`. */
+export const Jauge2: React.FC<{y: number; from: number; to: number; max: number; a?: number; b?: number; label?: string}> = (
+  {y, from, to, max, a = 0, b = 30, label = "PAR JOUR JUSQU'À LA PAIE"},
+) => {
+  const f = useCurrentFrame();
+  const v = interpolate(f, [a, b], [from, to], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const k = v / max;
+  const col = k > 0.9 ? C.green : k > 0.75 ? C.yel : C.red;
+  const txt = v.toFixed(2).replace('.', ',') + ' €';
+  return (
+    <div style={{position: 'absolute', top: y, left: 110, width: 800}}>
+      <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: 8}}>
+        <span style={{fontFamily: DISPLAY, fontWeight: 800, fontSize: 32, color: 'white', textShadow: '0 3px 0 rgba(0,0,0,0.6)'}}>{label}</span>
+        <span style={{fontFamily: DISPLAY, fontWeight: 800, fontSize: 64, color: col, lineHeight: 1, textShadow: '0 4px 0 rgba(0,0,0,0.6)'}}>{txt}</span>
+      </div>
+      <div style={{height: 46, borderRadius: 23, background: 'rgba(10,8,28,0.85)', border: '4px solid white', overflow: 'hidden',
+        boxShadow: '0 8px 0 rgba(0,0,0,0.35)'}}>
+        <div style={{width: `${Math.max(0, Math.min(1, k)) * 100}%`, height: '100%', background: `linear-gradient(180deg, ${col}, ${col}AA)`,
+          borderRadius: 20}} />
+      </div>
+    </div>
+  );
+};
