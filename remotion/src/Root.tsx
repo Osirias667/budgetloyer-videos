@@ -13,6 +13,7 @@ import {A_DURATIONS as A24, B_DURATIONS as B24, BlackFridayVraieFausse, SurvieEt
 import {A_DURATIONS as A25, B_DURATIONS as B25, SapinMatch, SpeedrunListeNoel} from './episodes/2026-11-25';
 import {A_DURATIONS as A26, B_DURATIONS as B26, CalendrierAventColoc, GuirlandesPapa} from './episodes/2026-11-26';
 import {A_DURATIONS as A27, B_DURATIONS as B27, ChauffageMatch, ReveillonChezToi} from './episodes/2026-11-27';
+import {B2_DURATIONS, ReveillonChezToi2} from './episodes/2026-11-27-v2';
 import {Galerie} from './Galerie';
 
 type EpProps = {durations: number[]; audio?: string};
@@ -45,5 +46,6 @@ export const RemotionRoot: React.FC = () => (
     {ep('calendrier-avent-coloc', CalendrierAventColoc, B26)}
     {ep('chauffage-match', ChauffageMatch, A27)}
     {ep('reveillon-chez-toi', ReveillonChezToi, B27)}
+    {ep('reveillon-chez-toi-v2', ReveillonChezToi2 as React.FC<EpProps>, B2_DURATIONS)}
   </>
 );

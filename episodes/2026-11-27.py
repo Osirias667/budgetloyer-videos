@@ -21,7 +21,10 @@ Faits :
 - Écarté : tout montant d'économie en euros (dépend du logement), les températures pièce par pièce du guide ADEME
   (infographie mal lisible en texte).
 
-Vidéo B (18:00) : « Réveillon · Cette année, c'est chez toi » (liste vide qui se remplit en direct, personnages de
+Vidéo B (18:00) : « Réveillon · Cette année, c'est chez toi ». Refaite le 27 nov. à la demande du propriétaire dans la
+nouvelle DA « cartoon premium 2.5D » (src/bl2/) avec voix off de personnages (voix.py) : liste `B2`, musique `music_b2`,
+composition `reveillon-chez-toi-v2`. Première version (`B`, `music_b`) gardée pour mémoire, non publiée.
+Version initiale : « Réveillon · Cette année, c'est chez toi » (liste vide qui se remplit en direct, personnages de
 la famille, total des invités contre total de l'hôte, chute qui boucle sur l'accroche ; aucun plan d'app). Aucun fait
 chiffré : histoire inventée, montants d'exemple (indiqué à l'écran).
 Mécanisme : « Empty list fills in as you talk » (en tête de la niche argent : 10 comptes, 14x la médiane),
@@ -89,4 +92,57 @@ def music_b(total, path, music=True):
     m.reveal(cuts[4] + 0.6, good=False)
     m.reveal(cuts[5] + 1.0, good=False)
     m.jingle(cuts[6] + 0.15)
+    m.end(path)
+
+
+# ---- B2 : même histoire, nouvelle DA 2.5D + voix off de personnages (27 nov. 2026) ----------------------------
+# Chaque scène : liste de répliques (personnage, texte dit, texte affiché). Les durées de scène découlent des voix.
+from voix import dire  # noqa: E402
+
+B2_SCRIPT = [
+    ("hook", [("decouvert", "Cette année, le réveillon, c'est chez toi.", None),
+              ("decouvert", "Et tout le monde apporte un truc.", "Et tout le monde « apporte un truc ».")]),
+    ("invites", [("tata", "Moi, j'apporte le pain !", None), ("tonton", "Je m'occupe du vin.", "Je m'occupe du vin."),
+                 ("cousin", "Moi, les glaçons.", None), ("mamie", "Moi ? Ma bonne humeur !", None),
+                 ("frere", "Je fais la playlist.", None)]),
+    ("total_inv", [("decouvert", "Total des invités : quinze euros.", "Total des invités : 15 €.")]),
+    ("hote", [("decouvert", "Et toi ? L'apéro, l'entrée, le plat, les fromages, la bûche, la déco… et le vrai vin.", None),
+              ("decouvert", "Deux cent cinq euros.", "205 €.")]),
+    ("bilan", [("decouvert", "À six, ça faisait presque trente-sept euros chacun.", "À 6, ça faisait 36,67 € chacun."),
+               ("decouvert", "Le total, ça se dit avant les invitations… mais chut, ne leur dis pas !", None)]),
+    ("twist", [("mamie", "C'était parfait ! L'an prochain… on refait chez toi !", None), ("p1", "Hein ?!", None)]),
+    ("fin", [("decouvert", "Et toi, t'es plutôt pain, glaçons, playlist… ou celui qui reçoit ?", None)]),
+]
+PRE, GAP, POST = 0.25, 0.18, 0.35
+B2, B2_LINES, B2_WAVS = [], [], []
+_t = 0.0
+for _name, _lines in B2_SCRIPT:
+    _d = PRE
+    for _who, _say, _show in _lines:
+        _wav, _len = dire(_who, _say)
+        B2_LINES.append({"t": round(_t + _d, 3), "d": round(_len, 3), "who": _who, "text": _show or _say})
+        B2_WAVS.append((_wav, _t + _d))
+        _d += _len + GAP
+    _d += POST - GAP
+    if _name == "fin":
+        _d = max(_d, 4.2)  # question + carte de fin (2 s)
+    B2.append((_name, round(_d, 2)))
+    _t += round(_d, 2)
+B2_PROPS = {"lines": B2_LINES}
+
+
+def music_b2(total, path, music=True):
+    cuts = list(np.cumsum([0] + [d for _, d in B2]))
+    m = Track(total, style="pizzicato", key="D", bpm=108, seed=5211, music=music, cuts=cuts, theme="vive_le_vent", sf2=True)
+    m.compose(layers_at=cuts[1], break_at=cuts[5], end_at=cuts[6] + 0.15)
+    for c in cuts[1:-1]:
+        m.whoosh(c, g=0.09)
+    for wav, at in B2_WAVS:
+        m.voice(wav, at)
+    for ln in B2_LINES[2:7]:  # chaque ligne d'invité qui tombe dans la liste
+        m.pop(ln["t"] + 0.05, 0.12)
+    m.reveal(cuts[2] + 0.4, good=True)
+    m.reveal(cuts[4] - 0.6, good=False)
+    m.reveal(cuts[5] + 0.4, good=False)
+    m.jingle(cuts[6] + max(0.15, B2[6][1] - 2.0))
     m.end(path)

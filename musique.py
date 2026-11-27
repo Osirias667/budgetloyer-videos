@@ -353,6 +353,7 @@ class Track:
         s.mus = np.zeros((2, n))
         s.rev = np.zeros((2, n))
         s.sfx = np.zeros((2, n))
+        s.vox = np.zeros((2, n))  # v3.1 (27 nov. 2026) : voix off des personnages, hors filtre passe-bas
         s.duck = np.ones(n)
         s.pump = np.ones(n)
         s.rng = random.Random(seed)
@@ -668,6 +669,22 @@ class Track:
         s.duck[a:a + n] = np.minimum(s.duck[a:a + n], np.linspace(1, 0.12, n))
         s.duck[a + n:b] = np.minimum(s.duck[a + n:b], 0.12)
 
+    def voice(s, path, at, g=1.0, pan=0.0, duck=0.22):
+        """v3.1 : ajoute une réplique (wav de voix.py) à `at` s ; la musique baisse dessous (ducking doux).
+        La voix n'est pas filtrée à 3,5 kHz comme la musique, pour rester intelligible. Renvoie sa durée."""
+        raw = subprocess.run(["ffmpeg", "-loglevel", "error", "-i", path, "-ac", "1", "-ar", str(SR), "-f", "f32le", "-"],
+                             check=True, capture_output=True).stdout
+        v = np.frombuffer(raw, np.float32).astype(np.float64)
+        a = int(at * SR)
+        e = min(s.vox.shape[1], a + len(v))
+        if a < e:
+            s.vox[0, a:e] += v[: e - a] * g * (1 - max(0.0, pan))
+            s.vox[1, a:e] += v[: e - a] * g * (1 + min(0.0, pan))
+            f = int(0.18 * SR)
+            lo, hi = max(0, a - f), min(len(s.duck), e + f)
+            s.duck[lo:hi] = np.minimum(s.duck[lo:hi], duck)
+        return len(v) / SR
+
     # -- mixage
     def _reverb(s, x):
         out = np.zeros_like(x)
@@ -700,6 +717,11 @@ class Track:
         mix = sosfilt(sos, mix, axis=1)
         mix = sosfilt(butter(1, 35, btype="high", fs=SR, output="sos"), mix, axis=1)
         mix = np.tanh(mix / (np.max(np.abs(mix)) + 1e-9) * 1.4) / np.tanh(1.4) * 0.7
+        if np.any(s.vox):  # v3.1 : la voix passe devant (musique déjà baissée par le ducking)
+            vx = s.vox[:, :n]
+            vx = vx / (np.max(np.abs(vx)) + 1e-9) * 0.85
+            mix = mix * 0.55 + vx
+            mix = np.tanh(mix * 1.1) / np.tanh(1.1) * 0.8
         fade = int(0.35 * SR)
         mix[:, -fade:] *= np.linspace(1, 0, fade)
         tmp = path + ".raw.wav"

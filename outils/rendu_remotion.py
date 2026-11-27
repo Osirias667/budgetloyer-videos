@@ -7,6 +7,7 @@ Le fichier Python de l'épisode garde le découpage (liste de scènes `(fonction
         budgetloyer_gta6_compteur_heure [dossier_sortie]
     python3 outils/rendu_remotion.py stills episodes/2026-11-18.py A gta6-compteur-heure 0,90,300 [dossier]
 
+Si l'épisode définit `<VAR>_PROPS` (dict), ses clés sont ajoutées aux props (ex. répliques de la voix off).
 `stills` rend des images à pleine taille (l'image 0 doit montrer l'accroche complète) sans musique.
 Installation (une fois par session) : voir remotion/README.md.
 """
@@ -58,7 +59,7 @@ def render(ep, var, music_fn, comp, name, out_dir="."):
     os.makedirs(os.path.join(RM, "public", "audio"), exist_ok=True)
     wav = os.path.join(RM, "public", "audio", name + ".wav")
     getattr(mod, music_fn)(total, wav)
-    props = json.dumps({"durations": durs, "audio": f"audio/{name}.wav"})
+    props = json.dumps({"durations": durs, "audio": f"audio/{name}.wav", **getattr(mod, var + "_PROPS", {})})
     tmp = os.path.join(RM, "out", name + ".mp4")
     os.makedirs(os.path.dirname(tmp), exist_ok=True)
     npx(["render", "src/index.ts", comp, tmp, "--props", props, "--codec", "h264", "--crf", "20",
@@ -71,7 +72,7 @@ def render(ep, var, music_fn, comp, name, out_dir="."):
 
 def stills(ep, var, comp, frames, out_dir="stills"):
     mod = load(ep)
-    props = json.dumps({"durations": durations(mod, var)})
+    props = json.dumps({"durations": durations(mod, var), **getattr(mod, var + "_PROPS", {})})
     os.makedirs(out_dir, exist_ok=True)
     for fr in frames:
         dst = os.path.join(os.path.abspath(out_dir), f"{comp}_{fr}.png")

@@ -7,3 +7,7 @@ remotion/node_modules/
 remotion/public/audio/
 remotion/out/
 remotion/stills/
+voix/modeles/
+voix/cache/
+voix/demo/
+remotion/public/voix/
