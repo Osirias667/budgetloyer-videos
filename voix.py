@@ -69,13 +69,15 @@ def _kokoro():
 
 
 def _eleven(voice_id, texte, out):
-    """Voix premium ElevenLabs (modèle multilingue). Nécessite ELEVENLABS_API_KEY et l'accès réseau à api.elevenlabs.io."""
+    """Voix premium ElevenLabs (modèle multilingue). Clé : secret réseau de l'environnement (en-tête xi-api-key sur
+    api.elevenlabs.io, recommandé) ou variable ELEVENLABS_API_KEY."""
     import json
     req = urllib.request.Request(
         f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}?output_format=mp3_44100_128",
         data=json.dumps({"text": texte, "model_id": "eleven_multilingual_v2", "language_code": "fr",
                          "voice_settings": {"stability": 0.4, "similarity_boost": 0.8, "style": 0.35}}).encode(),
-        headers={"xi-api-key": os.environ["ELEVENLABS_API_KEY"], "Content-Type": "application/json"})
+        headers={"Content-Type": "application/json",
+                 **({"xi-api-key": os.environ["ELEVENLABS_API_KEY"]} if os.environ.get("ELEVENLABS_API_KEY") else {})})
     mp3 = out + ".mp3"
     with urllib.request.urlopen(req, timeout=120) as r, open(mp3, "wb") as fh:
         fh.write(r.read())
@@ -103,7 +105,9 @@ def dire(perso, texte, out_dir=CACHE):
     Lève une erreur si la voix sort vide (contrôle ajouté après la voix muette de Mamie, 27 nov. 2026)."""
     import soundfile as sf
     p = PERSOS[perso]
-    moteur = "eleven" if os.environ.get("ELEVENLABS_API_KEY") else "kokoro"
+    # ElevenLabs si la clé est en variable, ou (recommandé) si elle est en « secret réseau » de l'environnement
+    # (en-tête xi-api-key ajouté par le proxy, la clé ne touche pas la machine) et que VOIX_MOTEUR=eleven.
+    moteur = "eleven" if os.environ.get("ELEVENLABS_API_KEY") or os.environ.get("VOIX_MOTEUR") == "eleven" else "kokoro"
     key = hashlib.sha1(f"{moteur}|{perso}|{texte}|{sorted(p.items())}".encode()).hexdigest()[:14]
     os.makedirs(out_dir, exist_ok=True)
     dst = os.path.join(out_dir, f"{perso}_{key}.wav")
