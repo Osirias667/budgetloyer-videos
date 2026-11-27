@@ -76,24 +76,19 @@ Chaque vidéo part sur les trois réseaux, en trois posts séparés (6 posts par
 - Carrousels photo TikTok (demande du propriétaire, 10 nov. 2026) : une fois par semaine au moins, en plus des 2 vidéos, sur un créneau libre (13:00 par défaut). 5 à 8 images JPG 1080x1920 dans `videos/AAAA-MM/<nom>/01.jpg…`, générées par un script `episodes/` qui importe `bl.py` (modèle : `episodes/2026-11-11_carrousel.py`). L'image 1 porte l'accroche complète et « Glisse ➜ ». La dernière image montre la marque et la question finale. Formats qui s'y prêtent : « t'es lequel ? », classements, vrai ou faux, avant/après. Réglages : TikTok seul, `tiktokData.autoAddMusic: true` (TikTok ajoute une musique tendance, impossible sur une vidéo), `photoCoverIndex: 0`, `title`, `firstCommentText` avec la question. Mêmes règles de description et de hashtags que les vidéos.
 - Trial Reels : une fois par semaine, programmer en plus une variante d'accroche en `instagramData.type: TRIAL_REEL` (montrée d'abord aux non-abonnés), sur un créneau sans autre Reel. Noter dans le journal quelle accroche gagne.
 
-## Descriptions (obligatoire : même style que les posts existants du compte)
-Même texte sur TikTok, YouTube et Instagram. Tout sur une seule ligne, sans retours à la ligne, en tutoiement. Dans cet ordre :
-0. Mots-clés : la première phrase et le texte de l'image 1 contiennent les mots que les gens tapent dans la recherche TikTok ou YouTube (« découvert bancaire », « budget étudiant », « colocation », « fin de mois »…).
-1. Accroche avec un emoji au début et « … » : `🎿 Les vacances au ski approchent… mais ton budget, lui, est-il prêt à dévaler les pistes ? ❄️`
-2. Une phrase de contexte liée au thème de la vidéo, qui finit par « ! » et un emoji.
-3. `Avec BudgetLoyer, <verbe> :` puis 3 ou 4 bénéfices courts, chacun précédé d'un emoji, à l'impératif (🎯 📊 🚨 💰 📅 🏠).
-4. Une chute drôle qui file la métaphore de la vidéo : `Parce que les seules choses qui devraient déraper au ski, ce sont tes skis, pas tes finances ! ⛷️`
-5. `👉 Découvre BudgetLoyer.com (lien en bio).` Sur YouTube, retirer « (lien en bio) ». Le garder sur Instagram.
-6. Exactement 5 hashtags, pas plus (TikTok est annoncé comme limité à 5 par publication depuis août 2025), minuscules sauf nom propre, sans accents, tous en rapport avec la vidéo, dans cet ordre :
-   - 1 ou 2 sur le sujet précis de la vidéo, parmi les termes les plus utilisés pour ce sujet (`#BlackFriday`, `#noel`, `#colocation`, `#loyer`…).
-   - 2 ou 3 très larges et en rapport : `#budget`, `#argent`, `#epargne`, `#humour` (sketch), `#finance`.
-   - Le dernier est `#fyp` sur TikTok, `#shorts` sur YouTube, `#reels` sur Instagram.
-   Ne jamais mettre un hashtag populaire sans lien avec la vidéo.
+## Descriptions (nouvelle règle du propriétaire, 27 nov. 2026 : « efficaces et succinctes », pas d'appel à l'action systématique)
+Même texte sur TikTok, YouTube et Instagram, tutoiement, une seule ligne.
+1. **Court** : 1 à 2 phrases, 200 caractères au plus avant les hashtags. Les 80 premiers caractères accrochent seuls et contiennent le mot-clé cherché (« réveillon », « budget étudiant », « fin de mois », « colocation »…).
+2. **Forme** : un emoji au début, l'accroche de la vidéo reformulée (sans tout dévoiler), puis une chute drôle ou une question qui appelle un commentaire. Un fait sourcé seulement s'il frappe, en une demi-phrase avec la source entre parenthèses.
+3. **Appel à l'action et marque : pas à chaque post.** Environ un post sur trois, et seulement quand la vidéo touche directement une fonctionnalité (repère par catégorie, « Il te reste », alerte, mode Foyer, objectif d'épargne) : une phrase courte, par exemple « Ton repère Cadeaux t'attend sur BudgetLoyer.com (lien en bio) ». Les autres posts n'ont ni liste de bénéfices ni « 👉 Découvre BudgetLoyer.com ». Plus jamais la liste « Avec BudgetLoyer, … » + 4 bénéfices.
+4. **Hashtags** : exactement 5, inchangés : 1 ou 2 sur le sujet précis, 2 ou 3 larges et en rapport (`#budget`, `#argent`, `#epargne`, `#humour`), le dernier `#fyp` sur TikTok, `#shorts` sur YouTube, `#reels` sur Instagram. Jamais de hashtag populaire sans lien.
+5. YouTube : titre en question ou en « devine… » (règle inchangée) ; si la description a un lien, retirer « (lien en bio) ».
 
-Exemple complet de référence :
-`🚨 Votre salaire est en garde à vue… et il a beaucoup de choses à expliquer ! 1 800 € sur le compte au départ… mais entre le loyer, les factures et les dépenses du quotidien, où passe tout cet argent ? 🧐 Avec BudgetLoyer, fini les disparitions inexpliquées : 💸 Suis tes dépenses 📊 Visualise ce qu'il te reste vraiment 🚨 Anticipe les dépassements de budget 🎯 Garde le contrôle de ton épargne Ton salaire mérite mieux que de disparaître sans laisser de traces ! 🔍 👉 Passe à l'action sur BudgetLoyer.com (lien en bio). #salaire #budget #argent #humour #fyp`
+Exemples :
+- Sans appel à l'action : `🎄 Réveillon chez toi cette année ? Tout le monde « apporte un truc »… devine qui paie le reste 😅 #reveillon #noel #budget #humour #fyp`
+- Avec (un post sur trois) : `🎓 Budget étudiant : 320 € pour tenir tout décembre… tu passes le 31 ? Ton repère du jour t'attend sur BudgetLoyer.com (lien en bio). #budgetetudiant #etudiant #budget #argent #fyp`
 
-Avant de programmer, relire aussi les 5 dernières descriptions du compte (métrique TKPO05) pour rester dans le ton.
+Noter dans le journal, pour chaque post, « CTA : oui/non », pour mesurer l'effet.
 
 ## Amélioration continue
 But : chaque semaine, faire mieux que la semaine précédente, en vues et en rétention. `apprentissage.md` est la mémoire du compte : le lire avant de créer, le mettre à jour après chaque analyse.
@@ -118,7 +113,7 @@ Les plateformes ne publient pas leurs poids exacts : ce sont des repères, les s
 10. **Dates à venir** : suivre le calendrier de `apprentissage.md` et préparer la vidéo la veille ou le jour même.
 
 **Pour sortir du plafond TikTok de ~750 vues (décision du propriétaire, 17 nov. 2026)** : sur 15 vidéos, 14 font 733 à 819 vues, avec 0 partage. TikTok montre chaque vidéo à un premier groupe puis s'arrête : il faut plus de partages, de commentaires et de revisionnages dans ce groupe. Trois règles s'ajoutent, sur chaque vidéo :
-11. **Moins de pub, plus de contenu.** La vidéo doit valoir le coup sans la marque. Pendant la vidéo, la marque n'est qu'une petite signature (`brand_tag`). Au plus un plan d'app (tableau de bord, téléphone, widget « Il te reste ») de 2,5 s maximum, et seulement s'il sert l'histoire ; au moins une vidéo sur deux n'en montre aucun. Pas de phrase de vente à l'écran (« Pose un repère… dans BudgetLoyer ») : la carte de fin (2 s maximum) garde le logo et BudgetLoyer.com. Les descriptions gardent leur format (règle du propriétaire), sans changement.
+11. **Moins de pub, plus de contenu.** La vidéo doit valoir le coup sans la marque. Pendant la vidéo, la marque n'est qu'une petite signature (`brand_tag`). Au plus un plan d'app (tableau de bord, téléphone, widget « Il te reste ») de 2,5 s maximum, et seulement s'il sert l'histoire ; au moins une vidéo sur deux n'en montre aucun. Pas de phrase de vente à l'écran (« Pose un repère… dans BudgetLoyer ») : la carte de fin (2 s maximum) garde le logo et BudgetLoyer.com. Les descriptions suivent la section Descriptions (courtes, appel à l'action un post sur trois).
 12. **Un destinataire précis.** Chaque vidéo est écrite pour être envoyée à quelqu'un de nommé : « ton coloc qui… », « ton pote qui emménage », « la personne avec qui tu partages les courses », « ta sœur qui… ». Il apparaît dans l'accroche ou les 3 premières secondes, et la carte de fin dit « Envoie ça à <lui> ». Choisir le sujet d'abord pour ce critère (premier partage du compte : premier appart, « le pote qui emménage »).
 13. **Faire participer.** Chaque jour, au moins une vidéo demande une action simple : défi à refaire chez soi (le défi 0 € est la seule vidéo repartie après coup, 742 puis 990 vues), réponse d'un mot ou d'un chiffre (« réponds avec ton niveau »), choix de camp, ou « tag la personne qui… ». Au moins un défi par semaine. La question finale reste une vraie question, sans faux témoignage ni fausse urgence.
 
