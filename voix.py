@@ -48,6 +48,7 @@ PERSOS = {
 }
 
 _K = None
+ECHECS = []  # répliques où ElevenLabs a échoué (repli Kokoro) : à noter dans le journal
 
 
 def install():
@@ -113,9 +114,15 @@ def dire(perso, texte, out_dir=CACHE):
     dst = os.path.join(out_dir, f"{perso}_{key}.wav")
     if not os.path.exists(dst):
         raw = dst + ".raw.wav"
+        ok = False
         if moteur == "eleven" and p.get("eleven"):
-            _eleven(p["eleven"], texte, raw)
-        else:
+            try:
+                _eleven(p["eleven"], texte, raw)
+                ok = True
+            except Exception as e:  # réseau bloqué, clé absente ou voix inconnue : repli Kokoro, à signaler au journal
+                print(f"[voix] ElevenLabs indisponible ({e}) : repli sur Kokoro pour {perso}", file=sys.stderr)
+                ECHECS.append(f"{perso}: {e}")
+        if not ok:
             import numpy as np
             k = _kokoro()
             style = sum(w * k.get_voice_style(v) for v, w in p["mix"])
